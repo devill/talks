@@ -1,0 +1,681 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Service oriented architecture with Thrift</title>
+
+		<meta name="description" content="Service oriented architecture with Thrift">
+		<meta name="author" content="Rafael Ordog a.k.a. DeVill">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/monokai-sublime.css">
+
+		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
+		<script>
+			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+        <style>
+
+            .reveal img.no-background {
+                border: 0px;
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .reveal .fragment.visible {
+                color: #ff9944;
+            }
+
+            .reveal .fragment.visible.past-fragment {
+                color: lightyellow;
+            }
+
+            .reveal pre code {
+                overflow: visible;
+                max-height: none;
+            }
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+				<section>
+					<h1>Service Oriented Architecture with Thrift</h1>
+					<p>
+						<small>Created by <a href="http://c0de-x.com">Rafael Ordog a.k.a. DeVill</a> / <a href="http://twitter.com/devillsroom">@devillsroom</a></small>
+					</p>
+				</section>
+				
+				<section>
+				    <section>
+				        <h2>Who am I?</h2>
+				    </section>
+		                    
+                    <section data-background="#FFFFFF">
+                        <img src='images/URATIM_small.png' class='no-background'/>
+                    </section>
+
+                    <section >
+                        <img src='images/small_1ptr_01.png'/>
+                    </section>
+
+                    <section >
+                        <img src='images/fadbheaj.png'/>
+                    </section>
+
+				    <section data-background="#FFFFFF">
+                        <img src='images/Logo_Web-RGB_transparent.gif' class='no-background'/>
+                    </section>
+
+				    <section data-background="#FFFFFF">
+                        <img src='images/SmallHorizontalLogo.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Poker Croupier</h2>
+                        <p>https://github.com/devill/poker-croupier</p>
+                        <img src='images/poker.gif'/>
+                    </section>
+                </section>
+
+                <section>
+
+                    <section>
+                        <h2>Imagine you inherited a huge monolithic web app!</h2>
+                        <p class='fragment'>Single database server</p>
+                        <p class='fragment'>Several million lines of code</p>
+                        <aside class="notes">
+                            <p>Monolitikus alkalmazas</p>
+                            <p>Egy adatbazis</p>
+                            <p>MLOC</p>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>What is your first reaction to performance problems?</h2>
+                    </section>
+
+                    <section>
+                        <img src='images/9038-superman-superman-flying.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Performance optimization</h2>
+                        <p class='fragment'>It's fine as long as there are really bad parts</p>
+                        <p class='fragment'>Leaking logic to SQL to get better performance is a huge red flag</p>
+                        <aside class="notes">
+                            <p>Preformancia optimalizalas</p>
+                            <p>Logika az SQLben</p>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <img src='images/9038-superman-superman-flying.png' class='no-background'/>
+                        <img src='images/9038-superman-superman-flying.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <img src='images/9038-superman-superman-flying-small.png' class='no-background'/>
+                        <img src='images/9038-superman-superman-flying-small.png' class='no-background'/>
+                        <img src='images/9038-superman-superman-flying-small.png' class='no-background'/>
+                        <img src='images/9038-superman-superman-flying-small.png' class='no-background'/>
+                        <img src='images/9038-superman-superman-flying-small.png' class='no-background'/>
+                        <img src='images/9038-superman-superman-flying-small.png' class='no-background'/>
+                        <img src='images/9038-superman-superman-flying-small.png' class='no-background'/>
+                        <img src='images/9038-superman-superman-flying-small.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Scaling by replication</h2>
+                        <p class='fragment'>Running the same process on several threads is hard</p>
+                        <p class='fragment'>Concurrence issues</p>
+                        <p class='fragment'>The amount of communication can explode</p>
+                        <aside class="notes">
+                            <p>Threading nehez</p>
+                            <p>Lockok</p>
+                            <p>Sok kommunikacio</p>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Scaling a single database</h2>
+                        <p class='fragment'>Master/Slave and sharding?</p>
+                        <p class='fragment'>Lot of concurrent queries</p>
+                        <p class='fragment'>Hard to tell which one caused a performance issue</p>
+                        <aside class="notes">
+                            <p>Egy adatbazis</p>
+                            <p>Master/Slave</p>
+                            <p>Sharding</p>
+                            <p>Sok query</p>
+                            <p>Ki okozza a bajt?</p>
+                        </aside>
+                    </section>
+
+
+                    <section>
+                        <h2>Dependencies</h2>
+                        <img src='images/IU8j5nJ.gif'/>
+                        <p class='fragment'>A single deployment can break everything</p>
+                        <p class='fragment'>A single query can paralyze the entire DB</p>
+                        <aside class="notes">
+                            <p>Elszabadult fuggosegek</p>
+                            <p>Deployment</p>
+                            <p>Lancreakcio</p>
+                        </aside>
+                    </section>
+
+                    <section>
+                        <h2>Teams can not take full responsibility over their component</h2>
+                        <aside class="notes">
+                            <p>Csapat felelosseg?</p>
+                        </aside>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h1>What if...</h1>
+                    </section>
+
+                    <section>
+                        <img src='images/justice-league-small.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Service oriented architecture</h2>
+                        <p>is the idea of breaking up your application into smaller independent applications</p>
+                    </section>
+
+                    <section>
+                        <h2>Host each on separate (virtual) machines</h2>
+                        <p class='fragment'>Failures and performance issues are localized</p>
+                        <p class='fragment'>Dependent services can fail gracefully</p>
+                        <p class='fragment'>It's easier to monitor performance issues per service</p>
+                    </section>
+
+                    <section>
+                        <h2>Independent databases</h2>
+                        <p class='fragment'>If there is a database issue, it's immediately clear which team should take care of it</p>
+                    </section>
+
+                    <section>
+                        <h2>Extra level of structure</h2>
+                        <p class='fragment'>Stronger encapsulation</p>
+                    </section>
+
+                    <section>
+                        <h2>Teams can take full responsibility</h2>
+                        <img src='images/vTWrVP0.gif'/>
+                        <p class='fragment'>DevOps - Development and operations is taken care of by the same team</p>
+                    </section>
+
+                    <section>
+                        <h2>Bad decisions are more localized</h2>
+                        <p class='fragment'>It's easier to remove past mistakes</p>
+                        <p class='fragment'>It's less risky to experiment</p>
+                    </section>
+
+                    <section>
+                        <h2>Good architecture let's you defer hard decisions</h2>
+                        <p class='fragment'>With a service oriented architecture your hard decisions are also localized</p>
+                    </section>
+
+                    <section>
+                        <h2>Just never try to rewrite a service</h2>
+                        <img src='images/3YXvyRz.gif'/>
+                        <p class='fragment'>Rewrites almost never work out well</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h1>INTERMISSION</h1>
+                    </section>
+
+                    <section>
+                        <h2>al'a 2001 Space Odyssey</h2>
+                        <img src="images/2001-monkey-big-o.gif"/>
+                        <p class='fragment'>Your hammer ain't gonna make everything a nail</p>
+                    </section>
+
+
+                    <section>
+                        <h2>It's a chance to try new technologies</h2>
+                        <p class='fragment'>Just be aware of the shiny nickel</p>
+                        <p class='fragment'>Especially if it's similar to something you already have</p>
+                        <p class='fragment'>Each new technology needs to be maintained</p>
+                    </section>
+
+                    <section>
+                        <h2>So what is worth trying?</h2>
+                        <p class='fragment'>Try using different languages</p>
+                        <p class='fragment'>Try using different types of databases</p>
+                        <p class='fragment'>etc...</p>
+                    </section>
+
+                    <section>
+                        <h2>Experimenting with languages</h2>
+                        <p class='fragment'>Each language has it's virtues</p>
+                        <p class='fragment'>Choose the best tool</p>
+                    </section>
+
+                    <section>
+                        <h2>Node.js</h2>
+                        <p class='fragment'>Use it for server side UI to reduce duplication</p>
+                        <p class='fragment'>Use it for IO heavy application with little logic in it</p>
+                    </section>
+
+                    <section>
+                        <h2>Ruby and Python</h2>
+                        <p class='fragment'>Use them when fast time to market is important</p>
+                        <p class='fragment'>Use them if business logic is complex but CPU and RAM is unlikely to be a problem</p>
+                    </section>
+
+                    <section>
+                        <h2>C, C++, Cuda</h2>
+                        <p class='fragment'>Great for computation heavy applications where scaling up is the only viable option</p>
+                        <p class='fragment'>Although this situation is getting pretty rare</p>
+                    </section>
+
+                    <section>
+                        <h2>Experiment with new database technologies</h2>
+                        <p class='fragment'>Each database technology has it's virtues</p>
+                        <p class='fragment'>That DOES NOT mean that you should have both Oracle SQL, MySQL and Microsoft SQL Server</p>
+                    </section>
+
+                    <section>
+                        <h2>Paying for an SQL server</h2>
+                        <img src="images/tumblr_inline_mpl4bepowL1qz4rgp.gif"/>
+                    </section>
+
+                    <section>
+                        <h2>SQL - the good old swiss knife</h2>
+                        <p class='fragment'>It's kind of good at handling unexpected requirements for a wide variety of aggregates</p>
+                        <p class='fragment'>BUT it promotes leaking logic to the database</p>
+                        <p class='fragment'>It's not the best choice for most operational purposes</p>
+                    </section>
+
+                    <section>
+                        <h2>Key-value stores</h2>
+                        <p class='fragment'>Really good for storing session related data</p>
+                        <p class='fragment'>Non persistent versions can be used as in-memory cache</p>
+                    </section>
+
+                    <section>
+                        <h2>Document databases</h2>
+                        <p class='fragment'>Preferable when a data set is presented in the same way many times</p>
+                        <p class='fragment'>Moves the schema to the code, where it belongs</p>
+                    </section>
+
+                    <section>
+                        <h2>Graph databases</h2>
+                        <p class='fragment'>Similar to SQL in that it let's you slice and dice the data freely</p>
+                        <p class='fragment'>Gives a lot more freedom than SQL, and it's a lot better at recursive queries</p>
+                        <p class='fragment'>Horrible at performing similar queries repeatedly</p>
+                    </section>
+
+                    <section>
+                        <h2>Plain old files</h2>
+                    </section>
+
+                    <section>
+                        <img src="images/wat-gigantic-duck.jpg"/>
+                    </section>
+
+                    <section>
+                        <h2>No... I'm serious!</h2>
+                    </section>
+
+                    <section>
+                        <h2>Plain old files</h2>
+                        <p class='fragment'>It's perfect for storing a large corpus of un-indexed text</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Okay! So you are about to write your first service!</h2>
+                        <img src='images/tumblr_inline_mmawrllsKw1qz4rgp.gif'/>
+                    </section>
+
+                    <section>
+                        <h2>What would be a natural choice of a communication channel?</h2>
+                        <p class='fragment'>REST APIs work well between different organizations</p>
+                        <p class='fragment'>It's a viable option for in-house communication too</p>
+                    </section>
+
+                    <section>
+                        <h2>But today I'd like to show you another option</h2>
+                    </section>
+
+                    <section data-background="#3b5b96">
+                        <h1>Thrift</h1>
+                        <p style='margin-top:40px'>A remote procedure call framework by</p>
+                        <img src='images/facebok.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Okay! But what's so cool about it?</h2>
+                        <p class='fragment'>Single interface definition can be compiled to many languages</p>
+                        <p class='fragment'>Both server and client works out of the box</p>
+                    </section>
+
+                    <section>
+                        <h2>And it's pretty simple to use it</h2>
+                    </section>
+
+                    <section>
+                        <h2>Step 1: Define the service interface</h2>
+                        <pre><code data-trim class='cpp'>
+enum BinaryOperation {
+    ADDITION = 1,
+    SUBTRACTION = 2,
+    MULTIPLICATION = 3,
+    DIVISION = 4,
+    MODULUS = 5
+}
+
+struct ArithmeticOperation {
+    1:BinaryOperation op,
+    2:double lh_term,
+    3:double rh_term,
+}
+
+service Calculator {
+    double calc(1:ArithmeticOperation op),
+}
+                        </code></pre>
+                        <p class='fragment'>Note the numbers before each field</p>
+                        <p class='fragment'>They help with versioning</p>
+                    </section>
+
+                    <section>
+                        <h2>Step 2: Run the Thrift compiler</h2>
+                        <pre><code class='bash'>thrift -gen rb calculator.thrift</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Step 3: Implement a handler</h2>
+                        <pre><code data-trim class='ruby'>
+class CalculatorHandler
+    def calc(val)
+        lh_term = val.lh_term
+        rh_term = val.rh_term
+        case val.op
+            when 1
+                lh_term+rh_term
+            when 2
+                lh_term-rh_term
+            when 3
+                lh_term*rh_term
+            when 4
+                lh_term/rh_term
+            when 5
+                lh_term%rh_term
+        end
+    end
+end
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Step 4: Start the service</h2>
+                        <pre><code class='ruby'>create_server(CalculatorHandler.new).serve</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Okay... you've got me... it's a little more than that</h2>
+                        <pre><code data-trim class='ruby'>
+def create_server(handler)
+    processor = Calculator::Processor.new(handler)
+    transport = Thrift::ServerSocket.new(9090)
+    transportFactory = Thrift::BufferedTransportFactory.new()
+    Thrift::ThreadPoolServer.new(processor, transport, transportFactory)
+end
+
+create_server(CalculatorHandler.new).serve
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Step 5: Enjoy</h2>
+                        <pre><code class='bash'>ruby calculator.rb</code></pre>
+                    </section>
+
+                    <section>
+                        <h2>But what's the use of a service without a service consumer?</h2>
+                    </section>
+
+                    <section>
+                        <h2>Just use the generated client as any other class</h2>
+                        <pre><code data-trim class='php'>
+$client= new CalculatorClient(ThriftProtocol::get());
+
+$aritmectiOperation = new ArithmeticOperation();
+$aritmectiOperation->op = BinaryOperation::ADDITION;
+$aritmectiOperation->lh_term = 25;
+$aritmectiOperation->rh_term = 10;
+
+echo $client->calc($aritmectiOperation) . "\n";
+
+ThriftProtocol::close();
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Okay... you've got me again... the battery is not included</h2>
+                        <pre><code data-trim class='php'>
+class ThriftProtocol {
+    private static $transport = NULL;
+    private static $protocol = NULL;
+
+    static function get() {
+        if(self::$protocol == NULL) {
+            self::$transport = new TSocket('localhost', 9090);
+            self::$transport->open();
+            self::$protocol = new TBinaryProtocol(self::$transport);
+        }
+        return self::$protocol;
+    }
+
+    static function close() {
+        self::$transport->close();
+    }
+}
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>Thrift also supports async messages</h2>
+                        <pre class='fragment'><code data-trim class='cpp'>
+service AsyncService {
+    oneway void (1:string message),
+}
+                        </code></pre>
+                        <p class='fragment'>You can call it just as you call other functions, but execution will be asynchronous</p>
+                    </section>
+
+                    <section>
+                        <h1>DEMO</h1>
+                        <img src='images/PSY-Gangnam-Style-03.gif'/>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Thrift vs. REST</h2>
+                        <p class='fragment'>Thrift has static types versus REST promotes dynamic types</p>
+                        <p class='fragment'>Thrift has versioning support</p>
+                    </section>
+
+                    <section>
+                        <h2>Thrift vs. REST</h2>
+                        <p class='fragment'>REST is not a strict standard</p>
+                        <p class='fragment'>The documentation of Thrift is horrible</p>
+                    </section>
+                    
+                    <section>
+                        <h2>Thrift</h2>
+                        <p class='fragment'>Server type</p>
+                        <p class='fragment'>Transport</p>
+                        <p class='fragment'>Protocol</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Okay, but what about that monolithic app I've been talking about?</h2>
+                        <p class='fragment'>Let's suppose we already have tests</p>
+                    </section>
+
+                    <section data-background="-webkit-radial-gradient(center, circle cover, #eeeedd 0%, #998877 100%)">
+                        <img src='images/SOA-Refactor-Startingpoint.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Step 0: Try to isolate a few service candidates</h2>
+                        <p class='fragment'>It may change later, but you need a starting point</p>
+                        <p class='fragment'>Try to isolate something small and simple first</p>
+                    </section>
+
+                    <section>
+                        <h2>Step 1: Isolate the database</h2>
+                        <p class='fragment'>Until there are shared tables the service would not be independent</p>
+                        <p class='fragment'>In terms of performance this is the most important step anyway</p>
+                    </section>
+
+                    <section>
+                        <h2>Find shared tables</h2>
+                        <p class='fragment'>Decide which service will own it</p>
+                        <p class='fragment'>Replicate the data for other service candidates as needed</p>
+                        <p class='fragment'>Once all necessary data is replicated read from the new sources</p>
+                    </section>
+
+                    <section data-background="-webkit-radial-gradient(center, circle cover, #eeeedd 0%, #998877 100%)">
+                        <img src='images/SOA-Refactor-IsolateDB.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Step 2: Isolate the service candidate as a module</h2>
+                        <p class='fragment'>Dependencies should be pointing in one direction</p>
+                        <p class='fragment'>Each service candidate should only read and write it's own DB</p>
+                        <p class='fragment'>All other DB access should go through the owning module</p>
+                    </section>
+
+                    <section data-background="-webkit-radial-gradient(center, circle cover, #eeeedd 0%, #998877 100%)">
+                        <img src='images/SOA-Refactor-IsolateServiceCandidateModule.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>At this point the service candidates can be deployed independently</h2>
+                        <p class='fragment'>Also the databases can be on separate machines</p>
+                    </section>
+
+                    <section>
+                        <h2>Step 3: Introduce facades between service candidates</h2>
+                        <p class='fragment'>This class will become your service gateway</p>
+                    </section>
+
+                    <section data-background="-webkit-radial-gradient(center, circle cover, #eeeedd 0%, #998877 100%)">
+                        <img src='images/SOA-Refactor-Facades.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Step 4: Split the facade to a client and a server side class</h2>
+                        <p class='fragment'>Make sure that only plane old data structures are passed between the two classes</p>
+                    </section>
+
+                    <section data-background="-webkit-radial-gradient(center, circle cover, #eeeedd 0%, #998877 100%)">
+                        <img src='images/SOA-Refactor-Gateways.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Step 5: Introduce an abstract factory that can build the facade, and data structures.</h2>
+                        <p class='fragment'>Note that up until now all our tests were kept green</p>
+                    </section>
+
+                    <section data-background="-webkit-radial-gradient(center, circle cover, #eeeedd 0%, #998877 100%)">
+                        <img src='images/SOA-Refactor-AbstractFactory.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Step 6: Copy the facades interface into a thrift definition</h2>
+                        <p class='fragment'>Run the compiler</p>
+                    </section>
+
+
+                    <section>
+                        <h2>Step 7: Create an implementation of the abstract factory that returns the thrift objects</h2>
+                        <p class='fragment'>With the new factory you have an independent service</p>
+                        <p class='fragment'>Your tests will still run with the original factory</p>
+                    </section>
+
+                    <section data-background="-webkit-radial-gradient(center, circle cover, #eeeedd 0%, #998877 100%)">
+                        <img src='images/SOA-Refactor-AddThriftorREST.png' class='no-background'/>
+                    </section>
+
+                    <section>
+                        <h2>Sounds simple, but there is a catch...</h2>
+                        <p class='fragment'>There is no out of the box solution to inject a dependency through a remote call</p>
+                        <p class='fragment'>Design your services with that in mind</p>
+                    </section>
+                </section>
+
+                <section data-background="#FFFFFF">
+                    <img src='images/Logo_Web-RGB_transparent.gif' class='no-background'/>
+                </section>
+			</div>
+
+		</div>
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>

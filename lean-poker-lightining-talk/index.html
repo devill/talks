@@ -1,0 +1,161 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Lean Poker</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="lib/js/html5shiv.js"></script>
+		<![endif]-->
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+                    <h1>Lean Poker</h1>
+                    <h3>A fun way to learn continuous deployment.</h3>
+                    <p>by <a href="http://twitter.com/devillsroom">Rafael Ordog</a> (DeVill)</p>
+                    <p><img src="Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom</p>
+                </section>
+
+                <section>
+                    <h2>Lean Poker is a full day workshop that focuses fast and effective delivery.</h2>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Event outline</h2>
+                    </section>
+
+                    <section>
+                        <h2>First hour</h2>
+                        <p class='fragment'>Short introduction</p>
+                        <p class='fragment'>Teams are formed</p>
+                        <p class='fragment'>Teams fork the player framework</p>
+                    </section>
+
+                    <section>
+                        <h2>The game sessions</h2>
+                        <p class='fragment'>A sit'n'go runs every 2 minutes for an hour</p>
+                        <p class='fragment'>Before every sit'n'go the latest HEAD revisions are deployed</p>
+                        <p class='fragment'>The winner gets 5 points, the runner up gets 3 points</p>
+                    </section>
+
+                    <section>
+                        <h2>The retro</h2>
+                        <p class='fragment'>Watch the last sit'n'go of the session</p>
+                        <p class='fragment'>Discuss experiences</p>
+                        <p class='fragment'>Short break while no one codes, and robots do not play</p>
+                    </section>
+
+                </section>
+
+                <section>
+                    <section>
+                        <h1>DEMO TIME</h1>
+                    </section>
+
+                    <section>
+                        <img src='lean_poker_vienna_dashboard.png'/>
+                    </section>
+
+                    <section>
+                        <img src='lean_poker_vienna_plot.png'/>
+                    </section>
+
+                    <section>
+                        <img src='lean_poker_vienna_game.png'/>
+                    </section>
+                </section>
+
+                <section>
+                    <h2>Things you can learn</h2>
+                    <p class='fragment'>The minimum viable product is less than you'd expect.</p>
+                    <p class='fragment'>The importance of being first on the market</p>
+                    <p class='fragment'>The advantages of a good delivery pipeline</p>
+                    <p class='fragment'>The perks of a fast feedback loop</p>
+                    <p class='fragment'>And a lot of other stuff...</p>
+                </section>
+
+                <section>
+                    <h2>Whats next?</h2>
+                    <p class='fragment'>Event in Budapest tomorrow!</p>
+                    <p class='fragment'>I'd like to bring it to other cities</p>
+                    <p class='fragment'>Standardize, write a tutorial...</p>
+                </section>
+
+                <section data-background-color="black">
+                    <img src='video_splash_black_bg.png' style='border:0;background: transparent;margin-bottom:70px'/>
+                    <p><a href="http://leanpoker.org">leanpoker.org</a> <img src="Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0 15px 0 100px"/>@leanpoker</p>
+                    <p>Rafael Ordog <img src="Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0 15px 0 100px"/>@devillsroom</p>
+                </section>
+			</div>
+
+		</div>
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
