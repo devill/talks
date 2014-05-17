@@ -18,15 +18,15 @@
 		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
 
 		<!-- For syntax highlighting -->
-		<link rel="stylesheet" href="../reveal/lib/css/monokai-sublime.css">
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
 
 		<!-- If the query includes 'print-pdf', use the PDF print sheet -->
 		<script>
-			document.write( '<link rel="stylesheet" href="css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
+			document.write( '<link rel="stylesheet" href="../reveal/css/print/' + ( window.location.search.match( /print-pdf/gi ) ? 'pdf' : 'paper' ) + '.css" type="text/css" media="print">' );
 		</script>
 
 		<!--[if lt IE 9]>
-		<script src="lib/js/html5shiv.js"></script>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
 		<![endif]-->
 
         <style>
@@ -37,11 +37,11 @@
                 box-shadow: none;
             }
 
-            .reveal .fragment.visible {
+            .reveal .fragment.visible.current-fragment {
                 color: #ff9944;
             }
 
-            .reveal .fragment.visible.past-fragment {
+            .reveal .fragment.visible {
                 color: lightyellow;
             }
 
