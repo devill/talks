@@ -114,7 +114,7 @@
             </section>
 
             <section>
-                <h2>It was designed with single machine in mind</h2>
+                <h2>It was designed with<br/>single machine in mind</h2>
 
                 <p class='fragment'>Shading is a solution</p>
 
@@ -122,7 +122,7 @@
             </section>
 
             <section>
-                <h2>The the schema is hard to change</h2>
+                <h2>The schema is hard to change</h2>
 
                 <p class='fragment'>The only good way to extend a table is by copying it</p>
 
@@ -135,6 +135,14 @@
                 <p class='fragment'>Due to the rigid SQL schema this data is spread on the disk</p>
 
                 <p class='fragment'>Pseudo key-value store: JSON in SQL</p>
+            </section>
+
+            <section>
+                <h2>Misplaced knowledge</h2>
+
+                <p class='fragment'>The schema is in the database</p>
+
+                <p class='fragment'>Data semantics is only present in the code</p>
             </section>
 
             <section>
@@ -201,10 +209,22 @@
         </section>
 
         <section>
+            <h2>Note the difference in philosophy</h2>
+
+            <p class='fragment'>SQL stores data as raw as possible, and aggregates on demand</p>
+
+            <p class='fragment'>Aggregate stores expect you to store prepared data in the format that it is supposed to be used later</p>
+        </section>
+
+        <section>
             <h2>So what do I choose?</h2>
-            <p class='fragment'>Given no context choose SQL</p>
+
+            <p class='fragment'>Given no context choose what you know best</p>
+
             <p class='fragment'>If you have context, choose the best tool you can...</p>
+
             <p class='fragment'>...but consider your level of expertise...</p>
+
             <p class='fragment'>...and the maturity of the product, and the community</p>
         </section>
 
