@@ -1,0 +1,258 @@
+<!doctype html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+
+		<title>Things I learned from building Lean Poker</title>
+
+		<meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+		<meta name="author" content="Hakim El Hattab">
+
+		<meta name="apple-mobile-web-app-capable" content="yes" />
+		<meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+		<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+		<link rel="stylesheet" href="../reveal/css/reveal.min.css">
+		<link rel="stylesheet" href="../reveal/css/theme/default.css" id="theme">
+
+		<!-- For syntax highlighting -->
+		<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+		<!-- If the query includes 'print-pdf', include the PDF print sheet -->
+		<script>
+			if( window.location.search.match( /print-pdf/gi ) ) {
+				var link = document.createElement( 'link' );
+				link.rel = 'stylesheet';
+				link.type = 'text/css';
+				link.href = 'css/print/pdf.css';
+				document.getElementsByTagName( 'head' )[0].appendChild( link );
+			}
+		</script>
+
+		<!--[if lt IE 9]>
+		<script src="../reveal/lib/js/html5shiv.js"></script>
+		<![endif]-->
+
+        <style>
+
+            .reveal img.no-background {
+                border: 0px;
+                background: transparent;
+                box-shadow: none;
+            }
+
+            .reveal .fragment.visible.current-fragment {
+                color: #99b4ff;
+            }
+
+            .reveal .fragment.visible {
+                color: #d9e3ff;
+            }
+
+            .reveal pre code {
+                overflow: visible;
+                max-height: none;
+            }
+        </style>
+	</head>
+
+	<body>
+
+		<div class="reveal">
+
+			<!-- Any section element inside of this container is displayed as a slide -->
+			<div class="slides">
+                <section>
+                    <h1>Things I learned from building Lean Poker</h1>
+                    <p>by <a href="http://twitter.com/devillsroom">Rafael Ordog</a> (DeVill)</p>
+                    <p><img src="Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom</p>
+                </section>
+
+                <section>
+                    <h2>Lean Poker is a full day workshop that focuses on fast and effective delivery.</h2>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Get going!</h2>
+                    </section>
+
+                    <section>
+                        <h2>The MVP is less then you think</h2>
+                        <p class='fragment'>The UI is the most important part</p>
+                        <p class='fragment'>Display as much as you can</p>
+                        <p class='fragment'>Limit necessary interaction</p>
+                    </section>
+
+                    <section>
+                        <h2>TDD is a tool, not magic</h2>
+                        <p class='fragment'>Don't fear to build up a different short feedback loop</p>
+                        <p class='fragment'>Strong separation of business logic and integration is paramount</p>
+                        <p class='fragment'>Have immutable state in your business objects</p>
+                    </section>
+
+                    <section>
+                        <h2>Don't make early investments into...</h2>
+                        <p class='fragment'>... build pipeline</p>
+                        <p class='fragment'>... architecture</p>
+                        <p class='fragment'>... tools (like the DB)</p>
+                    </section>
+
+                    <section>
+                        <h2>Spike and stabilize</h2>
+                        <p class='fragment'>Explore the happy path in a single mammoth function.</p>
+                        <p class='fragment'>Grow abstractions when their advantages become obvious</p>
+                    </section>
+
+                    <section>
+                        <h2>Spike and leave it alone</h2>
+                        <p class='fragment'>If your spike does the job don't change it</p>
+                        <p class='fragment'>It's fine to stabilize only when it's necessary</p>
+                    </section>
+
+                    <section>
+                        <h2>Thus legacy shall arise</h2>
+                        <p class='fragment'>And it's totally fine, as long as you do it consciously</p>
+                        <p class='fragment'>Don't have more dept, then you can pay back easily</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Keep going</h2>
+                    </section>
+
+                    <section>
+                        <h2>It's demanding to work alone</h2>
+                        <p class='fragment'>When you feel like giving up, take a few days off...</p>
+                        <p class='fragment'>... even if it feels like you are loosing time</p>
+                        <p class='fragment'>The hardest part, is when you are almost ready</p>
+                    </section>
+
+                    <section>
+                        <h2>It's hard to get people involved</h2>
+                        <p class='fragment'>People look for early return on their investment</p>
+                        <p class='fragment'>Open source best works with frameworks</p>
+                        <p class='fragment'>A hack day is not enough</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Innovate, but be smart</h2>
+                    </section>
+
+                    <section>
+                        <h2>Adding new technologies</h2>
+                        <p class='fragment'>A double edged sword</p>
+                    </section>
+
+                    <section>
+                        <h2>The fallacy of the mature technology</h2>
+                        <p class='fragment'>You can build a message queue on MySQL</p>
+                        <p class='fragment'>But it's way harder to do it, then use a real message queue</p>
+                        <p class='fragment'>And by the way the thing you built on MySQL is a lot less mature</p>
+                    </section>
+
+                    <section>
+                        <h2>Do not fear to make a bad choice</h2>
+                        <p class='fragment'>Admitting you were wrong takes courage...</p>
+                        <p class='fragment'>... but pays off really well</p>
+                    </section>
+
+                    <section>
+                        <h2>The cost of a bad choice</h2>
+                        <p class='fragment'>Even if it's something fundamental, you can change it</p>
+                        <p class='fragment'>It took me a weekend to get rid of Thrift</p>
+                        <p class='fragment'>Wrapping your dependencies is a good mitigation technique</p>
+                    </section>
+
+                    <section>
+                        <h2>The fallacy of the cool new stack</h2>
+                        <p class='fragment'>Even if it's shiny, it still takes time to learn it</p>
+                        <p class='fragment'>Do not overwhelm yourself.</p>
+                    </section>
+
+                    <section>
+                        <h2>Spotting the right open source project</h2>
+                        <p class='fragment'>Look at the documentation</p>
+                        <p class='fragment'>Search for it on Stack Overflow (the more hits, the better)</p>
+                    </section>
+                </section>
+
+                <section>
+                    <section>
+                        <h2>Micro services</h2>
+                    </section>
+
+                    <section>
+                        <h2>Services are not components</h2>
+                        <p class='fragment'>Components should be organized around reasons to change</p>
+                        <p class='fragment'>Services are organized around resources</p>
+                    </section>
+
+                    <section>
+                        <h2>Be aware of network overhead</h2>
+                        <p class='fragment'>It's fine to make lots of tiny function calls to a component</p>
+                        <p class='fragment'>Services should communicate via documents</p>
+                    </section>
+
+                    <section>
+                        <h2>Services should be stateless</h2>
+                        <p class='fragment'>Send full state, not just events</p>
+                        <p class='fragment'>Every data should have a single owner</p>
+                        <p class='fragment'>Cache where necessary</p>
+                    </section>
+                </section>
+
+                <section data-background-color="black">
+                    <img src='video_splash_black_bg.png' style='border:0;background: transparent;margin-bottom:70px'/>
+                    <p><a href="http://leanpoker.org">leanpoker.org</a> <img src="Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0 15px 0 100px"/>@leanpoker</p>
+                    <p>Rafael Ordog <img src="Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0 15px 0 100px"/>@devillsroom</p>
+                </section>
+
+                <section data-background="#FFFFFF">
+                    <img src='emarsys-logo.png' class='no-background' style="border:0;margin-bottom:120px;box-shadow: none;"/>
+                    <p style="color:#2e4386">WE ARE HIRING!</p>
+                </section>
+			</div>
+
+		</div>
+
+		<script src="../reveal/lib/js/head.min.js"></script>
+		<script src="../reveal/js/reveal.min.js"></script>
+
+		<script>
+
+			// Full list of configuration options available here:
+			// https://github.com/hakimel/reveal.js#configuration
+			Reveal.initialize({
+				controls: true,
+				progress: true,
+				history: true,
+				center: true,
+
+				theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+				transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+				// Parallax scrolling
+				// parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+				// parallaxBackgroundSize: '2100px 900px',
+
+				// Optional libraries used to extend on reveal.js
+				dependencies: [
+					{ src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+					{ src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+					{ src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+					{ src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+					{ src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+				]
+			});
+
+		</script>
+
+	</body>
+</html>
