@@ -1,0 +1,454 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The database and clean code</title>
+
+    <meta name="description" content="A framework for easily creating beautiful presentations using HTML">
+    <meta name="author" content="Hakim El Hattab">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../resources/emarsys-syntax.css">
+    <!--<link rel="stylesheet" href="../reveal/lib/css/zenburn.css">-->
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <h1>The database and clean code</h1>
+
+            <p>by <a href="http://twitter.com/devillsroom">Rafael Ordog</a> (DeVill)</p>
+
+            <p><img src="../resources/Twitter_logo_blue.png"
+                    style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom
+            </p>
+        </section>
+
+        <section>
+            <section>
+                <h2>Part 1.: Generated sql</h2>
+            </section>
+
+            <section>
+                <h2>Would you ever do this?</h2>
+                <pre><code data-trim class='javascript'>
+function initializeAutoSave() {
+    setTimeOut(2000, function () {
+        $('input#save').click();
+        initializeAutoSave();
+    });
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>How about doing this?</h2>
+                <pre><code data-trim class='php'>
+function createThumbnail($sourceImage) {
+    $size = Config::get('thumb-size');
+    $targetImage = $this->getTargetName($sourceImage);
+    system("convert {$sourceImage} " .
+            "--resize { $size } x { $size } { $thumbImage } ");
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>How is this one different?</h2>
+                <pre><code data-trim class='php'>
+                    $dbh->exec("UPDATE images SET view_count = view_count + 1 WHERE id = $id");
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>And if we loathe this:</h2>
+                <pre><code data-trim class="html">
+&lt;script type="text/javascript"&gt;
+    &lt;?php foreach($buttons as $button):?&gt;
+        initButton(&lt;?=$button["id"]?&gt;, &lt;?=$button["usefulVar"]?&gt;);
+    &lt;?php endforeach; ?&gt;
+&lt;/script&gt;
+                </code></pre>
+            </section>
+            <section>
+                <h2>Why aren't we horrified by this?</h2>
+                <pre><code data-trim class='php'>
+function doSomeImportantAndComplexStuffInTheDatabase() {
+    $dbh->exec("UPDTATE {$this->generateComplexJoins()}" .
+        "SET {$this->generateFieldsAndValueSubQueries()}" .
+        "WHERE {$this->generateWhere()}");
+}
+
+function generateWhere() {
+    $result = "TRUE";
+    foreach($this->importantStuffs as $stuff) {
+        $result += " AND ".$stuff->subWhere();
+    }
+    return $result;
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Altough we end up debugging this...</h2>
+                <pre><code data-trim class='sql'>
+UPDATE contacts c left join profile_1 p1 on (c.id = p1.customer_id)
+left join profile_1 p1 on (c.id = p1.customer_id) left join
+profile_2 p2 on (c.id = p2.customer_id) left join profile_3 p3 on
+(c.id = p3.customer_id) left join profile_4 p4 on (c.id = p4.customer_id)
+left join profile_5 p5 on (c.id = p5.customer_id) left join profile_6 p6
+on (c.id = p6.customer_id) left join profile_7 p7 on (c.id = p7.customer_id)
+left join profile_8 p8 on (c.id = p8.customer_id) left join profile_9 p9 on
+(c.id = p9.customer_id) left join profile_10 p10 on (c.id = p10.customer_id)
+left join profile_11 p11 on (c.id = p11.customer_id) left join profile_12 p12
+on (c.id = p12.customer_id) SET c.spending = p1.spent + p2.spent + p3.spent
++ p4.spent + p5.spent + p6.spent + p7.spent + p8.spent + p9.spent +
+p10.spent + p11.spent + p12.spent WHERE TRUE AND p1.spent > c.report_trsh
+AND p2.spent > c.report_trsh AND p3.spent > c.report_trsh AND p4.spent >
+c.report_trsh AND p5.spent > c.report_trsh AND p6.spent > c.report_trsh
+AND p7.spent > c.report_trsh AND p8.spent > c.report_trsh AND p9.spent >
+c.report_trsh AND p10.spent > c.report_trsh AND p11.spent > c.report_trsh
+AND p12.spent > c.report_trsh;
+                </code></pre>
+            </section>
+
+            <section>
+                <h1>WHAT THE HELL...</h1>
+                <img src="chan.jpg"/>
+            </section>
+
+            <section>
+                <img src="chamberlin_250.jpg">
+                <div  class="fragment">
+                    <h2>Donald D. Chamberlin</h2>
+                    <p>the father of SQL</p>
+                </div>
+            </section>
+
+            <section>
+                <h2>"However, there is also a large class of users who, while they are <emph>not computer specialists</emph>, would be willing to learn to <emph>interact with a computer</emph> in a reasonably high-level, non-procedural query language."</h2>
+                <p>SEQUEL: A STRUCTURED ENGLISH QUERY LANGUAGE</p>
+                <p><i>by Donald D. Chamberlin</i> (1974)</p>
+            </section>
+
+            <section>
+                <h2>It's not an API</h2>
+                <p>That's why we use ORMs</p>
+            </section>
+
+            <section>
+                <h2>It's not a protocol</h2>
+            </section>
+
+            <section>
+                <h2>It's not even designed for programmers</h2>
+            </section>
+
+            <section>
+                <h2>SQL is a command line user interface</h2>
+                <img src="suddenclarityclarence.jpg"/>
+            </section>
+
+            <section>
+                <h2>What's wrong with<br/>using a CLI as an API?</h2>
+            </section>
+
+            <section>
+                <h2>Generated code is<br/>problematic in general</h2>
+                <p class="fragment">Compilers solve this by adding symbols for the debugger</p>
+            </section>
+
+            <section>
+                <h2>Escaping is a horror scene</h2>
+            </section>
+
+            <section>
+                <h2>Fragility</h2>
+            </section>
+
+            <section>
+                <h2>It's easy to leak part of the logic</h2>
+                <p class="fragment">Harder to test</p>
+                <p class="fragment">Harder to debug</p>
+            </section>
+
+            <section>
+                <h2>So what's the solution?</h2>
+            </section>
+
+            <section>
+                <h2>Use the DB as data repository</h2>
+                <p class="fragment">Only simple read/write/update operations isolated in functions</p>
+                <p class="fragment">Use a narrow interface</p>
+                <p class="fragment">Drawback: you can run into performance/concurrency issues</p>
+            </section>
+
+            <section>
+                <h2>If you must leak logic into SQL, then express the entire logic in SQL</h2>
+            </section>
+
+            <section>
+                <h2>SQL is quite powerfull</h2>
+                <pre><code data-trim class='sql'>
+CREATE TABLE generations (`id` INT UNSIGNED, `x` BIGINT, `y` BIGINT);
+INSERT INTO generations VALUES
+            (0, 0, -1), (0, 1, 0), (0, -1, 1), (0, 0, 1), (0, 1, 1);
+
+CREATE TABLE offsets (`x` BIGINT, `y` BIGINT);
+INSERT INTO offsets VALUES
+            (-1,-1),(-1, 0),(-1,1),(0,-1),(0,0),(0,1),(1,-1),(1,0),(1,1);
+
+INSERT INTO generations
+  SELECT g.id+1 id, g.x+o.x x, g.y+o.y y
+    FROM generations g
+      INNER JOIN offsets o
+    WHERE g.id=(SELECT MAX(id) FROM generations)
+    GROUP BY g.x+o.x, g.y+o.y
+      HAVING (MAX(o.x=0 AND o.y=0) = 1 AND COUNT(1) - 1 BETWEEN 2 AND 3)
+        OR (MAX(o.x=0 AND o.y=0) = 0 AND COUNT(1) = 3);
+                </code></pre>
+                <p class="fragment">An iteration of Conway's game of life</p>
+            </section>
+
+            <section>
+                <h2>SQL is Turing Complete</h2>
+                <p class="fragment">That's usually smell when it comes to domain specific languages</p>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2>Part 2.: Architecture and testing</h2>
+            </section>
+
+            <section>
+                <h2>The SQL query needs to be tested</h2>
+                <p class="fragment">But how?</p>
+            </section>
+
+            <section>
+                <h2>Relational databases enforce the data transfer mechanism</h2>
+                <p class="fragment">That results in bad performance in terms of testing</p>
+            </section>
+
+            <section>
+                <h2>A complete fake is unfeasible</h2>
+                <p class="fragment">The interface is huge</p>
+                <p class="fragment">The fake would end up being different</p>
+            </section>
+
+            <section>
+                <h2>On the other hand SQL<br/>queries can change</h2>
+                <p class="fragment">Performance optimization</p>
+                <p class="fragment">Schema changes</p>
+            </section>
+
+            <section>
+                <h2>We need a way to test SQL queries</h2>
+            </section>
+
+            <section>
+                <h2>The bad news: <emph>database tests<br/>will be slow</emph> what ever we do</h2>
+                <p class="fragment">So we need to separate them as much as we can</p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Part 3.: The impedance mismatch</h2>
+            </section>
+
+            <section>
+                <h2>"SEQUEL identifies a set of simple operations on <emph>tabular</emph> structures, which can be shown to be of equivalent power to the first order predicate calculus."</h2>
+                <p>SEQUEL: A STRUCTURED ENGLISH QUERY LANGUAGE</p>
+                <p><i>by Donald D. Chamberlin</i> (1974)</p>
+            </section>
+
+            <section>
+                <h2>Most of the data we<br/>have is not tabular</h2>
+                <aside class="notes">
+                    <p>Graphs: relationships</p>
+                    <p>Hierarchies: documents</p>
+                </aside>
+            </section>
+
+            <section>
+            </section>
+
+            <section  data-transition="none">
+                <img src="sql_vs_document_1_1.png" />
+            </section>
+
+            <section  data-transition="none">
+                <img src="sql_vs_document_1_2.png" />
+            </section>
+
+            <section  data-transition="none">
+                <img src="sql_vs_document_1_3.png" />
+            </section>
+
+            <section data-transition="none">
+                <img src="sql_vs_document_2.png"/>
+            </section>
+
+            <section>
+                <h2>That solution works surprisingly well</h2>
+                <h2 class="fragment"><emph>Until it doesn't...</emph></h2>
+            </section>
+
+            <section>
+                <h2>Strongly related data is<br/>scattered on the disk</h2>
+                <p class="fragment">Consequence: poor performance, poor scaling</p>
+            </section>
+
+            <section>
+                <h2>The DBA requests a denormalization</h2>
+                <p class="fragment">Now you are changing code that is hard and slow to test</p>
+            </section>
+
+            <section>
+                <h2>The denormalized data<br/>has to be indexed...</h2>
+                <p class="fragment">... by creating index tables</p>
+            </section>
+
+            <section>
+                <h2>Aaaaaaaaaaaaaaaaaaaand<br/>your code is all about the database...</h2>
+                <img src="hqdefault.jpg"/>
+                <p class="fragment">Between the database related clutter you hardly find the business rules anymore</p>
+            </section>
+
+            <section>
+                <h2>By this point you are probably wondering <emph>why you picked software engineering over bakery as a career</emph></h2>
+            </section>
+
+            <section>
+                <img src="Atrapitis.gif" style="height:600px;"/>
+            </section>
+
+            <section>
+                <h2>So how to escape the trap?</h2>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2>Part 4.: NoSQL and clean code</h2>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Part 5.: Other ways to shoot yourself in the leg</h2>
+            </section>
+
+            <section>
+                <h2>Message queue in SQL</h2>
+                <p class="fragment">Relational databases are surprisingly bad for that</p>
+            </section>
+
+            <section>
+                <h2>Inter process communication</h2>
+                <p class="fragment">Seriously... why?!</p>
+            </section>
+
+            <section>
+                <h2>Generate code based on the DB schema</h2>
+                <p class="fragment">The schema should be owned by the code,<br/>and not the other way around.</p>
+            </section>
+
+            <section>
+                <h2>Using the active record pattern</h2>
+                <p class="fragment">Makes testing problematic</p>
+                <p class="fragment">Infects the business logic with mutability</p>
+            </section>
+        </section>
+
+        <section>
+            <img src='../resources/emarsys-logo.png' class='no-background'
+                 style="border:0;box-shadow: none;height:150px;margin-top:70px;"/>
+
+            <p>Rafael Ördög <img src="../resources/Twitter_logo_blue.png" style="margin:0 15px 0 100px"/>@devillsroom </p>
+        </section>
+    </div>
+
+</div>
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+        slideNumber: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: '../reveal/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            } },
+            { src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            } },
+            { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            } },
+            { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } },
+            { src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
