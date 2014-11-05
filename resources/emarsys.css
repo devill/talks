@@ -69,7 +69,8 @@ h2 emph,
 h3 emph,
 h4 emph,
 h5 emph,
-h6 emph {
+h6 emph,
+p emph {
     color: orangered;
 }
 

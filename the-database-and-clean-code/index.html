@@ -55,7 +55,7 @@
 
         <section>
             <section>
-                <h2>Part 1.: Generated sql</h2>
+                <h2>SQL infection</h2>
             </section>
 
             <section>
@@ -121,16 +121,16 @@ function generateWhere() {
             <section>
                 <h2>Altough we end up debugging this...</h2>
                 <pre><code data-trim class='sql'>
-UPDATE contacts c left join profile_1 p1 on (c.id = p1.customer_id)
-left join profile_1 p1 on (c.id = p1.customer_id) left join
-profile_2 p2 on (c.id = p2.customer_id) left join profile_3 p3 on
-(c.id = p3.customer_id) left join profile_4 p4 on (c.id = p4.customer_id)
-left join profile_5 p5 on (c.id = p5.customer_id) left join profile_6 p6
-on (c.id = p6.customer_id) left join profile_7 p7 on (c.id = p7.customer_id)
-left join profile_8 p8 on (c.id = p8.customer_id) left join profile_9 p9 on
-(c.id = p9.customer_id) left join profile_10 p10 on (c.id = p10.customer_id)
-left join profile_11 p11 on (c.id = p11.customer_id) left join profile_12 p12
-on (c.id = p12.customer_id) SET c.spending = p1.spent + p2.spent + p3.spent
+UPDATE contacts c LEFT JOIN profile_1 p1 ON (c.id = p1.customer_id)
+LEFT JOIN profile_1 p1 ON (c.id = p1.customer_id) LEFT JOIN
+profile_2 p2 ON (c.id = p2.customer_id) LEFT JOIN profile_3 p3 ON
+(c.id = p3.customer_id) LEFT JOIN profile_4 p4 ON (c.id = p4.customer_id)
+LEFT JOIN profile_5 p5 ON (c.id = p5.customer_id) LEFT JOIN profile_6 p6
+ON (c.id = p6.customer_id) LEFT JOIN profile_7 p7 ON (c.id = p7.customer_id)
+LEFT JOIN profile_8 p8 ON (c.id = p8.customer_id) LEFT JOIN profile_9 p9 ON
+(c.id = p9.customer_id) LEFT JOIN profile_10 p10 ON (c.id = p10.customer_id)
+LEFT JOIN profile_11 p11 ON (c.id = p11.customer_id) LEFT JOIN profile_12 p12
+ON (c.id = p12.customer_id) SET c.spending = p1.spent + p2.spent + p3.spent
 + p4.spent + p5.spent + p6.spent + p7.spent + p8.spent + p9.spent +
 p10.spent + p11.spent + p12.spent WHERE TRUE AND p1.spent > c.report_trsh
 AND p2.spent > c.report_trsh AND p3.spent > c.report_trsh AND p4.spent >
@@ -217,6 +217,14 @@ AND p12.spent > c.report_trsh;
             </section>
 
             <section>
+                <h2>Instead of saying:</h2>
+                <pre><code>For all ingredients of apple pie as ingredient
+    "Bringt mir bitte {$ingredient.germanName}"</code></pre>
+                <h2>Say this:</h2>
+                <pre><code data-trim>Bringen Sie mir bitte alle Zutaten zum Apfelkuchen</code></pre>
+            </section>
+
+            <section>
                 <h2>SQL is quite powerfull</h2>
                 <pre><code data-trim class='sql'>
 CREATE TABLE generations (`id` INT UNSIGNED, `x` BIGINT, `y` BIGINT);
@@ -244,11 +252,16 @@ INSERT INTO generations
                 <p class="fragment">That's usually smell when it comes to domain specific languages</p>
             </section>
 
+            <section>
+                <h2>Problem: The declarative style of SQL makes TDD very challenging.</h2>
+                <p class="fragment">It's not really possible to build up the query iteratively.</p>
+            </section>
+
         </section>
 
         <section>
             <section>
-                <h2>Part 2.: Architecture and testing</h2>
+                <h2>Testing</h2>
             </section>
 
             <section>
@@ -278,14 +291,119 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>The bad news: <emph>database tests<br/>will be slow</emph> what ever we do</h2>
+                <h2>The bad news: <emph>database tests<br/>will be slow</emph> whatever we do</h2>
                 <p class="fragment">So we need to separate them as much as we can</p>
             </section>
+
+            <section>
+                <h2>Where the query is unlikely to change, assert on the query string</h2>
+                <p class="fragment">Don't forget to test the query before you turn the test green</p>
+            </section>
+
+            <section>
+                <h2>But you will have queries that are more complex, and likely to change</h2>
+                <p class="fragment">You will need a separate build step for them</p>
+            </section>
+
+            <section>
+                <h2>Our pipeline:</h2>
+                <p class="fragment">Unit tests (< 1 minute)</p>
+                <p class="fragment">Database query tests (< 10 minutes)</p>
+                <p class="fragment">Integration and acceptance tests (< 10 miuntes)</p>
+            </section>
+
+            <section>
+                <h2>On the dev machine only run unit tests</h2>
+                <h2>And DB tests for the query changed</h2>
+            </section>
+
+            <section>
+                <h2>Your build server running the database suite should have an SSD!</h2>
+                <p class="fragment">Make sure your test are independent, so that you can scale out</p>
+            </section>
+
+            <section>
+                <h2>Build a tool that let's<br/>you run setup SQLs</h2>
+                <p class="fragment">Your table fields should have sensible<br/>defaults to minimise necessary setup</p>
+            </section>
+
+            <section>
+                <h2>Clean up <emph>before</emph> the test,<br/>and not after the test</h2>
+                <p class="fragment">Also truncate tables inserted into by the tested function</p>
+            </section>
+
+            <section>
+                <h2>Example</h2>
+                <pre><code data-trim class='php'>
+class TestUsefulClass extends DatabaseTestCase {
+    /**
+     * @test
+     */
+    public function testSomethingImportant()
+    {
+        $this->runSetupSQL(4532656, array(
+            'userID' => self::USER_ID
+        ));
+
+        $this->useful->testedFunction(self::USER_ID);
+
+        $result = $this->fetchOneRow("SELECT * FROM useful_table " .
+                                              "WHERE id=" . self::USER_ID);
+
+        $this->assertEquals('new_value', $result['useful_field']);
+    }
+}
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Example</h2>
+                <pre><code data-trim class='sql'>
+TRUNCATE TABLE some_useful_table;
+
+INSERT INTO some_useful_table (user_id, useful_field)
+    VALUES ({$user_id}, 'awesomeness');
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Make sure the Unit build<br/>has no SQL queries</h2>
+                <p class="fragment">In the unit build the DB connection class should throw an exception whenever any of it's functions are called.</p>
+            </section>
+
+            <section>
+                <h2>Keep the number of DB tests down</h2>
+            </section>
+
         </section>
 
         <section>
             <section>
-                <h2>Part 3.: The impedance mismatch</h2>
+                <h2>Architecture</h2>
+            </section>
+
+            <section>
+                <h2>It should be easy to<br/>replace the database</h2>
+            </section>
+
+            <section>
+                <h2>The database should<br/>depend on the application</h2>
+                <p class="fragment">Dependency Inversion</p>
+            </section>
+
+            <section>
+                <img src="DB_and_clean_code_-_overview.png">
+            </section>
+
+            <section>
+                <img src="DB_and_clean_code_-_detailed.png">
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2>The impedance mismatch</h2>
             </section>
 
             <section>
@@ -359,17 +477,15 @@ INSERT INTO generations
                 <h2>So how to escape the trap?</h2>
             </section>
 
-        </section>
-
-        <section>
             <section>
-                <h2>Part 4.: NoSQL and clean code</h2>
+                <h2>NoSQL and clean code......</h2>
             </section>
         </section>
 
         <section>
             <section>
-                <h2>Part 5.: Other ways to shoot yourself in the leg</h2>
+                <h2>Dumb ways to shoot<br/>yourself in the leg</h2>
+                <img src="dumbways.jpg"/>
             </section>
 
             <section>
