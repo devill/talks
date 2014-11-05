@@ -367,19 +367,16 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
+                <h2>Keep the number of DB tests down</h2>
+            </section>
+
+            <section>
                 <h2>Make sure the Unit build<br/>has no SQL queries</h2>
                 <p class="fragment">In the unit build the DB connection class should throw an exception whenever any of it's functions are called.</p>
             </section>
 
             <section>
-                <h2>Keep the number of DB tests down</h2>
-            </section>
-
-        </section>
-
-        <section>
-            <section>
-                <h2>Architecture</h2>
+                <h2>This has implications on architecture</h2>
             </section>
 
             <section>
@@ -478,7 +475,43 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <h2>NoSQL and clean code......</h2>
+                <h2>Honestly I don't have a real answer for that within the SQL realm...</h2>
+            </section>
+
+            <section>
+                <h2>If you need to stick with SQL, feel free to store a JSON in a field</h2>
+                <p class="fragment">Pseudo key-value store</p>
+            </section>
+
+            <section>
+                <h2>Think of using NoSQL solutions</h2>
+                <p class="fragment">One at a time, don't overwhelm yourself</p>
+            </section>
+
+            <section>
+                <h2>Polyglot persistence</h2>
+                <p class="fragment">NoSQL solutions are purpose built, not "generic"</p>
+                <p class="fragment">You will need your SQL next<br/>to the document store / graph database</p>
+            </section>
+
+            <section>
+                <h2>Document stores have an interesting effect on architecture</h2>
+            </section>
+
+            <section>
+
+            </section>
+
+            <section  data-transition="none">
+                <img src="DB_and_clean_code_-_detailed.png">
+            </section>
+
+            <section  data-transition="none">
+                <img src="DB_and_clean_code_-_document_store.png">
+            </section>
+
+            <section>
+                <h2>The code becomes the<br/>sole owner of the schema</h2>
             </section>
         </section>
 
