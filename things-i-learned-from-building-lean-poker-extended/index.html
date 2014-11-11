@@ -59,13 +59,65 @@
                     </section>
 
                     <section>
+                        <h2>Do not plan too much ahead</h2>
+                    </section>
+
+                    <section>
                         <h2>The MVP is less than you think</h2>
                         <img src="../resources/lean-poker/minimum-viable-product.jpg"/>
                     </section>
+
+                    <section>
+                        <h2>Don't confuse MVP with POC</h2>
+                        <p class="fragment">The minimum viable product should be released,<br/>
+                            and it's effects should be measured</p>
+                        <p class="fragment">A proof of concept is a technical experiment<br/>and does not involve users.</p>
+                    </section>
+
                     <section>
                         <h2>The UI is the most important part</h2>
                         <p class='fragment'>Display as much as you can</p>
                         <p class='fragment'>Limit necessary interaction</p>
+                    </section>
+
+                    <section>
+                        <h2>Cucumber is not a testing tool</h2>
+                        <p class='fragment'>For a developer an rspec test is just as readable</p>
+                        <p class='fragment'>Limits your refactoring opportunities</p>
+                    </section>
+
+                    <section>
+                        <pre><code data-trim class='nohighlight'>Feature: New game of poker
+
+Scenario: Two players are registered, and they get notified about
+        each other. After that they post their blinds and
+        get their hole cards.
+Given the croupier is ready for a game
+And "Adam" is a player
+And "Bob" is a player
+And the deck contains the following cards:
+  | 5 of Diamonds |
+  | 6 of Hearts   |
+  | 7 of Spades   |
+  | 8 of Clubs    |
+When I start a sit and go
+Then Players get the following list of players:
+  | Adam |
+  | Bob  |
+And "Adam" is reported to have posted the small blind
+And "Bob" is reported to have posted the big blind
+And "Adam" gets the following hole cards:
+  | 5 of Diamonds |
+  | 7 of Spades   |
+And "Bob" gets the following hole cards:
+  | 6 of Hearts |
+  | 8 of Clubs  |
+                        </code></pre>
+                    </section>
+
+                    <section>
+                        <h2>TDD is NOT dead</h2>
+                        <p class='fragment'>but...</p>
                     </section>
 
                     <section>
@@ -105,7 +157,7 @@
                 <section>
                     <section>
                         <h2>Keep going</h2>
-                        <img src="tumblr_layxl2rXmD1qcff2to1_500_thumb%5B3%5D.gif"/>
+                        <img src="../resources/lean-poker/tumblr_layxl2rXmD1qcff2to1_500_thumb%5B3%5D.gif"/>
                     </section>
 
                     <section>
@@ -184,6 +236,38 @@
                         <img src="../resources/lean-poker/robots-dancing_1660796b.jpg"/>
                     </section>
 
+                    <section></section>
+
+                    <section data-transition="none">
+                        <h2>The first plan</h2>
+                        <img style='height:80%; width:80%;'  src="Lean_Poker_Architectural_evolution_The_first_plan.png"/>
+                    </section>
+
+                    <section data-transition="none">
+                        <h2>The actual first version</h2>
+                        <img style='height:80%; width:80%;'  src="Lean_Poker_Architectural_evolution_First_version.png"/>
+                    </section>
+
+                    <section></section>
+
+                    <section>
+                        <h2>Internal Ruby DSLs are cool</h2>
+                        <pre><code data-trim class='ruby'>
+require_relative 'functions'
+
+CROUPIER_ROOT = "../.."
+PLAYERS_ROOT = "../../.."
+
+tournament do
+    tournament_logfile "#{CROUPIER_ROOT}/log/tournament_#{run_date}"
+    sit_and_go_logfile "#{CROUPIER_ROOT}/log/game_#{run_timestamp}"
+
+    register_git_player "Peter Python", "#{PLAYERS_ROOT}/pp-python"
+    register_git_player "Rudy Ruby", "#{PLAYERS_ROOT}/pp-ruby"
+end
+                            </code></pre>
+                    </section>
+
                     <section>
                         <h2>Services are not components</h2>
                         <p class='fragment'>Components should be organized around reasons to change</p>
@@ -201,6 +285,45 @@
                         <p class='fragment'>Send full state, not just events</p>
                         <p class='fragment'>Every data should have a single owner</p>
                         <p class='fragment'>Cache where necessary</p>
+                    </section>
+
+                    <section>
+                        <h2>Thrift is not as cool as it sounds</h2>
+                        <p class='fragment'>Terrible documentation</p>
+                        <p class='fragment'>Hard to operate</p>
+                        <p class='fragment'>Enforces static typing like behavior</p>
+                    </section>
+
+                    <section>
+                        <h2>Revised design</h2>
+                        <img style='height:80%; width:80%;' src="Lean_Poker_Architectural_evolution_Second_version.png"/>
+                    </section>
+
+                    <section>
+                        <h2>Setup still took long</h2>
+                        <p class='fragment'>Automate everything</p>
+                        <p class='fragment'>Even the creation of micro services</p>
+                        <p class='fragment'>Software and platform as a service</p>
+                    </section>
+
+                    <section>
+                        <h2>We need more games</h2>
+                        <p class='fragment'>Cloud computing</p>
+                        <p class='fragment'>Parallel runs</p>
+                    </section>
+
+                    <section>
+                        <h2>Over 90% of the runing time<br/>was the deployment</h2>
+                        <p class='fragment'>Stop the world deployments are infeasible</p>
+                        <p class='fragment'>Use <span style="color:#2e852e">Green</span>-<span style="color:#2e4386">Blue</span> deployments instead</p>
+                    </section>
+
+                    <section>
+                        <img src="Lean_Poker_Architectural_evolution_Lean_Poker_Live.png"/>
+                    </section>
+
+                    <section>
+                        <h2>To be continued...</h2>
                     </section>
                 </section>
 
