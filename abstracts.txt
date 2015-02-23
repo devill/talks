@@ -1,0 +1,36 @@
+Lean Poker
+==========
+
+A lot of companies have jumped on the Lean Startup band wagon lately, but many struggle with implementing the tight feedback loop it builds on. The purpose of Lean Poker is to generate an artificial environment where developers can quickly experiment with continous delivery and other practices that help with thightening the feedback loop. During the day you will learn how to achieve a build-measure-learn cycle that only takes mere minutes.
+
+Our problem domain is building a poker robot that plays sit'n'gos of Texsas Holdem. Don't worry, you don't need to know the rules of poker, we will explain what you need to know (also: no real money is involved). The catch is that the robots start playing against each other the minute teams start coding. From that moment on, every few seconds the robots will play a sit'n'go, and the two winners are awarded points. This means that every few seconds you either gain on the other teams or loose. This puts enourmous preasure on teams to deploy as often and as soon as possible. Professional poker robots are developed for years, so the purpose is definitely not to come up with something really smart, but to be the smartest among the current competitors. With this in mind teams can come up with simple-to-implement heuristics, examine their effect on game play, and then improve their algorithm in a similar, lean fashion.
+
+Teams will be formed at the start of the day. The teams have 60 minute sessions when they are allowed to code. After each session there is a break, during which some highlights of the games played by the robots are shown on a screen. Before the break there is a quick retrospective stand up meeting that looks back on the previous session.
+
+What you will need:
+
+A laptop
+- Compiler / Interpreter for your favourite language
+- A good editor or IDE
+- Optionally: your favourite keyboard and mouse, so that you feel confortable while coding
+- See http://leanpoker.org for more information
+
+
+
+
+
+Minimum viable team: testing your ideas alone
+==============================================
+
+So you have an idea for a great application, but not much money nor friends to help out. You already asked people if they would be interested, and they were really supportive, but when it comes to coding you are all alone. For a developer, who is used to working in a team, it can be really demanding to go through with even a moderately sized project. You know how to be effective as a team, but the same practices seem to hold you back when you are alone.
+
+In the last few years I started a number of projects alone and managed to build, deploy and validate (or invalidate) them within weeks of starting the project, and all that as a hobby next to my day job. Taking a few of these projects as examples, I will tell you what agile practices you should hang on to and what you should change or replace.
+
+
+
+
+
+Database and clean code
+=======================
+
+Separating the database layer from the rest of code has always been an imporant topic, yet more often than not applications end up looking like an oversized wrapper around the database. Keeping your database related code nicely isolated is hard, and it's even harder with applications where most of the logic has to do with reading and writing data. We will look at common mistakes, design patterns and polyglot persistence with actual code examples, so that your next application can have a clean database layer.
