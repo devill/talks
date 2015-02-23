@@ -1,0 +1,257 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The Null Object Pattern</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+</head>
+
+<body>
+
+<div class="reveal">
+
+    <!-- Any section element inside of this container is displayed as a slide -->
+    <div class="slides">
+        <section>
+            <h1>The Null Object Pattern</h1>
+            <p>by <a href="http://twitter.com/devillsroom">Rafael Ordog</a> (DeVill)</p>
+            <p><img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom</p>
+        </section>
+
+        <section>
+            <pre><code data-trim class='ruby'>def authorized?(user)
+    return false if user.nil?
+    user.authorized?
+end
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>Every `if` statement is a wasted opportunity for polymorphism</h3>
+        </section>
+
+        <section>
+            <h3>The Null Object pattern let's you get rid of nil? checks</h3>
+        </section>
+
+        <section>
+            <img src="null-object-uml.png"/>
+        </section>
+
+        <section>
+<pre><code data-trim class='ruby'>
+class User
+    def authorized?
+        # some complex logic here
+    end
+end
+</code></pre>
+<pre><code data-trim class='ruby'>
+class NilUser # Notice, that it's not necessray to inherit
+    def authorized?
+        false
+    end
+end
+</code></pre>
+<pre><code data-trim class='ruby'>
+def authorized?(user)
+    user.authorized?
+end
+</code></pre>
+        </section>
+
+        <section>
+            <h3>But that's just the borring hello world example...</h3>
+        </section>
+
+        <section>
+            <h3>Binary search trees</h3>
+        </section>
+
+        <section>
+            <h3>Classic size</h3>
+            <pre><code data-trim class='ruby'>
+class Node
+    def size
+        s = 0
+        s += left.size unless left.nil?
+        s += right.size unless right.nil?
+        s
+    end
+end
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>Size with Nil Nodes</h3>
+            <pre><code data-trim class='ruby'>
+class Node
+    def size
+        1 + left.size + right.size
+    end
+end
+
+class NilNode
+    def size
+        0
+    end
+end
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>... but then there is the horrors of delete</h3>
+        </section>
+
+        <section>
+            <h3>Swap the item to be deleted with the largest element in the left sub tree</h3>
+            <p>That node has no right child, so we can apply the special case for deleting that one</p>
+        </section>
+
+        <section>
+            <h3>If the node has no right child</h3>
+            <p>Delete the node and attach it's left child to it's parent</p>
+        </section>
+
+        <section>
+            <h3>Solution 1</h3>
+            <p>Keep track of the parent of each node, and do nil checks for the left child</p>
+        </section>
+
+        <section>
+            <h3>That is so messy, it wouldn't even fit on a slide...</h3>
+        </section>
+
+        <section>
+            <h3>Solution 2</h3>
+            <p>Add nil nodes as leaf childs</p>
+            <p>Make a shallow copy of the left child onto the node that is being deleted, and drop the original left child</p>
+        </section>
+
+        <section>
+            <pre><code data-trim class='ruby'>
+class Node
+    attr_accessor :key, :left, :right
+
+    def copy(other)
+        @key, @left, @right = other.key, other.left, other.right
+    end
+
+    def remove
+      if @left.key.nil?
+        copy(right)
+      else
+        swap_with_previous_node_and_remove
+      end
+    end
+
+    def find_right_most_descendant
+      return self if right.key.nil?
+      right.find_right_most_descendant
+    end
+
+    private
+
+    def swap_with_previous_node_and_remove
+      previous_node = left.find_right_most_descendant
+      self.key = previous_node.key
+      previous_node.remove
+    end
+end
+                </code></pre>
+        </section>
+
+        <section>
+            <h3>But there is a catch:</h3>
+            <p>The nil nodes on the leaf nodes now must have the same type</p>
+        </section>
+
+        <section>
+            <h3>Size with Nil value Nodes</h3>
+            <pre><code data-trim class='ruby'>
+class Node
+    def size(search_value)
+        return 0 if value.nil?
+        1 + left.size + right.size
+    end
+end
+            </code></pre>
+        </section>
+
+        <section>
+            <h3>Not as nice as before</h3>
+            <p>but still a lot better then the original, and delete is also simplified</p>
+        </section>
+
+        <section>
+            <p>Next time you write `if nil?` into your code</p>
+            <h3>think of the Null Object</h3>
+        </section>
+    </div>
+</div>
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
