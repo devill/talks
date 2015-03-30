@@ -37,10 +37,11 @@
 
     <style>
         .over-image {
-            color:white;
-            -webkit-text-fill-color: white;
-            -webkit-text-stroke-width: 4px;
-            -webkit-text-stroke-color: black;
+		background-color: rgba(0,0,0,0.4);
+		padding: 50px !important;
+        }
+        .over-image h2, .over-image h3, .over-image p {
+		color: white !important;
         }
     </style>
 </head>
@@ -95,7 +96,7 @@
 
             <section>
                 <h2>Program triggered multiple times</h2>
-                <p class="fragment">The problem was reported in 2013!</p>
+                <p class="fragment">The problem was first reported in 2013!</p>
             </section>
 
             <section>
@@ -136,14 +137,22 @@ private function IsScheduledToDST($now, $dateOfFirstRecurrence)
             </section>
 
             <section data-background="8140698o7j.jpg">
-                <h2 class="fragment over-image">THERE I FIXED IT!</h2>
+		<div class="fragment over-image">
+                	<h2>THERE I FIXED IT!</h2>
+		</div>
                 <!--<img src="8140698o7j.jpg" style="height:400px;"/>-->
-                <h3 class="fragment over-image">... or maybe not...</h3>
+		<div class="fragment over-image">
+                	<h2>... or maybe not...</h2>
+		</div>
             </section>
 
             <section data-background="winter-is-coming.jpg">
-                <h2 class="fragment over-image">Brace yourself, DST is coming</h2>
-                <h2 class="fragment over-image">Next autumn we got the same issue...</h2>
+		<div class="fragment over-image">
+                	<h2>Brace yourself, DST change is coming</h2>
+		</div>
+		<div class="fragment over-image">
+                	<h2>Next autumn we got the same issue...</h2>
+		</div>
             </section>
 
             <section data-background="wat.jpg">
@@ -169,22 +178,45 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
             </section>
 
             <section>
-                <p style="color:red">Screen shoots</p>
-                <p>Weekly, monthly, crazt shit</p>
-                <aside class="notes">period csuszas</aside>
+		<img src="ac_plain.jpg" />
+            </section>
+            <section>
+		<img src="ac_daily.jpg" />
+            </section>
+            <section>
+		<img src="ac_weekly.jpg" />
+            </section>
+            <section>
+		<img src="ac_monthly.jpg" />
+            </section>
+            <section>
+		<img src="ac_monthly_wtf.jpg" />
+            </section>
+            <section>
+		<img src="ac_weekly_wtf.jpg" />
             </section>
 
         </section>
 
         <section>
-            <section>
-                <h2>So we made a bold move</h2>
-                <h3 class="fragment">Rewrite the code</h3>
+            <section data-background="rambo.jpg">
+		<div class="over-image fragment">
+                	<h2>So we made<br />a bold move</h2>
+		</div>
+		<div class="over-image fragment">
+                	<h2>Rewrite the code</h2>
+		</div>
             </section>
 
+		<section>
+			<h2>First try</h2>
+			<h3 class="fragment">Concurrent set based engineering</h3>
+		</section>
+
             <section>
-                <h2>We learned a lot about time zones</h2>
+                <h2>We learned a lot<br />about time zones</h2>
                 <h3 class="fragment">The planning took days</h3>
+		<aside class="notes">left agile</aside>
             </section>
 
             <section>
@@ -194,21 +226,23 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
             <section>
                 <h2>But did you know...</h2>
-				<h3>that some countries do it more then twice a year</h3>
+		<h3>that some countries do it<br>more then twice a year</h3>
             </section>
 
             <section>
-                <h3>In some places DST is observed at midnight</h3>
+                <h3>In some places<br>DST starts at midnight</h3>
             </section>
 
             <section>
-                <h3>And did you know about leap seconds</h3>
+                <h3>And did you know<br>about leap seconds</h3>
                 <p class="fragment">So not every hour is 60 seconds long!</p>
             </section>
 
-            <section>
-                <h3>Kiritimati changed it's timezone from GMT-10 to GMT+14</h3>
-                <p class="fragment">So not every week is 7 days long</p>
+            <section data-background="kiritimati.jpg">
+		<div class="over-image">
+                	<h3>Kiritimati changed<br>it's timezone<br>from GMT-10 to GMT+14</h3>
+                	<p class="fragment">So not every week is 7 days long</p>
+		</div>
             </section>
 
             <section>
@@ -236,13 +270,14 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
                 <p class="fragment">Database servers should use UTC timezone</p>
             </section>
 
-            <section>
-                <aside class="notes">Bad luck brian - humans concurs mars, datetime library programmer</aside>
-                <h2>I'm all for exploring new planets</h2>
-                <p class="fragment">...but Datetime library implementors will have a bad time</p>
-			</section>
+		<section data-background="mars.jpg">
+                	<aside class="notes">Bad luck brian - humans concurs mars, datetime library programmer</aside>
+			<div class="over-image fragment">
+                		<h2>I'm all for exploring new planets</h2>
+			</div>
+		</section>
 
-			<section>
+		<section data-background="mars.jpg">
 				<img class="" src="brian.jpg" />
             </section>
         </section>
@@ -259,8 +294,8 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
             <section>
                 <h2>If you do,<h2>
-				<h2 class="fragment">then use a Datetime library</h2>
-                <p class="fragment">Don't forget to say thank you!</p>
+		<h3 class="fragment">then use a<br>Datetime library</h3>
+                <aside class="notes">Don't forget to say thank you!</aside>
             </section>
 
             <section>
@@ -275,8 +310,10 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
                 <h2>Not really, since...</h2>
             </section>
 
-            <section>
-                <h2>YES IT DOES!</h2>
+            <section data-background="batman.jpg">
+		<div class="over-image">
+                	<h2>YES IT DOES!</h2>
+		</div>
                 <aside class="notes">Batman bitchslap image!!!</aside>
             </section>
 
@@ -287,12 +324,45 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
             <section>
                 <h2>And keep the Timezone Database of your OS<br>up-to-date</h2>
-                <p class="fragment">PHP (and other languages) rely on that.</p>
+                <aside class="notes">PHP (and other languages) rely on that.</aside>
             </section>
         </section>
 
-        <section>
-            <h2>THANK YOU!</h2>
+	<section>
+
+		<section data-background="theend.jpg">
+		</section>
+
+        	<section>
+        	    <h2>Or is it?</h2>
+        	</section>
+
+        	<section>
+			<h2>Cross-validation</h2>
+        	</section>
+
+        	<section>
+			<h2>Dark launch</h2>
+        	</section>
+
+        	<section>
+			<h2>We fixed all of<br>the known bugs...</h2>
+        	</section>
+
+        	<section>
+			<h2>And we even found bugs we didn't know about</h2>
+        	</section>
+
+		<section>
+			<h2>The proof of the pudding is in the eating</h2>
+		</section>
+
+        	<section data-background="fireworks.jpg">
+			<div class="over-image fragment">
+				<h2>THANK YOU!</h2>
+			</div>
+        	</section>
+
         </section>
     </div>
 </div>
