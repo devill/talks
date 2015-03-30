@@ -4,7 +4,7 @@
 <head>
     <meta charset="utf-8">
 
-    <title>The Null Object Pattern</title>
+    <title>Fabulous Time Zones</title>
 
     <meta name="description" content="">
     <meta name="author" content="Rafael Ordog">
@@ -42,17 +42,17 @@
     <div class="slides">
         <section>
             <section>
-                <h1>F***** Time Zones</h1>
-                <p>by <a href="http://twitter.com/devillsroom">Gabor Balla</a>
-                    <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@gballa</p>
+                <h1>F****** Time Zones</h1>
+                <p>by <a href="http://twitter.com/gaborwho">Gabor Balla</a>
+                    <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@gaborwho</p>
                 <p>and <a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
                 <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom</p>
             </section>
 
             <section>
                 <h1>Fabulous Time Zones</h1>
-                <p>by <a href="http://twitter.com/devillsroom">Gabor Balla</a>
-                    <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@gballa</p>
+                <p>by <a href="http://twitter.com/gaborwho">Gabor Balla</a>
+                    <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@gaborwho
                 <p>and <a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
                 <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom</p>
                 <aside class="notes">
@@ -67,8 +67,8 @@
             </section>
 
             <section>
-                <p style="color:red">Screen shoots</p>
-                <p>What is AC, daily</p>
+				<img src="ac.jpg" />
+                <aside class="notes">What is AC, daily</aside>
             </section>
 
             <section>
@@ -133,11 +133,10 @@ private function IsScheduledToDST($now, $dateOfFirstRecurrence)
             </section>
 
             <section>
-                <h2>Next autumn we got same issue...</h2>
+                <h2>Next autumn we got the same issue...</h2>
             </section>
 
-            <section>
-                WAT IMAGE + sound?
+            <section data-background="wat.jpg">
             </section>
 
             <section>
@@ -184,42 +183,46 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
             </section>
 
             <section>
-                <h2>But did you know that some countries do it more then twice a year</h2>
+                <h2>But did you know...</h2>
+				<h3>that some countries do it more then twice a year</h3>
             </section>
 
             <section>
-                <h2>In some places DST is observed at midnight</h2>
+                <h3>In some places DST is observed at midnight</h3>
             </section>
 
             <section>
-                <h2>And did you know about leap seconds</h2>
+                <h3>And did you know about leap seconds</h3>
                 <p class="fragment">So not every hour is 60 seconds long!</p>
             </section>
 
             <section>
-                <h2>Kiritimati changed it's timezone from GMT-10 to GMT+14</h2>
+                <h3>Kiritimati changed it's timezone from GMT-10 to GMT+14</h3>
                 <p class="fragment">So not every week is 7 days long</p>
             </section>
 
             <section>
-                <h2>And non DST related timezone changes are not even rare</h2>
-                <p class="fragment">Keep your timezone database up to date!</p>
+                <h3>And non-DST related timezone changes are not even rare</h3>
+                <p class="fragment">So keep your timezone database up to date!</p>
                 <aside class="notes">Moscow</aside>
             </section>
 
             <section>
-                <h2>Timezone in India: +5:30</h2>
+                <h3>Timezone in India: +5:30</h3>
                 <p class="fragment">Timezone in Nepal: +5:41:16 (Until 1920)</p>
             </section>
 
             <section>
-                <h2>What time is it in Hong Kong, when it's 2 AM in Hungary?</h2>
+                <h2>What time is it</h2>
+				<h3 class="fragment">in Hong Kong,</h3>
+				<h3 class="fragment">when it's 2 AM in Hungary?</h3>
                 <p class="fragment">For example on Sunday, 26 October 2014</p>
                 <aside class="notes">8 AM or 9 AM - it depends</aside>
             </section>
 
             <section>
-                <h2>Did you know that SQL DATETIME handles a single timezone?</h2>
+                <h2>Did you know<h2>
+				<h3>that SQL DATETIME does not handle timezones?</h3>
                 <p class="fragment">Database servers should use UTC timezone</p>
             </section>
 
@@ -227,6 +230,10 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
                 <aside class="notes">Bad luck brian - humans concurs mars, datetime library programmer</aside>
                 <h2>I'm all for exploring new planets</h2>
                 <p class="fragment">...but Datetime library implementors will have a bad time</p>
+			</section>
+
+			<section>
+				<img class="" src="brian.jpg" />
             </section>
         </section>
 
@@ -236,11 +243,13 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
             </section>
 
             <section>
-                <h2>If possible, don't deal with time</h2>
+                <h2>If possible,</h2>
+				<h2 class="fragment">don't deal with time</h2>
             </section>
 
             <section>
-                <h2>If you do, use a Datetime library</h2>
+                <h2>If you do,<h2>
+				<h2 class="fragment">then use a Datetime library</h2>
                 <p class="fragment">Don't forget to say thank you!</p>
             </section>
 
@@ -262,13 +271,13 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
             </section>
 
             <section>
-                <h2>Database servers should use UTC as a timezone</h2>
-                <p class="fragment">Convert to other timezones when you use it</p>
+                <h2>Database servers should use UTC</h2>
+                <p class="fragment">Convert to other timezones when using it</p>
             </section>
 
             <section>
-                <h2>And keep the Timezone Database of you OS uptodate</h2>
-                <p class="fragment">Php (and other languages) rely on that.</p>
+                <h2>And keep the Timezone Database of your OS<br>up-to-date</h2>
+                <p class="fragment">PHP (and other languages) rely on that.</p>
             </section>
         </section>
 
