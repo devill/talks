@@ -36,10 +36,15 @@
     <![endif]-->
 
     <style>
+	.reveal pre {
+		font-size: 0.9em;
+	}
+
         .over-image {
 		background-color: rgba(0,0,0,0.4);
 		padding: 50px !important;
         }
+
         .over-image h2, .over-image h3, .over-image p {
 		color: white !important;
         }
@@ -76,8 +81,11 @@
                 <h2>So we had a problem...</h2>
             </section>
 
-            <section>
-				<img src="ac.jpg" />
+            <section data-background="ac.jpg">
+                <aside class="notes">What is AC, daily</aside>
+            </section>
+
+            <section data-background="ac_recurring.jpg">
                 <aside class="notes">What is AC, daily</aside>
             </section>
 
@@ -90,20 +98,17 @@
             </section>
 
             <section>
-                <h2>...and some code...</h2>
-                <p class="fragment">... that we wish we didn't have...</p>
-            </section>
-
-            <section>
                 <h2>Program triggered multiple times</h2>
-                <p class="fragment">The problem was first reported in 2013!</p>
+                <aside class="notes">The problem was first reported in 2013!</aside>
             </section>
 
             <section>
 <pre><code data-trim class='php'>
 $currentDay = time();
 
-if ($this->getTodaysScheduleTime($currentDay, $startDate) <= $currentDay)
+$todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+
+if (strtotime($todaysSchedule) <= $currentDay)
 {
     $currentDay += 86400;
 }
@@ -119,20 +124,24 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
             <section>
 <pre><code data-trim class='php'>
-public function isTimeOfDayPastScheduleTime($now, $firstRun)
-{
-    if($this->IsScheduledToDST($now, $firstRun)) {
-        return $this->getTodaysScheduleTime($now, $firstRun) <= $now + 3600;
-    }
+$currentDay = time();
 
-    return $this->getTodaysScheduleTime($now, $firstRun) <= $now;
+$todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+
+$isOnDST = date('Y-m-d H:i:s', $todaysSchedule - 3600) ==
+           date('Y-m-d H:i:s', $todaysSchedule);
+
+if ($isOnDST)
+{
+    $currentDay += 3600;
 }
 
-private function IsScheduledToDST($now, $dateOfFirstRecurrence)
+if (strtotime($todaysSchedule) <= $currentDay)
 {
-    $time = $this->getTodaysScheduleTime($now, $dateOfFirstRecurrence);
-    return date('Y-m-d H:i:s', $time - 3600) == date('Y-m-d H:i:s', $time);
+    $currentDay += 86400;
 }
+
+return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 </code></pre>
             </section>
 
@@ -162,7 +171,17 @@ private function IsScheduledToDST($now, $dateOfFirstRecurrence)
 <pre><code data-trim class='php'>
 $currentDay = time();
 
-if ($this->isTimeOfDayPastScheduleTime($currentDay, $startDate))
+$todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+
+$isOnDST = date('Y-m-d H:i:s', $todaysSchedule - 3600) ==
+           date('Y-m-d H:i:s', $todaysSchedule);
+
+if ($isOnDST)
+{
+    $currentDay += 3600;
+}
+
+if (strtotime($todaysSchedule) <= $currentDay)
 {
     $currentDay += 86400;
 }
@@ -174,100 +193,92 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
             <section>
                 <h2>And that was the simplest problem</h2>
-                <p class="fragment">The customers are not in the same timezone</p>
+                <aside class="notes">The customers are not in the same timezone</aside>
             </section>
 
-            <section>
-		<img src="ac_plain.jpg" />
-            </section>
-            <section>
-		<img src="ac_daily.jpg" />
-            </section>
-            <section>
-		<img src="ac_weekly.jpg" />
-            </section>
-            <section>
-		<img src="ac_monthly.jpg" />
-            </section>
-            <section>
-		<img src="ac_monthly_wtf.jpg" />
-            </section>
-            <section>
-		<img src="ac_weekly_wtf.jpg" />
-            </section>
+            <section	data-background="ac_plain.jpg" > </section>
+            <section	data-background="ac_daily.jpg" > </section>
+            <section	data-background="ac_weekly.jpg" > </section>
+            <section	data-background="ac_monthly.jpg" > </section>
+            <section	data-background="ac_monthly_wtf.jpg" > </section>
+            <section	data-background="ac_weekly_wtf.jpg" > </section>
 
         </section>
 
         <section>
+		<section>
+                	<h2>So we made a bold move</h2>
+		</section>
             <section data-background="rambo.jpg">
-		<div class="over-image fragment">
-                	<h2>So we made<br />a bold move</h2>
-		</div>
-		<div class="over-image fragment">
+		<div class="over-image">
                 	<h2>Rewrite the code</h2>
 		</div>
             </section>
 
 		<section>
 			<h2>First try</h2>
-			<h3 class="fragment">Concurrent set based engineering</h3>
+		</section>
+		<section>
+			<h2>Concurrent set based engineering</h2>
 		</section>
 
             <section>
-                <h2>We learned a lot<br />about time zones</h2>
-                <h3 class="fragment">The planning took days</h3>
+                <h2>We learned a lot about time zones</h2>
+		</section>
+		<section>
+                <h2>The planning took days</h2>
 		<aside class="notes">left agile</aside>
             </section>
 
             <section>
-                <h2>You already know about DST...</h2>
-                <p class="fragment">So not every day is 24 hours long!</p>
+                <h2>Not every day is 24 hours long</h2>
+		<aside class="notes">because of DST</aside>
             </section>
 
             <section>
-                <h2>But did you know...</h2>
-		<h3>that some countries do it<br>more then twice a year</h3>
+		<h2>And some countries have<br>four DST changes a year</h2>
             </section>
 
             <section>
-                <h3>In some places<br>DST starts at midnight</h3>
+                <h2>In some places DST starts at midnight</h2>
             </section>
 
             <section>
-                <h3>And did you know<br>about leap seconds</h3>
-                <p class="fragment">So not every hour is 60 seconds long!</p>
+                <h2>Not every hour is 60 seconds long</h2>
+		<aside class="notes"></aside>
             </section>
 
-            <section data-background="kiritimati.jpg">
+	<section data-background="kiritimati.jpg">
 		<div class="over-image">
-                	<h3>Kiritimati changed<br>it's timezone<br>from GMT-10 to GMT+14</h3>
-                	<p class="fragment">So not every week is 7 days long</p>
+			<h2>Not every week is 7 days long</h2>
 		</div>
+		<aside class="notes">Kiritimati changed<br>it's timezone<br>from GMT-10 to GMT+14</aside>
             </section>
 
             <section>
-                <h3>And non-DST related timezone changes are not even rare</h3>
-                <p class="fragment">So keep your timezone database up to date!</p>
-                <aside class="notes">Moscow</aside>
+                <h2>timezones can change unexpectedly</h2>
+                <aside class="notes">So keep your timezone database up to date!  Moscow</aside>
             </section>
 
             <section>
-                <h3>Timezone in India: +5:30</h3>
-                <p class="fragment">Timezone in Nepal: +5:41:16 (Until 1920)</p>
+                <h2>Timezone in India: +5:30</h2>
             </section>
+
+		<section>
+                	<h2>Timezone in Nepal: +5:41:16</h2>
+			<aside class="notes">(until 1920)</aside>
+		</section>
 
             <section>
                 <h2>What time is it</h2>
-				<h3 class="fragment">in Hong Kong,</h3>
-				<h3 class="fragment">when it's 2 AM in Hungary?</h3>
-                <p class="fragment">For example on Sunday, 26 October 2014</p>
-                <aside class="notes">8 AM or 9 AM - it depends</aside>
+				<h2 class="fragment">in Hong Kong,</h2>
+				<h2 class="fragment">when it's 2 AM in Hungary?</h2>
+                <aside class="notes">For example on Sunday, 26 October 2014<br>8 AM or 9 AM - it depends</aside>
             </section>
 
             <section>
-                <h2>Did you know<h2>
-				<h3>that SQL DATETIME does not handle timezones?</h3>
-                <p class="fragment">Database servers should use UTC timezone</p>
+				<h2>SQL DATETIME does not handle timezones</h2>
+                <aside class="notes">Database servers should use UTC timezone</aside>
             </section>
 
 		<section data-background="mars.jpg">
@@ -294,7 +305,7 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
             <section>
                 <h2>If you do,<h2>
-		<h3 class="fragment">then use a<br>Datetime library</h3>
+		<h2 class="fragment">then use a Datetime library</h2>
                 <aside class="notes">Don't forget to say thank you!</aside>
             </section>
 
@@ -318,12 +329,23 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
             </section>
 
             <section>
-                <h2>Database servers should use UTC</h2>
-                <p class="fragment">Convert to other timezones when using it</p>
+		<h2>For example</h2>
+<pre class="fragment"><code data-trim class='php' style="text-align: center">
+$DateTime->modify("+{$n} day");
+</code></pre>
+                <aside class="notes">CurrentDay means next shedule time</aside>
             </section>
 
             <section>
-                <h2>And keep the Timezone Database of your OS<br>up-to-date</h2>
+                <h2>Database servers should use UTC</h2>
+                <aside class="notes">
+			Convert to other timezones when using it<br>
+			But it is too much effort to convert
+		</aside>
+            </section>
+
+            <section>
+                <h2>Keep the Timezone Database of your OS up-to-date</h2>
                 <aside class="notes">PHP (and other languages) rely on that.</aside>
             </section>
         </section>
@@ -343,14 +365,15 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
         	<section>
 			<h2>Dark launch</h2>
+			<aside class="notes">elaborate</aside>
         	</section>
 
         	<section>
-			<h2>We fixed all of<br>the known bugs...</h2>
+			<h2>We fixed all of the known bugs...</h2>
         	</section>
 
         	<section>
-			<h2>And we even found bugs we didn't know about</h2>
+			<h2>We found bugs we didn't know about</h2>
         	</section>
 
 		<section>
@@ -377,6 +400,7 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
+	width: 1660,
         controls: true,
         progress: true,
         history: true,
