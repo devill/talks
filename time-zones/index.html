@@ -109,12 +109,45 @@ $currentDay = time();
 
 $todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
-if (strtotime($todaysSchedule) <= $currentDay)
-{
+if (strtotime($todaysSchedule) <= $currentDay) {
     $currentDay += 86400;
 }
 
 return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+</code></pre>
+                <aside class="notes">CurrentDay means next shedule time</aside>
+            </section>
+
+            <section>
+<pre><code data-trim class='php'>
+$currentDay = time(); // 1427821260 (2015-03-31 19:01)
+
+$todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+// 1427821200 (2015-03-31 19:00)
+
+if (strtotime($todaysSchedule) <= $currentDay) { // TRUE
+    $currentDay += 86400; // 1427907660 (2015-04-01 19:01)
+}
+
+return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+// "2015-04-01 19:00"
+</code></pre>
+                <aside class="notes">CurrentDay means next shedule time</aside>
+            </section>
+
+            <section>
+<pre><code data-trim class='php'>
+$currentDay = time(); // 1414281660 (2014-10-26 02:01 the earlier)
+
+$todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+// 1414285200 (2014-10-26 02:00 the later)
+
+if (strtotime($todaysSchedule) <= $currentDay) { // FALSE
+    $currentDay += 86400;
+}
+
+return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+// "2014-10-26 02:00"
 </code></pre>
                 <aside class="notes">CurrentDay means next shedule time</aside>
             </section>
@@ -132,17 +165,38 @@ $todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 $isOnDST = date('Y-m-d H:i:s', $todaysSchedule - 3600) ==
            date('Y-m-d H:i:s', $todaysSchedule);
 
-if ($isOnDST)
-{
+if ($isOnDST) {
     $currentDay += 3600;
 }
 
-if (strtotime($todaysSchedule) <= $currentDay)
-{
+if (strtotime($todaysSchedule) <= $currentDay) {
     $currentDay += 86400;
 }
 
 return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+</code></pre>
+            </section>
+
+            <section>
+<pre><code data-trim class='php'>
+$currentDay = time(); // 1414281660 (2014-10-26 02:01 the earlier)
+
+$todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+// 1414285200 "2014-10-26 02:00"
+
+$isOnDST = date('Y-m-d H:i:s', $todaysSchedule - 3600) == // 02:00 earlier
+           date('Y-m-d H:i:s', $todaysSchedule);          // 02:00 later
+
+if ($isOnDST) { // TRUE
+    $currentDay += 3600; // 1414285260 (2014-10-26 02:01 the later)
+}
+
+if (strtotime($todaysSchedule) <= $currentDay) { // TRUE
+    $currentDay += 86400; // 1414371660 (2014-10-27 02:01)
+}
+
+return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+// "2014-10-27 02:00"
 </code></pre>
             </section>
 
@@ -170,26 +224,25 @@ return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
 
             <section>
 <pre><code data-trim class='php'>
-$currentDay = time();
+$currentDay = time(); // 1414274460 (2014-10-26 00:01)
 
 $todaysSchedule = date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+// 1414274400 "2014-10-26 00:00"
 
-$isOnDST = date('Y-m-d H:i:s', $todaysSchedule - 3600) ==
-           date('Y-m-d H:i:s', $todaysSchedule);
+$isOnDST = date('Y-m-d H:i:s', $todaysSchedule - 3600) == // 10-26 00:00
+           date('Y-m-d H:i:s', $todaysSchedule);          // 10-25 23:00
 
-if ($isOnDST)
-{
+if ($isOnDST) { // FALSE
     $currentDay += 3600;
 }
 
-if (strtotime($todaysSchedule) <= $currentDay)
-{
-    $currentDay += 86400;
+if (strtotime($todaysSchedule) <= $currentDay) { // TRUE
+    $currentDay += 86400; // 1414360800 (2014-10-26 23:01)
 }
 
 return date('Y-m-d', $currentDay).' '.substr($startDate, 11);
+// "2014-10-26 00:00"
 </code></pre>
-                <aside class="notes">25 hour day</aside>
             </section>
 
             <section>
@@ -394,7 +447,7 @@ $DateTime->modify("+{$n} day");
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
-	width: 1660,
+	    width: 1660,
         controls: true,
         progress: true,
         history: true,
