@@ -1,5 +1,5 @@
 BIO
-==========
+===
 
 Rafael is a Lead Developer at Budapest-based Emarsys and popular speaker in the Hungarian software community.
 As a founding member of Emarsys CraftLab - the dedicated coaching team of Emarsys - he has thought university
