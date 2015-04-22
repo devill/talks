@@ -32,6 +32,12 @@
         }
     </script>
 
+    <style>
+        .reveal h2 {
+            font-size:2.5em;
+        }
+    </style>
+
     <!--[if lt IE 9]>
     <script src="../reveal/lib/js/html5shiv.js"></script>
     <![endif]-->
@@ -163,7 +169,6 @@ AND p12.spent > c.report_trsh;
 
             <section>
                 <h2>It's not an API</h2>
-                <p>That's why we use ORMs</p>
             </section>
 
             <section>
@@ -180,26 +185,20 @@ AND p12.spent > c.report_trsh;
             </section>
 
             <section>
-                <h2>What's wrong with<br/>using a CLI as an API?</h2>
+                <h2>What's wrong with using a CLI as an API?</h2>
             </section>
 
             <section>
-                <h2>Generated code is<br/>problematic in general</h2>
-                <p class="fragment">Compilers solve this by adding symbols for the debugger</p>
+                <h2>Generated code is hard to debug</h2>
+                <p>Compilers solve this by adding symbols for the debugger</p>
             </section>
 
             <section>
-                <h2>Escaping is a horror scene</h2>
+                <h2>Injection attacks</h2>
             </section>
 
             <section>
-                <h2>Fragility</h2>
-            </section>
-
-            <section>
-                <h2>It's easy to leak part of the logic</h2>
-                <p class="fragment">Harder to test</p>
-                <p class="fragment">Harder to debug</p>
+                <h2>The code generation hides the intent</h2>
             </section>
 
             <section>
@@ -207,26 +206,29 @@ AND p12.spent > c.report_trsh;
             </section>
 
             <section>
-                <h2>Use the DB as data repository</h2>
-                <p class="fragment">Only simple read/write/update operations isolated in functions</p>
-                <p class="fragment">Use a narrow interface</p>
-                <p class="fragment">Drawback: you can run into performance/concurrency issues</p>
+                <h2>Always use prepared statements</h2>
             </section>
 
             <section>
-                <h2>If you must leak logic into SQL, then express the entire logic in SQL</h2>
+                <h2>When possible, use the <emph>DB as data repository</emph></h2>
+            </section>
+
+            <section>
+                <h2>Instead of generating SQL express the entire logic in SQL</h2>
             </section>
 
             <section>
                 <h2>Instead of saying:</h2>
                 <pre><code>For all ingredients of apple pie as ingredient
     "Bringt mir bitte {$ingredient.germanName}"</code></pre>
+            </section>
+            <section>
                 <h2>Say this:</h2>
                 <pre><code data-trim>Bringen Sie mir bitte alle Zutaten zum Apfelkuchen</code></pre>
             </section>
 
             <section>
-                <h2>SQL is quite powerfull</h2>
+                <h2>SQL is quite powerful</h2>
                 <pre><code data-trim class='sql'>
 CREATE TABLE generations (`id` INT UNSIGNED, `x` BIGINT, `y` BIGINT);
 INSERT INTO generations VALUES
@@ -245,19 +247,11 @@ INSERT INTO generations
       HAVING (MAX(o.x=0 AND o.y=0) = 1 AND COUNT(1) - 1 BETWEEN 2 AND 3)
         OR (MAX(o.x=0 AND o.y=0) = 0 AND COUNT(1) = 3);
                 </code></pre>
-                <p class="fragment">An iteration of Conway's game of life</p>
             </section>
 
             <section>
                 <h2>SQL is Turing Complete</h2>
-                <p class="fragment">That's usually smell when it comes to domain specific languages</p>
             </section>
-
-            <section>
-                <h2>Problem: The declarative style of SQL makes TDD very challenging.</h2>
-                <p class="fragment">It's not really possible to build up the query iteratively.</p>
-            </section>
-
         </section>
 
         <section>
@@ -268,24 +262,19 @@ INSERT INTO generations
 
             <section>
                 <h2>The SQL query needs to be tested</h2>
-                <p class="fragment">But how?</p>
             </section>
 
             <section>
-                <h2>Relational databases enforce the data transfer mechanism</h2>
+                <h2>Relational databases enforce persistence</h2>
                 <img src="Ksenia-Solo.gif"/>
             </section>
 
             <section>
                 <h2>A complete fake is unfeasible</h2>
-                <p class="fragment">The interface is huge</p>
-                <p class="fragment">The fake would end up being different</p>
             </section>
 
             <section>
-                <h2>On the other hand SQL<br/>queries can change</h2>
-                <p class="fragment">Performance optimization</p>
-                <p class="fragment">Schema changes</p>
+                <h2>On the other hand SQL queries can change</h2>
             </section>
 
             <section>
@@ -293,18 +282,15 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>The bad news: <emph>database tests<br/>will be slow</emph> whatever we do</h2>
-                <p class="fragment">So we need to separate them as much as we can</p>
+                <h2>The bad news: <emph>database tests will be slow</emph> whatever we do</h2>
             </section>
 
             <section>
                 <h2>Where the query is unlikely to change, assert on the query string</h2>
-                <p class="fragment">Don't forget to test the query before you turn the test green</p>
             </section>
 
             <section>
                 <h2>But you will have queries that are more complex, and likely to change</h2>
-                <p class="fragment">You will need a separate build step for them</p>
             </section>
 
             <section>
@@ -315,24 +301,28 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>On the dev machine only run unit tests</h2>
-                <h2>And DB tests for the query changed</h2>
+                <h2>On the dev machine only run unit tests and DB tests for the query changed</h2>
             </section>
 
             <section>
                 <h2>Your build server running the database suite should have an SSD!</h2>
                 <img src="1236681924_snail_transformers.gif"/>
-                <p class="fragment">Make sure your test are independent, so that you can scale out</p>
             </section>
 
             <section>
-                <h2>Build a tool that let's<br/>you run setup SQLs</h2>
-                <p class="fragment">Your table fields should have sensible<br/>defaults to minimise necessary setup</p>
+                <h2>Where possible run the test in a <emph>transaction</emph>, and roll it back in the tear down</h2>
             </section>
 
             <section>
-                <h2>Clean up <emph>before</emph> the test,<br/>and not after the test</h2>
-                <p class="fragment">Also truncate tables inserted into by the tested function</p>
+                <h2>Build a tool that let's you run setup SQLs</h2>
+            </section>
+
+            <section>
+                <h2>Use sensible defaults</h2>
+            </section>
+
+            <section>
+                <h2>Clean up <emph>before</emph> the test, and not after the test</h2>
             </section>
 
             <section>
@@ -344,7 +334,7 @@ class TestUsefulClass extends DatabaseTestCase {
      */
     public function testSomethingImportant()
     {
-        $this->runSetupSQL(4532656, array(
+        $this->runSetupSQLFile('load_useful_data', array(
             'userID' => self::USER_ID
         ));
 
@@ -374,8 +364,7 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <h2>Make sure the Unit build<br/>has no SQL queries</h2>
-                <p class="fragment">In the unit build the DB connection class should throw an exception whenever any of it's functions are called.</p>
+                <h2>Make sure the Unit build has no SQL queries</h2>
             </section>
 
             <section>
@@ -383,12 +372,11 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <h2>It should be easy to<br/>replace the database</h2>
+                <h2>It should be easy to replace the database</h2>
             </section>
 
             <section>
-                <h2>The database should<br/>depend on the application</h2>
-                <p class="fragment">Dependency Inversion</p>
+                <h2>The database should depend on the application</h2>
             </section>
 
             <section>
@@ -414,7 +402,7 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <h2>Most of the data we<br/>have is not tabular</h2>
+                <h2>Most of the data we have is not tabular</h2>
                 <aside class="notes">
                     <p>Graphs: relationships</p>
                     <p>Hierarchies: documents</p>
@@ -450,24 +438,20 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <h2>Strongly related data is<br/>scattered on the disk</h2>
-                <p class="fragment">Consequence: poor performance, poor scaling</p>
+                <h2>Strongly related data is scattered on the disk</h2>
             </section>
 
             <section>
                 <h2>The DBA requests a denormalization</h2>
-                <p class="fragment">Now you are changing code that is hard and slow to test</p>
             </section>
 
             <section>
-                <h2>The denormalized data<br/>has to be indexed...</h2>
-                <p class="fragment">... by creating index tables</p>
+                <h2>The denormalized data has to be indexed...</h2>
             </section>
 
             <section>
-                <h2>Aaaaaaaaaaaaaaaaaaaand<br/>your code is all about the database...</h2>
+                <h2>Aaaaaaaaaaaaaaaaaaaand your code is all about the database...</h2>
                 <img src="hqdefault.jpg"/>
-                <p class="fragment">Between the database related clutter you hardly find the business rules anymore</p>
             </section>
 
             <section>
@@ -488,7 +472,6 @@ INSERT INTO some_useful_table (user_id, useful_field)
 
             <section>
                 <h2>If you need to stick with SQL, feel free to store a JSON in a field</h2>
-                <p class="fragment">Pseudo key-value store</p>
             </section>
 
             <section>
@@ -497,70 +480,10 @@ INSERT INTO some_useful_table (user_id, useful_field)
 
             <section>
                 <h2>Think of using NoSQL solutions</h2>
-                <p class="fragment">One at a time, don't overwhelm yourself</p>
             </section>
 
             <section>
                 <h2>Polyglot persistence</h2>
-                <p class="fragment">NoSQL solutions are purpose built, not "generic"</p>
-                <p class="fragment">You will need your SQL next<br/>to the document store / graph database</p>
-            </section>
-
-            <section>
-                <h2>Document stores have an interesting effect on architecture</h2>
-            </section>
-
-            <section>
-
-            </section>
-
-            <section  data-transition="none">
-                <img src="DB_and_clean_code_-_detailed.png">
-            </section>
-
-            <section  data-transition="none">
-                <img src="DB_and_clean_code_-_document_store.png">
-            </section>
-
-            <section>
-                <h2>The code becomes the<br/>sole owner of the schema</h2>
-            </section>
-        </section>
-
-        <section>
-            <section>
-                <h2>Dumb ways to shoot<br/>yourself in the leg</h2>
-                <img src="dumbways.jpg"/>
-            </section>
-
-            <section>
-                <h2>Message queue in SQL</h2>
-                <p class="fragment">Relational databases are surprisingly bad for that</p>
-            </section>
-
-            <section>
-                <h2>Inter process communication</h2>
-                <div class="fragment">
-                    <img src="y-u-no-guy.jpg"/>
-                    <p>Seriously... why?!</p>
-                </div>
-            </section>
-
-            <section>
-                <h2>Generate code based on the DB schema</h2>
-                <p class="fragment">The schema should be owned by the code,<br/>and not the other way around.</p>
-            </section>
-
-            <section>
-                <h2>The active record pattern</h2>
-                <p class="fragment">Makes testing problematic</p>
-                <p class="fragment">Temporal coupling</p>
-            </section>
-
-            <section>
-                <h2>Don't add logic to your active record and don't inherit from it</h2>
-                <p class="fragment">Major SRP violation</p>
-                <p class="fragment">Infects the business logic with mutability</p>
             </section>
         </section>
 
