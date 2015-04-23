@@ -126,7 +126,7 @@ function generateWhere() {
             </section>
 
             <section>
-                <h2>Altough we end up debugging this...</h2>
+                <h2>When we end up debugging this...</h2>
                 <pre><code data-trim class='sql'>
 UPDATE contacts c LEFT JOIN profile_1 p1 ON (c.id = p1.customer_id)
 LEFT JOIN profile_1 p1 ON (c.id = p1.customer_id) LEFT JOIN
@@ -190,11 +190,11 @@ AND p12.spent > c.report_trsh;
 
             <section>
                 <h2>Generated code is hard to debug</h2>
-                <p>Compilers solve this by adding symbols for the debugger</p>
+                <p>Compilers solve this by adding debug symbols</p>
             </section>
 
             <section>
-                <h2>The code generation hides the intent</h2>
+                <h2>Code generation hides the intent</h2>
             </section>
 
             <section>
@@ -210,7 +210,7 @@ AND p12.spent > c.report_trsh;
             </section>
 
             <section>
-                <h2>When possible, use the DB as <emph>data repository</emph></h2>
+                <h2>When possible, use your DB as <emph>data repository</emph></h2>
             </section>
 
             <section>
@@ -218,7 +218,7 @@ AND p12.spent > c.report_trsh;
             </section>
 
             <section>
-                <h2>Instead of generating SQL express the entire logic in SQL</h2>
+                <h2>Instead of generating SQL, express the entire logic in SQL</h2>
             </section>
 
             <section>
@@ -265,7 +265,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>The SQL query needs to be tested</h2>
+                <h2>SQL queries need to be tested</h2>
             </section>
 
             <section>
@@ -294,7 +294,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>But you will have queries that are more complex, and likely to change</h2>
+                <h2>But you will have queries that are more complex and likely to change</h2>
             </section>
 
             <section>
@@ -305,7 +305,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>On the dev machine only run unit tests and DB tests for the query changed</h2>
+                <h2>On the dev machine only run unit tests and DB tests for the modified query</h2>
             </section>
 
             <section>
@@ -318,7 +318,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>Build a tool that let's you run setup SQLs</h2>
+                <h2>Build a tool that lets you run setup SQLs</h2>
             </section>
 
             <section>
@@ -362,7 +362,6 @@ INSERT INTO generations
         <section>
             <section>
                 <h2>The impedance mismatch</h2>
-                <img src="OVMP6dP.gif"/>
             </section>
 
             <section>
@@ -399,7 +398,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>That solution works surprisingly well</h2>
+                <h2>This solution works surprisingly well</h2>
                 <h2 class="fragment"><emph>Until it doesn't...</emph></h2>
             </section>
 
@@ -416,7 +415,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>The denormalized data has to be indexed...</h2>
+                <h2>Denormalized data has to be indexed...</h2>
             </section>
 
             <section>
@@ -437,7 +436,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>Having different data models for different use cases</h2>
+                <h2>Have different data models for different use cases</h2>
             </section>
 
             <section>
@@ -453,7 +452,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>Every database has trade offs</h2>
+                <h2>Every database has trade-offs</h2>
             </section>
 
             <section>
@@ -471,7 +470,7 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>The DB layers contract should be minimal</h2>
+                <h2>The DB layer's contract should be minimal</h2>
             </section>
 
             <section>
