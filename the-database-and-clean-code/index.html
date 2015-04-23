@@ -50,7 +50,7 @@
     <!-- Any section element inside of this container is displayed as a slide -->
     <div class="slides">
         <section>
-            <h1>The database and clean code</h1>
+            <h1>Clean persistence</h1>
 
             <p>by <a href="http://twitter.com/devillsroom">Rafael Ordog</a> (DeVill)</p>
 
@@ -162,7 +162,7 @@ AND p12.spent > c.report_trsh;
             </section>
 
             <section>
-                <h2>"However, there is also a large class of users who, while they are <emph>not computer specialists</emph>, would be willing to learn to <emph>interact with a computer</emph> in a reasonably high-level, non-procedural query language."</h2>
+                <h2 style="color:#91A1D3">"However, there is also a large class of users who, while they are <emph>not computer specialists</emph>, would be willing to learn to <emph>interact with a computer</emph> in a reasonably high-level, non-procedural query language."</h2>
                 <p>SEQUEL: A STRUCTURED ENGLISH QUERY LANGUAGE</p>
                 <p><i>by Donald D. Chamberlin</i> (1974)</p>
             </section>
@@ -211,6 +211,10 @@ AND p12.spent > c.report_trsh;
 
             <section>
                 <h2>When possible, use the DB as <emph>data repository</emph></h2>
+            </section>
+
+            <section>
+                <h2>And when you do leak the logic...</h2>
             </section>
 
             <section>
@@ -326,40 +330,6 @@ INSERT INTO generations
             </section>
 
             <section>
-                <h2>Example</h2>
-                <pre><code data-trim class='php'>
-class TestUsefulClass extends DatabaseTestCase {
-    /**
-     * @test
-     */
-    public function testSomethingImportant()
-    {
-        $this->runSetupSQLFile('load_useful_data', array(
-            'userID' => self::USER_ID
-        ));
-
-        $this->useful->testedFunction(self::USER_ID);
-
-        $result = $this->fetchOneRow("SELECT * FROM useful_table " .
-                                              "WHERE id=" . self::USER_ID);
-
-        $this->assertEquals('new_value', $result['useful_field']);
-    }
-}
-                </code></pre>
-            </section>
-
-            <section>
-                <h2>Example</h2>
-                <pre><code data-trim class='sql'>
-TRUNCATE TABLE some_useful_table;
-
-INSERT INTO some_useful_table (user_id, useful_field)
-    VALUES ({$user_id}, 'awesomeness');
-                </code></pre>
-            </section>
-
-            <section>
                 <h2>Keep the number of DB tests down</h2>
             </section>
 
@@ -384,7 +354,7 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <img src="DB_and_clean_code_-_detailed.png">
+                <img src="detailed_uml.png">
             </section>
 
         </section>
@@ -396,7 +366,7 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <h2>"SEQUEL identifies a set of simple operations on <emph>tabular</emph> structures, which can be shown to be of equivalent power to the first order predicate calculus."</h2>
+                <h2 style="color:#91A1D3">"SEQUEL identifies a set of simple operations on <emph>tabular</emph> structures, which can be shown to be of equivalent power to the first order predicate calculus."</h2>
                 <p>SEQUEL: A STRUCTURED ENGLISH QUERY LANGUAGE</p>
                 <p><i>by Donald D. Chamberlin</i> (1974)</p>
             </section>
@@ -467,11 +437,11 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <h2>Honestly I don't have a real answer for that within the SQL realm...</h2>
+                <h2>Having different data models for different use cases</h2>
             </section>
 
             <section>
-                <h2>If you need to stick with SQL, feel free to store a JSON in a field</h2>
+                <h2>Feel free to store a JSON in a field</h2>
             </section>
 
             <section>
@@ -480,6 +450,10 @@ INSERT INTO some_useful_table (user_id, useful_field)
 
             <section>
                 <h2>Think of using NoSQL solutions</h2>
+            </section>
+
+            <section>
+                <h2>Every database has trade offs</h2>
             </section>
 
             <section>
@@ -493,7 +467,7 @@ INSERT INTO some_useful_table (user_id, useful_field)
             </section>
 
             <section>
-                <h2>Analytic vs Transactional applications</h2>
+                <h2>Consider data access patterns</h2>
             </section>
 
             <section>
@@ -518,6 +492,10 @@ INSERT INTO some_useful_table (user_id, useful_field)
 
             <section>
                 <h2>Test DB layer objects through the database</h2>
+            </section>
+
+            <section>
+                <h1>Thank you!</h1>
             </section>
 
             <section>
