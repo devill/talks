@@ -24,11 +24,10 @@ them within weeks of starting the project, and all that as a hobby next to my da
 as examples, I will tell you what agile practices you should hang on to and what you should change or replace.
 
 
-Database and clean code
-=======================
+Clean persistence
+=================
 
 Separating the database layer from the rest of code has always been an important topic, yet more often than not
- applications end up looking like huge wrappers around the database. Keeping your database related code
+ web applications end up looking like huge wrappers around the database. Keeping your database related code
  nicely isolated is hard, and it's even harder with applications where most of the logic has to do with reading
- and writing data. We will look at common mistakes, design patterns and polyglot persistence with actual code
- examples, so that your next application can have a clean database layer.
+ and writing data. We will look at common mistakes, testing, design patterns and polyglot persistence.
