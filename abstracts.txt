@@ -31,3 +31,16 @@ Separating the database layer from the rest of code has always been an important
  web applications end up looking like huge wrappers around the database. Keeping your database related code
  nicely isolated is hard, and it's even harder with applications where most of the logic has to do with reading
  and writing data. We will look at common mistakes, testing, design patterns and polyglot persistence.
+
+
+=====
+PLANS
+=====
+
+Free beer and ethernal life
+===========================
+
+If a politician promissed free beer and ethernal life people would laugh at him while they aploud them if they 
+promisse work places. The ironic thing about this, is that the free beer is way more realistic and ethernal life
+is not entirely impossible. They key phrase here is "technological singularity", and it's a lot closer then we care 
+to believe. But how do we get there? How do we adapt our society? Who is going to be the last person to work?
