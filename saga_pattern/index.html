@@ -82,27 +82,22 @@
             </section>
 
             <section>
-                <h2>Web -> DB</h2>
+                <img src="Saga_AppAndDatabase.png" height="700px"/>
             </section>
 
             <section>
                 <h2>Transactions</h2>
+                <aside class="notes">
+                    <p>Book a hotel, a car and a plane ticket in one transaction</p>
+                </aside>
             </section>
 
             <section>
-                <h2>Serializability & ACID</h2>
+                <h2>What if these are in different databases?</h2>
             </section>
 
             <section>
-                <h2>The M-word!</h2>
-            </section>
-
-            <section>
-                <h2>Trip booking example</h2>
-            </section>
-
-            <section>
-                <h2>"The naive way"</h2>
+                <h2>The naive way</h2>
                 <aside class="notes">
                     <p>The old AC way</p>
                     <p>If a single task fails you are screwed</p>
@@ -111,7 +106,7 @@
             </section>
 
             <section>
-                <h2>"The russian way"</h2>
+                <h2>Brute force</h2>
                 <aside class="notes">
                     <p>If something breaks keep retrying until the DB falls apart under you</p>
                     <p>In process (if the process dies, you still have a problem)</p>
@@ -208,11 +203,11 @@
             </section>
 
             <section>
-                <h2>Single database example - happy path</h2>
+                <img src="Saga_SagaHappyPath.png"  height="700px"/>
             </section>
 
             <section>
-                <h2>Single database example - failure path</h2>
+                <img src="Saga_SagaFailure.png"  height="700px"/>
             </section>
 
             <section><h2>With micro services this becomes a bit more complicated</h2></section>
@@ -221,13 +216,6 @@
                 <h2>The Saga Execution Coordinator must be stateless</h2>
                 <aside class="notes">
                     <p>In case of failure it must be possible to restart</p>
-                </aside>
-            </section>
-
-            <section>
-                <h2>Distributed saga happy path example</h2>
-                <aside class="notes">
-                    <p>First write 'begin' to the log, then complete the action, then write 'successful'</p>
                 </aside>
             </section>
 
@@ -271,6 +259,10 @@
             <section>
                 <h2>How to achieve idempotency?</h2>
             </section>
+        </section>
+
+        <section>
+            <h2>Thank you!</h2>
         </section>
 
     </div>
