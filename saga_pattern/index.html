@@ -1,0 +1,316 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The Saga Pattern</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .over-image {
+            background-color: rgba(0,0,0,0.4);
+            padding: 50px !important;
+        }
+
+        .over-image h2, .over-image h3, .over-image p {
+            color: white !important;
+        }
+
+        .reveal h1 {
+            font-size:8em;
+        }
+
+        .reveal h2 {
+            font-size:7em;
+        }
+
+        .reveal h3 {
+            font-size:5em;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <h1>The Saga Pattern</h1>
+                <p><a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
+                <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom</p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Distributed systems</h2>
+            </section>
+
+            <section>
+                <h2>Web -> DB</h2>
+            </section>
+
+            <section>
+                <h2>Transactions</h2>
+            </section>
+
+            <section>
+                <h2>Serializability & ACID</h2>
+            </section>
+
+            <section>
+                <h2>The M-word!</h2>
+            </section>
+
+            <section>
+                <h2>Trip booking example</h2>
+            </section>
+
+            <section>
+                <h2>"The naive way"</h2>
+                <aside class="notes">
+                    <p>The old AC way</p>
+                    <p>If a single task fails you are screwed</p>
+                    <p>You can retry, but you end up screwed anyway</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>"The russian way"</h2>
+                <aside class="notes">
+                    <p>If something breaks keep retrying until the DB falls apart under you</p>
+                    <p>In process (if the process dies, you still have a problem)</p>
+                    <p>After each action stop, and create a new job, that will continue the work, and retry until it's successful</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Distributed transactions?</h2>
+            </section>
+
+            <section>
+                <h2>2 phase commit</h2>
+                <aside class="notes">
+                    <p>Coordinator asks everyone if transaction is possible, then commit</p>
+                    <p>If commit fails, you are still screwed</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Scalability issues</h2>
+                <aside class="notes">
+                    <p>Too many messages</p>
+                    <p>The coordinator is a single point of failure</p>
+                    <p>The more collaborators, the more chance to fail</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Google could fix this</h2>
+                <aside class="notes">
+                    <p>ACID around the globe</p>
+                    <p>Atomic clock and GPS in every machine</p>
+                    <p>Private direct fiber connection between every pair of data centers</p>
+                    <p>Still just 7ms accurate because general relativity...</p>
+                    <p>If there is a 7ms gap, your race condition will reliably find it.</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>What if we didn't stick to ACID?</h2>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>The saga pattern</h2>
+            </section>
+
+            <section>
+                <h2>Long lived transactions</h2>
+                <aside class="notes">
+                    <p>A long transaction is still a problem, even if you have one database</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3>A saga is a sequence of independent, undoable transactions</h3>
+                <aside class="notes">
+                    <p>Neither step should depend on any previous one</p>
+                    <p>For each transaction there is a compensating transaction</p>
+                    <p>We don't necessarily return to the same state, but to something acceptable</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Cool... so what's up with e-mails?</h2>
+            </section>
+
+            <section>
+                <h2>The Saga guaranty</h2>
+                <aside class="notes">
+                    <p>Either everything is successful</p>
+                    <p>Or successful events are compensated</p>
+                    <p>Or we are in the process of executing the events</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Atomicity vs Availability</h2>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>The Saga Execution Coordinator (SEC)</h2>
+            </section>
+
+            <section>
+                <h2>Saga log</h2>
+                <aside class="notes">
+                    <p>Begin saga, end saga, abort saga, sub transaction begin, end, compensate</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Single database example - happy path</h2>
+            </section>
+
+            <section>
+                <h2>Single database example - failure path</h2>
+            </section>
+
+            <section><h2>With micro services this becomes a bit more complicated</h2></section>
+
+            <section>
+                <h2>The Saga Execution Coordinator must be stateless</h2>
+                <aside class="notes">
+                    <p>In case of failure it must be possible to restart</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Distributed saga happy path example</h2>
+                <aside class="notes">
+                    <p>First write 'begin' to the log, then complete the action, then write 'successful'</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>When to undo?</h2>
+                <aside class="notes">
+                    <p>Abort saga request - one step failed for example, or the network failed while triggering it.</p>
+                    <p>SEC crash in inconsistent state</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>The compensating action should be idempotent</h2>
+                <aside class="notes">
+                    <p>Actions are completed at most once</p>
+                    <p>Compensating actions are completed at least once if saga is aborted</p>
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Forward recovery</h2>
+                <aside class="notes">
+                    <p>When an undo just doesn't make sense</p>
+                    <p>But all errors are temporary</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3>Periodically retry unfinished sagas, and replay all (unsuccessful) events.</h3>
+            </section>
+
+            <section>
+                <h2>Each action must be idempotent</h2>
+                <aside class="notes">
+                    <p>But you don't really need compensating actions anymore</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>How to achieve idempotency?</h2>
+            </section>
+        </section>
+
+    </div>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+	    width: 1660,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
