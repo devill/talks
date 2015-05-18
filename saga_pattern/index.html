@@ -119,7 +119,7 @@
             </section>
 
             <section>
-                <h2>2 phase commit</h2>
+                <h2>2-phase commit</h2>
                 <aside class="notes">
                     <p>Coordinator asks everyone if transaction is possible, then commit</p>
                     <p>If commit fails, you are still screwed</p>
@@ -148,6 +148,9 @@
 
             <section>
                 <h2>What if we didn't stick to ACID?</h2>
+                <aside class="notes">
+                    <p>Atomicity, Consistency, Isolation, Durability</p>
+                </aside>
             </section>
         </section>
 
@@ -157,7 +160,7 @@
             </section>
 
             <section>
-                <h2>Long lived transactions</h2>
+                <h2>Long-lived transactions</h2>
                 <aside class="notes">
                     <p>A long transaction is still a problem, even if you have one database</p>
                     <p>We will only look at it as a patter for services</p>
@@ -178,7 +181,7 @@
             </section>
 
             <section>
-                <h2>The Saga guaranty</h2>
+                <h2>The Saga guarantee</h2>
                 <aside class="notes">
                     <p>Either everything is successful</p>
                     <p>Or successful events are compensated</p>
