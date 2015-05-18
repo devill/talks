@@ -136,7 +136,7 @@
             </section>
 
             <section>
-                <h2>Google could fix this</h2>
+                <h2>Google could<br/>fix this</h2>
                 <aside class="notes">
                     <p>ACID around the globe</p>
                     <p>Atomic clock and GPS in every machine</p>
@@ -160,11 +160,12 @@
                 <h2>Long lived transactions</h2>
                 <aside class="notes">
                     <p>A long transaction is still a problem, even if you have one database</p>
+                    <p>We will only look at it as a patter for services</p>
                 </aside>
             </section>
 
             <section>
-                <h3>A saga is a sequence of independent, undoable transactions</h3>
+                <h3>A saga is a sequence of independent actions,<br/>with idempotent compensating actions</h3>
                 <aside class="notes">
                     <p>Neither step should depend on any previous one</p>
                     <p>For each transaction there is a compensating transaction</p>
@@ -193,6 +194,10 @@
         <section>
             <section>
                 <h2>The Saga Execution Coordinator (SEC)</h2>
+                <aside class="notes">
+                    <p>In case of failure it must be possible to restart</p>
+                    <p>The Saga Execution Coordinator must be stateless</p>
+                </aside>
             </section>
 
             <section>
@@ -208,15 +213,6 @@
 
             <section>
                 <img src="Saga_SagaFailure.png"  height="700px"/>
-            </section>
-
-            <section><h2>With micro services this becomes a bit more complicated</h2></section>
-
-            <section>
-                <h2>The Saga Execution Coordinator must be stateless</h2>
-                <aside class="notes">
-                    <p>In case of failure it must be possible to restart</p>
-                </aside>
             </section>
 
             <section>
@@ -246,7 +242,7 @@
             </section>
 
             <section>
-                <h3>Periodically retry unfinished sagas, and replay all (unsuccessful) events.</h3>
+                <h3>Periodically retry unfinished sagas,<br/>and replay all (unsuccessful) events.</h3>
             </section>
 
             <section>
@@ -258,6 +254,27 @@
 
             <section>
                 <h2>How to achieve idempotency?</h2>
+            </section>
+
+            <section>
+                <h2>Each action needs a unique ID</h2>
+                <aside class="notes">
+                    <p>Universally uniq id for the saga</p>
+                    <p>Easy to calculate id for separate actions</p>
+                </aside>
+            </section>
+
+            <section>
+                <img src="Saga_TheActionTransaction.png"  height="700px"/>
+            </section>
+
+            <section>
+                <h2>Why this works better?</h2>
+                <aside class="notes">
+                    <p>Forces you to think of the error condition</p>
+                    <p>Low probability errors are probable when there is a lot of action</p>
+                    <p>Repeat until sure, but catch duplications</p>
+                </aside>
             </section>
         </section>
 
