@@ -21,7 +21,7 @@ sized project. You know how to be effective as a team, but the same practices se
 
 In the last few years I started a number of projects alone and managed to build, deploy and validate (or invalidate)
 them within weeks of starting the project, and all that as a hobby next to my day job. Taking a few of these projects
-as examples, I will tell you what agile practices you should hang on to and what you should change or replace.
+as examples, I will tell you what agile practices I hang on to and what I changed or replaced to boost my productivity.
 
 
 Clean persistence
@@ -31,3 +31,32 @@ Separating the database layer from the rest of code has always been an important
  web applications end up looking like huge wrappers around the database. Keeping your database related code
  nicely isolated is hard, and it's even harder with applications where most of the logic has to do with reading
  and writing data. We will look at common mistakes, testing, design patterns and polyglot persistence.
+
+
+=====
+PLANS
+=====
+
+Free beer and immortality
+=========================
+
+If a politician promised free beer and immortality people would laugh at him. If he promises workplaces and cheap
+natural gas for heating they applaud him. The ironic thing about this is that the "free" beer is way more realistic
+than a workplace for everyone who wants to do manual labour. Immortality is not entirely impossible, but burning
+fossil fuels mindlessly will definitely kill us pretty soon unless we stop. The key phrase here is "technological
+singularity" and it's a lot closer then we care to believe. But how do we get there? How do we adapt our society?
+Who is going to be the last person to work and what's going to be the last task he completes?
+
+
+The most important concept in an innovation based society
+=========================================================
+
+Ever since computers became cheap humankind is on it's mission to automate everything. If your work is repetitive, 
+and does not involve creativity there is good chance it is either already automated, or will be pretty soon. That also 
+goes for certain parts of a more complex job. That is the reason developers write tools all the time: they are 
+automating their own job as a way to improve their effectiveness. A consequence of this is that - unlike any time
+before the 21th century - soon everyone will need to be involved in innovation: building something that has not been 
+build before. If it was built before, then it's pointless to build it again, robots can do that for us.
+
+This is a radically different society then we had before. Hierarchies break down, and orders become rudimentary: every
+person becomes a decision maker. What is the single most important concept, that can drive a society like this one?
