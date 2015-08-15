@@ -43,7 +43,7 @@ How I learned to love legacy code, and why you should too!
 For a long time I thought that working on a green field project was the best thing that could happen to a developer.
  I would look at the nightmarish company codebase blaming the incompetence of the people who came before me. If only
  they read more books or had better mentors - I would say, but I was wrong. It's time for us to face the
- ugly truth about legacy code, and learn why and how to embrace them.
+ ugly truth about legacy code, and learn why and how to embrace it.
 
 
 Free beer and immortality
