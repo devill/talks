@@ -50,15 +50,15 @@
         }
 
         .reveal h1 {
-            font-size:8em;
+            font-size:5em;
         }
 
         .reveal h2 {
-            font-size:7em;
+            font-size:4em;
         }
 
         .reveal h3 {
-            font-size:5em;
+            font-size:3em;
         }
 
     </style>
@@ -72,13 +72,13 @@
             <section>
                 <h1>Learning to fall</h1>
                 <p><a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
-                <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom</p>
+                <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0 15px 0 15px"/>@devillsroom</p>
             </section>
         </section>
 
         <section>
             <section>
-                <h2>Remember the monolith?</h2>
+                <h2>Remember the <emph>monolith?</emph></h2>
                 <aside class="notes">
                     <p>It failed</p>
                     <p>But at least when it failed, the whole world was on fire</p>
@@ -96,15 +96,15 @@
                 </aside>
             </section>
 
-            <section>
+            <section data-background-color="#ffffff">
                 <img src="monolith_crap.png" height="700px"/>
             </section>
 
-            <section>
+            <section data-background-color="#ffffff">
                 <img src="microservice_crap.png" height="700px"/>
             </section>
 
-            <section>
+            <section data-background-color="#ffffff">
                 <img src="microservice_crap_and_my_gem.png" height="700px"/>
                 <aside class="notes">
                     <p>Their code is crap, but your code is just incomplete, a diamond waiting to be polished</p>
@@ -112,7 +112,7 @@
             </section>
 
             <section>
-                <h2>It's always the other teams crap that fails</h2>
+                <h2>It's always the<br/><emph>other teams crap</emph> that fails</h2>
             </section>
 
             <section>
@@ -173,7 +173,7 @@
             </section>
 
             <section>
-                <h2>Transactions<br/>lock things</h2>
+                <h2>Transactions<br/><emph>lock</emph> things</h2>
                 <aside class="notes">
                     <p>All the performance of a single thread with the all challenges of multi threading</p>
                 </aside>
@@ -266,9 +266,10 @@
             </section>
 
             <section>
-                <h2>Originally:</h2>
-                <h3>Break down long transactions</h3>
+                <h2>Original purpose</h2>
+
                 <aside class="notes">
+                    <p>Break down long transactions</p>
                     <p>A long transaction is still a problem, even if you have one database</p>
                     <p>We will only look at it as a pattern for services</p>
                 </aside>
@@ -287,12 +288,16 @@
 
             <section>
                 <h2>Sequence of actions</h2>
-                <h3>Example: reserve hotel room</h3>
+                <aside class="notes">
+                    <p>Example: reserve hotel room</p>
+                </aside>
             </section>
 
             <section>
                 <h2>Compensating actions</h2>
-                <h3>Example: cancel hotel room</h3>
+                <aside class="notes">
+                    <p>Example: cancel hotel room</p>
+                </aside>
             </section>
 
             <section>
@@ -382,7 +387,7 @@
             </section>
 
             <section>
-                <h2>Atomicity vs Availability</h2>
+                <h2>Atomicity <emph>vs</emph> Availability</h2>
             </section>
         </section>
 
@@ -508,7 +513,7 @@
     // Full list of configuration options available here:
     // https://github.com/hakimel/reveal.js#configuration
     Reveal.initialize({
-	    width: 1660,
+	    width: 1680,
         controls: true,
         progress: true,
         history: true,

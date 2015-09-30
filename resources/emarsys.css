@@ -9,7 +9,15 @@
   src: url("../reveal/lib/font/league_gothic-webfont.eot");
   src: url("../reveal/lib/font/league_gothic-webfont.eot?#iefix") format("embedded-opentype"), url("../reveal/lib/font/league_gothic-webfont.woff") format("woff"), url("../reveal/lib/font/league_gothic-webfont.ttf") format("truetype"), url("../reveal/lib/font/league_gothic-webfont.svg#LeagueGothicRegular") format("svg");
   font-weight: normal;
-  font-style: normal; }
+  font-style: normal;
+}
+
+@font-face {
+  font-family: 'Canaro';
+  src: url("../resources/emarsys_font/Rene%20Bieder%20-%20Canaro%20Book.otf");
+  font-weight: normal;
+  font-style: normal;
+}
 
 .reveal .fragment.visible {
     color: #406f62;
@@ -40,17 +48,17 @@ body {
   font-size: 4.77em; }
 
 .reveal h2 {
-  font-size: 3.50em; }
+  font-size: 3.00em; }
 
 .reveal h3 {
-  font-size: 2.55em; }
+  font-size: 2.0em; }
 
 .reveal h4 {
   font-size: 1em; }
 
 
 .reveal {
-  font-family: "Lato", sans-serif;
+  font-family: "Canaro", "League Gothic", Impact, sans-serif;
   font-size: 36px;
   font-weight: normal;
   letter-spacing: -0.02em;
@@ -72,7 +80,7 @@ body {
 .reveal h6 {
   margin: 0 0 20px 0;
   color: rgb(50,209,126);
-  font-family: "League Gothic", Impact, sans-serif;
+  font-family: "Canaro", "League Gothic", Impact, sans-serif;
   line-height: 0.9em;
   letter-spacing: 0.02em;
   text-transform: uppercase;
