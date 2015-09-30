@@ -97,14 +97,18 @@
             </section>
 
             <section>
-                <img src="crapy_code.png" height="700px"/>
-                <aside class="notes">
-                    <p>Their code is crap, but your code is just incomplete, a diamond waiting to be polished</p>
-                </aside>
+                <img src="monolith_crap.png" height="700px"/>
             </section>
 
             <section>
-                <img src="crapy_code_and_my_gem.png" height="700px"/>
+                <img src="microservice_crap.png" height="700px"/>
+            </section>
+
+            <section>
+                <img src="microservice_crap_and_my_gem.png" height="700px"/>
+                <aside class="notes">
+                    <p>Their code is crap, but your code is just incomplete, a diamond waiting to be polished</p>
+                </aside>
             </section>
 
             <section>
@@ -112,37 +116,24 @@
             </section>
 
             <section>
-                <h2>Garbage in garbage out, not my fault!</h2>
+                <h3>How to fail gracefully?</h3>
+                <img src="aikido.jpg" height="500px"/>
             </section>
 
             <section>
-                <h2>Fact of life</h2>
-            </section>
-
-            <section>
-                <h2>Can't do<br/>much about it</h2>
-            </section>
-
-            <section>
-                <h2>End of story</h2>
+                <h3 class="fragment">The journey</h3>
+                <h3 class="fragment">Enlightenment</h3>
+                <h3 class="fragment">Digging deeper</h3>
             </section>
         </section>
 
         <section>
             <section>
-                <h2>Nah... you're better then that!</h2>
+                <h1>The journey</h1>
             </section>
 
             <section>
-                <h2>Besides, it's not just about bugs</h2>
-            </section>
-
-            <section>
-                <h2>Let me tell you a story...</h2>
-            </section>
-
-            <section>
-                <h2>... about a car rental company</h2>
+                <h2>Car rental co.</h2>
             </section>
 
             <section>
@@ -150,19 +141,19 @@
             </section>
 
             <section>
-                <h3 class="fragment">Check if car is still available</h3>
-                <h3 class="fragment">Mark car as reserved</h3>
-                <h3 class="fragment">Add reservation to client</h3>
+                <h3 class="fragment">Check</h3>
+                <h3 class="fragment">Reserve</h3>
+                <h3 class="fragment">Assign</h3>
             </section>
 
             <section>
-                <h3>One day someone realized that some cars are never rented lately</h3>
+                <h3>Reserved but not used</h3>
             </section>
 
             <section>
-                <h3 class="fragment">Check if car is still available</h3>
-                <h3 class="fragment">Mark car as reserved</h3>
-                <h3 class="fragment">Add reservation to client fails</h3>
+                <h3 class="fragment">Check</h3>
+                <h3 class="fragment">Reserve</h3>
+                <h3 class="fragment">Ass%*@^%</h3>
             </section>
 
             <section>
@@ -170,7 +161,7 @@
             </section>
 
             <section>
-                <h2>But they turned into a travel agency</h2>
+                <h2>Travel agency</h2>
             </section>
 
             <section>
@@ -182,20 +173,19 @@
             </section>
 
             <section>
-                <h2>Transaction is not possible</h2>
+                <h2>Transactions<br/>lock things</h2>
+                <aside class="notes">
+                    <p>All the performance of a single thread with the all challenges of multi threading</p>
+                </aside>
+            </section>
+
+                <section>
+                <h2>Transaction<br/>is not possible</h2>
             </section>
 
             <section>
                 <h2>Separate databases</h2>
                 <h3 class="fragment">Multiple services</h3>
-            </section>
-
-            <section>
-                <h2>Transactions lock things</h2>
-            </section>
-
-            <section>
-                <h3>All the performance of a single thread with the all challenges of multi threading</h3>
             </section>
 
             <section>
@@ -217,6 +207,10 @@
 
             <section>
                 <img src="Exhaustion.jpg" height="700px"/>
+            </section>
+
+            <section>
+                <h2>Let's automate recovery</h2>
             </section>
 
             <section>
@@ -252,22 +246,28 @@
                 </aside>
             </section>
 
+
+        </section>
+
+        <section>
             <section>
-                <h2>What if we didn't stick to ACID?</h2>
+                <h1>Enlightenment</h1>
+            </section>
+
+            <section>
+                <h2>What if we didn't stick to <emph>ACID</emph>?</h2>
                 <aside class="notes">
                     <p>Atomicity, Consistency, Isolation, Durability</p>
                 </aside>
             </section>
-        </section>
 
-        <section>
             <section>
                 <h2>The saga pattern</h2>
             </section>
 
             <section>
                 <h2>Originally:</h2>
-                <h3>Instead of long-lived transactions in the database</h3>
+                <h3>Break down long transactions</h3>
                 <aside class="notes">
                     <p>A long transaction is still a problem, even if you have one database</p>
                     <p>We will only look at it as a pattern for services</p>
@@ -275,11 +275,10 @@
             </section>
 
             <section>
-                <h3><emph>Definition</emph></h3>
-            </section>
-
-            <section>
-                <h3>A saga is a sequence of independent actions,<br/>with idempotent compensating actions</h3>
+                <h3><emph>Definition:</emph> Saga</h3>
+                <aside class="notes">
+                    <p>A saga is a sequence of independent actions, with idempotent compensating actions</p>
+                </aside>
             </section>
 
             <section>
@@ -305,11 +304,14 @@
             </section>
 
             <section>
-                <h2>I<emph>de</emph>mpotence</h2>
+                <h2>I<emph>de</emph>mpotent</h2>
             </section>
 
             <section>
-                <h3>An operation is idempotent, when applying it multiple times is equivalent to applying a single time</h3>
+                <h3><emph>Definition:</emph> Idempotent</h3>
+                <aside class="notes">
+                    <p>An operation is idempotent, when applying it multiple times is equivalent to applying a single time</p>
+                </aside>
             </section>
 
             <section>
@@ -372,11 +374,11 @@
 
             <section>
                 <h2>The Saga guarantee</h2>
-                <aside class="notes">
-                    <p>Either everything is successful</p>
-                    <p>Or successful events are compensated</p>
-                    <p>Or we are in the process of executing the events</p>
-                </aside>
+
+                <p class="fragment">Either everything is successful</p>
+                <p class="fragment">Or successful events are compensated</p>
+                <p class="fragment">Or we are in the process of executing the events</p>
+
             </section>
 
             <section>
@@ -385,6 +387,10 @@
         </section>
 
         <section>
+            <section>
+                <h1>Digging deeper</h1>
+            </section>
+
             <section>
                 <h2>The Saga Execution Coordinator (SEC)</h2>
                 <aside class="notes">
@@ -410,22 +416,18 @@
 
             <section>
                 <h2>When to undo?</h2>
-                <aside class="notes">
-                    <p>Abort saga request - one step failed for example, or the network failed while triggering it.</p>
-                    <p>SEC crash in inconsistent state</p>
-                </aside>
+                <p class="fragment">Log contains an "Abort saga" command (3rd party error)</p>
+                <p class="fragment">Log ends with "Begin sub transaction" (SEC crash)</p>
             </section>
 
             <section>
-                <h2>The compensating action should be idempotent</h2>
+                <h2>Idempotent compensation</h2>
                 <aside class="notes">
                     <p>Actions are completed at most once</p>
                     <p>Compensating actions are completed at least once if saga is aborted</p>
                 </aside>
             </section>
-        </section>
 
-        <section>
             <section>
                 <h2>Forward recovery</h2>
                 <aside class="notes">
@@ -435,11 +437,11 @@
             </section>
 
             <section>
-                <h3>Periodically retry unfinished sagas,<br/>and replay all (unsuccessful) events.</h3>
+                <h2>Periodically retry</h2>
             </section>
 
             <section>
-                <h2>Each action must be idempotent</h2>
+                <h2>Idempotent actions</h2>
                 <aside class="notes">
                     <p>But you don't really need compensating actions anymore</p>
                 </aside>
@@ -452,7 +454,9 @@
 
             <section>
                 <h2>Sometimes it's natural</h2>
-                <h3>Example: Delete by id is idempotent</h3>
+                <aside class="notes">
+                    <p>Example: Delete by id is idempotent</p>
+                </aside>
             </section>
 
             <section>
@@ -468,14 +472,22 @@
             </section>
 
         </section>
+
         <section>
             <section>
-                <h2>Conclusion</h2>
-                <aside class="notes">
-                    <p>Forces you to think of the error condition</p>
-                    <p>Low probability errors are probable when there is a lot of action</p>
-                    <p>Repeat until sure, but catch duplications</p>
-                </aside>
+                <h1>Conclusion</h1>
+            </section>
+
+            <section>
+                <h2>Saga helps you think of the<br/><emph>error case</emph></h2>
+            </section>
+
+            <section>
+                <h2>Think of compensating actions</h2>
+            </section>
+
+            <section>
+                <h2>Think of<br/>idempotent actions</h2>
             </section>
         </section>
 
@@ -503,7 +515,7 @@
         center: true,
 
         theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
-        transition: Reveal.getQueryHash().transition || 'default', // default/cube/page/concave/zoom/linear/fade/none
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
 
         // Parallax scrolling
         // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
