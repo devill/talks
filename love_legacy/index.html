@@ -1,0 +1,358 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The Saga Pattern</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/1.0.2/Chart.min.js"></script>
+    <script src="../reveal/lib/js/head.min.js"></script>
+    <script src="../reveal/js/reveal.min.js"></script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .over-image {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 50px !important;
+        }
+
+        .over-image h2, .over-image h3, .over-image p {
+            color: white !important;
+        }
+
+        .reveal h1 {
+            font-size: 5em;
+        }
+
+        .reveal h2 {
+            font-size: 4em;
+        }
+
+        .reveal h3 {
+            font-size: 3em;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <h3>How I learned to love</h3>
+
+                <h1>
+                    <emph>legacy code</emph>
+                </h1>
+                <h3>and why you should too</h3>
+
+                <p><a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
+                    <img src="../resources/Twitter_logo_blue.png"
+                         style="border:0; background: transparent; display:inline; margin:0 15px 0 15px"/>@devillsroom
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>What is <br/>
+                    <emph>legacy code</emph>
+                    ?
+                </h2>
+                <aside class="notes">
+                    <p>Code without tests?</p>
+
+                    <p>Code that is still valuable?</p>
+
+                    <p>Code you don't like to touching?</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3>How you react to</h3>
+
+                <h2>
+                    <emph>legacy code</emph>
+                    ?
+                </h2>
+            </section>
+
+            <section>
+                <h2>
+                    <emph>The cliche</emph>
+                </h2>
+                <h3 class="fragment">This code pays your salary, so be happy about it</h3>
+                <aside class="notes">
+                    <p>That didn't work for me</p>
+                </aside>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h2>Why do we have</h2>
+
+                <h2>
+                    <emph>legacy code</emph>
+                    ?
+                </h2>
+            </section>
+
+            <section>
+                <h2>Incompetence?</h2>
+            </section>
+
+            <section>
+                <h2>Pressure?</h2>
+            </section>
+
+            <section>
+                <h2>Not caring enough?</h2>
+            </section>
+
+            <section>
+                <h2>Comfort zone</h2>
+            </section>
+
+            <section>
+                <h3>So let's move out of the</h3>
+
+                <h2>
+                    <emph>Comfort zone</emph>
+                </h2>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>The evolutionary perspective</h2>
+            </section>
+
+            <section>
+                <h3>If bad code can hurt companies, how come
+                    <emph>most successful companies</emph>
+                    have a horrible legacy?
+                </h3>
+            </section>
+
+            <section>
+                <h2>Maybe
+                    <emph>bad code</emph>
+                    , is the key to
+                    <emph>success</emph>
+                    ?
+                </h2>
+            </section>
+
+            <section>
+                <h2>Seemingly disadvantageous traits</h2>
+                <aside class="notes">
+                    <p>Seemingly bad traits can survive if they have a non obvious positive effect</p>
+
+                    <p>Think of homosexual behaviour in several spices</p>
+
+                    <p>Early loss of hair in males vs. women with less hair on their body</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>So what could be the advantage?</h2>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>The design stamina hypothesis</h2>
+
+                <h3>
+                    <emph>by Martin Fowler</emph>
+                </h3>
+            </section>
+
+            <section>
+                <img src="design_stamina_1.svg" height="600px"/>
+            </section>
+
+            <section>
+                <img src="design_stamina_2.svg" height="600px"/>
+            </section>
+
+            <section>
+                <img src="design_stamina_3.svg" height="600px"/>
+            </section>
+
+            <section id="feature_usage_slide">
+                <div id="feature_usage_legend" style="float:right;"></div>
+                <canvas id="feature_usage" style='width:800px;height:600px'></canvas>
+                <script>
+                    Reveal.addEventListener( 'slidechanged', function( event ) {
+                        if(event.currentSlide.id != 'feature_usage_slide') {
+                            return;
+                        }
+                        var ctx = document.getElementById("feature_usage").getContext("2d");
+
+                        var data = [
+                            {
+                                value: 45,
+                                color: "rgb(50,209,126)",
+                                label: "Never"
+                            },
+                            {
+                                value: 19,
+                                color: "#d9e506",
+                                label: "Rarely"
+                            },
+                            {
+                                value: 16,
+                                color: "rgb(103,130,206)",
+                                label: "Sometimes"
+                            },
+                            {
+                                value: 13,
+                                color: "#666666",
+                                label: "Often"
+                            },
+                            {
+                                value: 7,
+                                color: "#333333",
+                                label: "Always"
+                            }
+                        ];
+
+                        var myPieChart = new Chart(ctx).Pie(data, {
+                            legendTemplate : "<ul class=\"<%=name.toLowerCase()%>-legend\"><% for (var i=0; i<segments.length; i++){%><li style=\"color:<%=segments[i].fillColor%>\"><span style=\"background-color:<%=segments[i].fillColor%>\"></span><%if(segments[i].label){%><%=segments[i].label%><%}%></li><%}%></ul>"
+                        });
+                        document.getElementById("feature_usage_legend").innerHTML = myPieChart.generateLegend();
+                    });
+                </script>
+            </section>
+
+            <section>
+                <img src="design_stamina_4.svg" height="600px"/>
+            </section>
+
+            <section>
+                <img src="design_stamina_5.svg" height="600px"/>
+            </section>
+
+            <section>
+                <img src="design_stamina_6.svg" height="600px"/>
+            </section>
+
+            <section>
+                <h2>Technical dept</h2>
+
+                <h3>
+                    <emph>vs.</emph>
+                </h3>
+                <h2>Monetary debt</h2>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Thank you!</h1>
+            </section>
+        </section>
+    </div>
+</div>
+
+<div id="logo">
+    <img src="../resources/emarsys_logo_color_white.png" alt=""/>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: 1680,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: '../reveal/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>

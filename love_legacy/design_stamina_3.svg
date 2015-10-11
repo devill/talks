@@ -1,0 +1,216 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="1052.3622"
+   height="744.09448"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.4 r9939"
+   sodipodi:docname="design_stamina_1.svg">
+  <defs
+     id="defs4" />
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#0c2838"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="1"
+     inkscape:pageshadow="2"
+     inkscape:zoom="1"
+     inkscape:cx="595.57892"
+     inkscape:cy="361.53201"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer5"
+     showgrid="false"
+     inkscape:window-width="1868"
+     inkscape:window-height="1056"
+     inkscape:window-x="52"
+     inkscape:window-y="24"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="stamina"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(0,-308.2677)"
+     style="display:inline">
+    <path
+       style="fill:none;stroke:#ffffff;stroke-width:3.23058844;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 60.350238,346.87452 0,635.3351 971.555362,0"
+       id="path2989"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:none;stroke:#d9e506;stroke-width:4.84588242;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 60.690261,980.76923 C 122.47798,694.14729 567.60872,601.82953 1030.9097,546.99645"
+       id="path3759"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <path
+       style="fill:none;stroke:#32d17e;stroke-width:4.84588242;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 60.690261,982.43117 C 261.92849,971.78924 460.5374,703.30581 792.27972,324.29319"
+       id="path3761"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:53.00140762px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#32d17e;fill-opacity:1;stroke:none;font-family:Canaro;-inkscape-font-specification:Canaro"
+       x="-62.319828"
+       y="785.79114"
+       id="text3031"
+       sodipodi:linespacing="125%"
+       transform="matrix(0.6667098,-0.74531741,0.74531741,0.6667098,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan3033"
+         x="-62.319828"
+         y="785.79114">good design</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:53.00140762px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d9e506;fill-opacity:1;stroke:none;font-family:Canaro;-inkscape-font-specification:Canaro"
+       x="691.26276"
+       y="674.35486"
+       id="text3803"
+       sodipodi:linespacing="125%"
+       inkscape:transform-center-x="120.53615"
+       inkscape:transform-center-y="-8.5866479"
+       transform="matrix(0.9884952,-0.15125222,0.15125222,0.9884952,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan3805"
+         x="691.26276"
+         y="674.35486">no design</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:38.54647827px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Canaro;-inkscape-font-specification:Canaro"
+       x="-849.2536"
+       y="44.695076"
+       id="text3811-9"
+       sodipodi:linespacing="125%"
+       transform="matrix(0,-1,1,0,0,0)"><tspan
+         sodipodi:role="line"
+         x="-849.2536"
+         y="44.695076"
+         id="tspan3848">cumulative features</tspan></text>
+    <text
+       xml:space="preserve"
+       style="font-size:38.54647827px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;font-family:Canaro;-inkscape-font-specification:Canaro"
+       x="508.33823"
+       y="1021.5666"
+       id="text3811-9-8"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="508.33823"
+         y="1021.5666"
+         id="tspan3848-5">time</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer5"
+     inkscape:label="risk">
+    <path
+       style="fill:none;stroke:#ff0000;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="M 61,42.094482 C 333.95368,39.699833 -33,653.42781 1030,648.09448"
+       id="path4021"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="cc" />
+    <text
+       xml:space="preserve"
+       style="font-size:53.00140762px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#d9e506;fill-opacity:1;stroke:none;display:inline;font-family:Canaro;-inkscape-font-specification:Canaro"
+       x="925.45508"
+       y="570.85413"
+       id="text3803-5"
+       sodipodi:linespacing="125%"
+       inkscape:transform-center-x="33.609827"
+       inkscape:transform-center-y="-21.43038"
+       transform="matrix(0.99766066,0.06836093,-0.06836093,0.99766066,0,0)"><tspan
+         sodipodi:role="line"
+         id="tspan3805-2"
+         x="925.45508"
+         y="570.85413"
+         style="fill:#ff0000">risk</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer2"
+     inkscape:label="design payoff line"
+     style="display:none">
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.92732382;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:15.41859101, 15.41859101;stroke-dashoffset:11.94940803;display:inline"
+       d="m 63.21666,331.88809 965.56664,0"
+       id="path3809"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:38.54647827px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#ffffff;fill-opacity:1;stroke:none;display:inline;font-family:Canaro;-inkscape-font-specification:Canaro"
+       x="71.878357"
+       y="320.32416"
+       id="text3811"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         x="71.878357"
+         y="320.32416"
+         id="tspan3815">design payoff line</tspan></text>
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer3"
+     inkscape:label="switching mode"
+     style="display:none">
+    <path
+       style="fill:none;stroke:#6782ce;stroke-width:5;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:none"
+       d="m 61,674.09448 c 50.69005,-156.48228 134.41928,-197.49367 172,-202 377.80577,-71.30337 552,-262 701,-445.999998"
+       id="path3948"
+       inkscape:connector-curvature="0"
+       sodipodi:nodetypes="ccc" />
+  </g>
+  <g
+     inkscape:groupmode="layer"
+     id="layer4"
+     inkscape:label="minimum viable product"
+     style="display:none">
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:1.92732382;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:15.41859101, 15.41859101;stroke-dashoffset:11.94940803;display:inline"
+       d="m 61.21668,477.09448 965.56662,0"
+       id="path3809-5"
+       inkscape:connector-curvature="0" />
+    <text
+       xml:space="preserve"
+       style="font-size:40px;font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;line-height:125%;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;display:inline;font-family:Canaro;-inkscape-font-specification:Canaro"
+       x="556.98517"
+       y="465.42249"
+       id="text3989"
+       sodipodi:linespacing="125%"><tspan
+         sodipodi:role="line"
+         id="tspan3991"
+         x="556.98517"
+         y="465.42249"
+         style="fill:#ffffff">minimum viable product</tspan></text>
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0"
+       d="m 188,477.09448 0,197"
+       id="path4014"
+       inkscape:connector-curvature="0" />
+    <path
+       style="fill:#ffffff;stroke:#ffffff;stroke-width:2;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-opacity:1;stroke-dasharray:2, 2;stroke-dashoffset:0"
+       d="m 382,477.09448 0,194"
+       id="path4018"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
