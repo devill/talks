@@ -159,7 +159,7 @@
             </section>
 
             <section>
-                <h2>Maybe <emph>bad code</emph>, is the key to <emph>success</emph> ?</h2>
+                <h2>Maybe <emph>bad code</emph>, is the key to <emph>success</emph>?</h2>
             </section>
 
             <section>
@@ -204,8 +204,8 @@
             </section>
 
             <section id="feature_usage_slide">
-                <div id="feature_usage_legend" style="float:right;"></div>
-                <canvas id="feature_usage" style='width:800px;height:600px'></canvas>
+                <canvas id="feature_usage" style='width:600px;height:600px; display: inline-block'></canvas>
+                <div id="feature_usage_legend" style="margin-left:30px;display:inline-block;"></div>
                 <script>
                     Reveal.addEventListener( 'slidechanged', function( event ) {
                         if(event.currentSlide.id != 'feature_usage_slide') {
@@ -216,28 +216,28 @@
                         var data = [
                             {
                                 value: 45,
-                                color: "rgb(50,209,126)",
-                                label: "Never"
+                                color: "rgb(217,229,6)",
+                                label: "Never (45%)"
                             },
                             {
                                 value: 19,
-                                color: "#d9e506",
-                                label: "Rarely"
+                                color: "rgb(103,130,206)",
+                                label: "Rarely (19%)"
                             },
                             {
                                 value: 16,
-                                color: "rgb(103,130,206)",
-                                label: "Sometimes"
+                                color: "rgb(50,209,126)",
+                                label: "Sometimes (16%)"
                             },
                             {
                                 value: 13,
-                                color: "#666666",
-                                label: "Often"
+                                color: "rgb(16,165,161)",
+                                label: "Often (13%)"
                             },
                             {
                                 value: 7,
-                                color: "#333333",
-                                label: "Always"
+                                color: "rgb(86,197,201)",
+                                label: "Always (7%)"
                             }
                         ];
 
