@@ -65,6 +65,16 @@
             font-size: 3em;
         }
 
+        .pie-legend li {
+            list-style-type:none;
+        }
+
+        .legend-left {
+            display:inline-block;
+            width:90px;
+            text-align: right;
+        }
+
     </style>
 </head>
 
@@ -100,10 +110,8 @@
                 </aside>
             </section>
 
-            <section>
-                <h3>How you react to</h3>
-
-                <h2><emph>legacy code</emph>?</h2>
+            <section data-background="reaction_1_bg.jpg">
+                <h3 style="text-align:left; width:50%;color:white">How you react to <emph>legacy code</emph>?</h3>
             </section>
 
             <section>
@@ -135,14 +143,14 @@
                 <h2>Not caring enough?</h2>
             </section>
 
-            <section>
-                <h2>Comfort zone</h2>
+            <section data-background="comfort.jpg">
+                <h2 style="text-align:left;width:50%;color:white">Comfort zone</h2>
             </section>
 
             <section>
                 <h3>So let's move out of the</h3>
 
-                <h2> <emph>Comfort zone</emph> </h2>
+                <h2><emph>Comfort zone</emph></h2>
             </section>
         </section>
 
@@ -169,8 +177,8 @@
                 </aside>
             </section>
 
-            <section data-background="gay_flag.svg">
-                <h2 style="color:white">Homosexual behaviour</h2>
+            <section>
+                <h2>Homosexual behaviour</h2>
             </section>
 
             <section data-background="bold_guy_bg.jpg">
@@ -204,8 +212,9 @@
             </section>
 
             <section id="feature_usage_slide">
-                <canvas id="feature_usage" style='width:600px;height:600px; display: inline-block'></canvas>
-                <div id="feature_usage_legend" style="margin-left:30px;display:inline-block;"></div>
+                <h3>Usage <emph>frequency</emph><br/>of features</h3>
+                <canvas id="feature_usage" style='width:300px;height:300px; display: inline-block'></canvas>
+                <div id="feature_usage_legend" style="margin-left:10px;display:inline-block;"></div>
                 <script>
                     Reveal.addEventListener( 'slidechanged', function( event ) {
                         if(event.currentSlide.id != 'feature_usage_slide') {
@@ -217,27 +226,27 @@
                             {
                                 value: 45,
                                 color: "rgb(217,229,6)",
-                                label: "Never (45%)"
+                                label: "<span class='legend-left'>45%</span> - Never"
                             },
                             {
                                 value: 19,
                                 color: "rgb(103,130,206)",
-                                label: "Rarely (19%)"
+                                label: "<span class='legend-left'>19%</span> - Rarely"
                             },
                             {
                                 value: 16,
                                 color: "rgb(86,197,201)",
-                                label: "Sometimes (16%)"
+                                label: "<span class='legend-left'>16%</span> - Sometimes"
                             },
                             {
                                 value: 13,
                                 color: "rgb(16,165,161)",
-                                label: "Often (13%)"
+                                label: "<span class='legend-left'>13%</span> - Often"
                             },
                             {
                                 value: 7,
                                 color: "rgb(50,209,126)",
-                                label: "Always (7%)"
+                                label: "<span class='legend-left'>7%</span> - Always"
                             }
                         ];
 
@@ -259,6 +268,10 @@
 
             <section>
                 <img src="design_stamina_6.svg" height="600px"/>
+            </section>
+
+            <section>
+                <img src="design_stamina_7.svg" height="600px"/>
             </section>
 
             <section>
