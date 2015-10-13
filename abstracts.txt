@@ -9,6 +9,7 @@ a workshop where developers have the opportunity to experiment with continuous d
 
 Lean Poker
 ==========
+
 Lean Poker is this: you and a small group of strangers are going to develop a bot in a language of your choice, that
 plays poker against other bots. (Don't worry if you don't know poker, we will teach you.) All you need to do is write
 a function that takes a data structure containing cards and bets your bot sees during the game, and return a single
@@ -25,18 +26,6 @@ desperately to change the course of events when your bot keeps losing, but even 
 create as much value as you can in a short period of time, while you are mostly just having fun.
 
 Please check out http://leanpoker.org for more information.
-
-Minimum viable team: testing your ideas alone
-==============================================
-
-So you have an idea for a great application, but not much money nor friends to help out. You already asked people
-if they would be interested, and they were really supportive, but when it comes to coding you are all alone. For
-a developer, who is used to working in a team, it can be really demanding to go through with even a moderately
-sized project. You know how to be effective as a team, but the same practices seem to hold you back when you are alone.
-
-In the last few years I started a number of projects alone and managed to build, deploy and validate (or invalidate)
-them within weeks of starting the project, and all that as a hobby next to my day job. Taking a few of these projects
-as examples, I will tell you what agile practices I hang on to and what I changed or replaced to boost my productivity.
 
 
 Clean persistence
@@ -68,6 +57,23 @@ when one of your dependencies is down, microservices will only make your system 
 In my presentation I will recount our journey from an instabile monolith to a robust set of microservices with a
 special focus on arhitectural patterns that helped us along the way.
 
+=====
+PLANS
+=====
+
+Minimum viable team: testing your ideas alone
+==============================================
+
+So you have an idea for a great application, but not much money nor friends to help out. You already asked people
+if they would be interested, and they were really supportive, but when it comes to coding you are all alone. For
+a developer, who is used to working in a team, it can be really demanding to go through with even a moderately
+sized project. You know how to be effective as a team, but the same practices seem to hold you back when you are alone.
+
+In the last few years I started a number of projects alone and managed to build, deploy and validate (or invalidate)
+them within weeks of starting the project, and all that as a hobby next to my day job. Taking a few of these projects
+as examples, I will tell you what agile practices I hang on to and what I changed or replaced to boost my productivity.
+
+
 SOLID microservices
 ===================
 
@@ -75,18 +81,6 @@ The SOLID principles of OOP are probably the most important guidelines we use in
 both class level, and at component level. Lately microservces have been introduced as a new, even higher level
 abstraction to decompose large system. Let's explore what implications SOLID principles may have on microservices.
 Do these principles apply to them? Do microservices help you to stay SOLID at lower levels?
-
-=====
-PLANS
-=====
-
-How I learned to love legacy code, and why you should too!
-==========================================================
-
-For a long time I thought that working on a green field project was the best thing that could happen to a developer.
- I would look at the nightmarish company codebase blaming the incompetence of the people who came before me. If only
- they read more books or had better mentors - I would say, but I was wrong. It's time for us to face the
- ugly truth about legacy code, and learn why and how to embrace it.
 
 
 Free beer and immortality
