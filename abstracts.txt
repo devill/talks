@@ -61,6 +61,16 @@ special focus on architectural patterns that helped us along the way.
 PLANS
 =====
 
+The joy of learning
+===================
+
+A good developer never stops learning. We read countless books and blogs, watch code casts hour after hour. All that
+is important to keep up to date with new technologies since our entire industry is all about innovation. However
+this is not the most important kind of learning we need to do as a developer. Good developers understand how to write
+clean, well maintainable code, amazing developers also know what makes a great product. We learn that from our mistakes
+and from customer feedback, and there is nothing more fulfilling than a happy user. So how can we get better at
+learning?
+
 A step beyond modules
 =====================
 
