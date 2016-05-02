@@ -10,16 +10,17 @@ a workshop where developers have the opportunity to experiment with continuous d
 Lean Poker
 ==========
 
-Lean Poker is this: you and a small group of strangers are going to develop a bot in a language of your choice, that
-plays poker against other bots. (Don't worry if you don't know poker, we will teach you.) All you need to do is write
-a function that takes a data structure containing cards and bets your bot sees during the game, and return a single
-number: the amount you are willing to bet at that point.
+Lean Poker is a day long coding challange that's not only fun, but also provides a safe environment in which you can
+practice continuous deploymeny and fast delivery of valuable software.
+
+You and a small group of strangers are going to develop a bot in a language of your choice, that plays poker against other
+bots. All you need to do is write a function that takes a data structure containing cards and bets your bot sees during the
+game, and return a single number: the amount you are willing to bet at that point.
 
 Now here is the catch: even before you start coding the bots play a round in a matter of seconds, and if your bot wins
 you get points. If it comes second, you get less points. Otherwise you get nothing. The next minute another game plays,
 and another one, and another one… that goes on all day long, while you and your friends are desperately hacking away on
-the code, and keep deploying, deploying, and deploying. Don’t worry about the deployment pipeline, that’s already set
-up for you.
+the code, and keep deploying version after version. 
 
 During this pretty intense day you will sometimes be cheering for your bot to take over, you will be deploying
 desperately to change the course of events when your bot keeps losing, but even more importantly you will learn how to
