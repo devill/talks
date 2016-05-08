@@ -1,0 +1,205 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Beyond Modules</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if( window.location.search.match( /print-pdf/gi ) ) {
+            var link = document.createElement( 'link' );
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName( 'head' )[0].appendChild( link );
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .reveal h1 {
+            font-size:5em;
+        }
+
+        .reveal h2 {
+            font-size:4em;
+        }
+
+        .reveal h3 {
+            font-size:3em;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <h1>Beyond modules</h1>
+                <p><a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
+                    <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0 15px 0 15px"/>@devillsroom</p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>What is a microservice?</h2>
+            </section>
+
+            <section>
+                <h2>Independent processes</h2>
+            </section>
+
+            <section>
+                <h2>Language agnostic APIs</h2>
+            </section>
+
+            <section>
+                <h2>Independently deployable</h2>
+            </section>
+
+            <section>
+                <h2>Independently scalable</h2>
+            </section>
+
+            <section>
+                <h2>Graceful failures</h2>
+            </section>
+
+            <section>
+                <img src="../resources/lean-poker/my-precious-lord-of-the-rings_preview.jpg"/>
+            </section>
+
+            <section data-background-color="#ffffff">
+                <img src="../learning_to_fall/monolith_crap.png" height="700px"/>
+            </section>
+
+            <section data-background-color="#ffffff">
+                <img src="../learning_to_fall/microservice_crap.png" height="700px"/>
+            </section>
+
+            <section>
+                <img src="../resources/lean-poker/tumblr_luenif9fQU1qgutswo1_1280.jpg"/>
+            </section>
+        </section>
+
+        <section>
+
+            <section>
+                <h2>One database, one service</h2>
+            </section>
+
+            <section>
+                <h2>Stateless services</h2>
+            </section>
+
+            <section>
+                <h2>Idempotence</h2>
+            </section>
+
+
+            <section>
+                <h2>Single responsibility?</h2>
+            </section>
+
+            <section>
+                <h2>Falacies of distributed computing</h2>
+                <aside class="notes">
+                    <ul>
+                        <li>The network is reliable.</li>
+                        <li>Latency is zero.</li>
+                        <li>Bandwidth is infinite.</li>
+                        <li>The network is secure.</li>
+                        <li>Topology doesn't change.</li>
+                        <li>There is one administrator.</li>
+                        <li>Transport cost is zero.</li>
+                        <li>The network is homogeneous.</li>
+                    </ul>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Inverting dependencies</h2>
+            </section>
+
+            <section>
+                <h2>Inverse Conway maneuver</h2>
+            </section>
+        </section>
+
+        <section>
+            <h2>Thank you!</h2>
+        </section>
+
+
+    </div>
+</div>
+
+<div id="logo">
+    <img src="../resources/emarsys_logo_color_white.png" alt=""/>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: 1680,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            { src: '../reveal/lib/js/classList.js', condition: function() { return !document.body.classList; } },
+            { src: '../reveal/plugin/markdown/marked.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal/plugin/markdown/markdown.js', condition: function() { return !!document.querySelector( '[data-markdown]' ); } },
+            { src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function() { hljs.initHighlightingOnLoad(); } },
+            { src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function() { return !!document.body.classList; } },
+            { src: '../reveal/plugin/notes/notes.js', async: true, condition: function() { return !!document.body.classList; } }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
