@@ -1,0 +1,4 @@
+
+- with all those stuff happening deep learning may look like sorcery
+
+- first rule of doing a live demo: do not do a live demo
