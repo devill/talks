@@ -214,3 +214,14 @@ p emph {
 .c33 { color:rgb(64,111,98); }
 
 .icon { height:55px; }
+
+.reveal pre code {
+    background-color: transparent;
+    border: 0 solid transparent;
+    font-size: 200%;
+    line-height: normal;
+}
+
+.reveal pre {
+    box-shadow: none
+}

@@ -1,0 +1,546 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Bootcamp</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .over-image {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 50px !important;
+        }
+
+        .over-image h2, .over-image h3, .over-image p {
+            color: white !important;
+        }
+
+        .reveal h1 {
+            font-size: 7em;
+        }
+
+        .reveal h2 {
+            font-size: 6em;
+        }
+
+        .reveal h3 {
+            font-size: 5em;
+        }
+
+        .reveal h4 {
+            font-size: 2.5em;
+        }
+
+        .reveal {
+            background-color: rgb(12, 40, 56);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <aside class="notes">
+                    <p>It feels like magic</p>
+                    <p>It's scary</p>
+                    <p>Yet it's exciting</p>
+                    <p>Don't confuse science fiction with reality</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3>What the heck is</h3>
+                <h3><emph>DEEP LEARNING</emph></h3>
+                <p><a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
+                    <img src="../resources/Twitter_logo_blue.png"
+                         style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom
+                </p>
+                <aside class="notes">
+                    <p>It's a tool for generating a function</p>
+                    <p>I started learning about a year ago</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3><emph>What can you expect?</emph></h3>
+                <aside class="notes">
+                    <p>You won't be scared anymore</p>
+                    <p>You'll understand the basic concept</p>
+                    <p>You'll be excited to learn more</p>
+                </aside>
+            </section>
+
+            <section data-background-color="white">
+                <img src="handwritten_characters_recognized.png"/>
+            </section>
+        </section>
+
+        <section>
+            <section data-background-color="white">
+                <img src="fuel_scatter.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="fuel_line.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+def f(dist):
+    return -0.09*dist+40
+                </code></pre>
+            </section>
+
+            <section data-background-color="white">
+                <img src="noisy_scatter.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="linear_regression_endpoints.png"/>
+            </section>
+
+
+            <section>
+                <pre><code data-trim class='python'>
+def f(x):
+    return W*x+B
+                </code></pre>
+            </section>
+
+
+            <section data-background-color="white">
+                <img src="linear_regression_endpoints.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="linear_regression_single_error.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+def f_(w,b,x):
+    return w*x+b
+
+def error_for(w,b,i):
+    return abs(outp[i] - f_(w,b, inp[i]))
+                </code></pre>
+            </section>
+
+
+            <section data-background-color="white">
+                <img src="linear_regression_single_error.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="linear_regression_total_error.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+def error(w,b):
+    err = 0
+    for i in range(len(inp)):
+        err += error_for(w,b,i)
+    return err
+                </code></pre>
+            </section>
+
+
+            <section data-background-color="white">
+                <img src="linear_regression_error_plot.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="linear_regression_fit.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="sin_noise.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+def f_(a,b,x):
+    return a*math.sin(b*x)
+                </code></pre>
+            </section>
+
+
+            <section data-background-color="white">
+                <img src="sin_error.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="sin_aproximation.png"/>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h3>Is there a<br/><emph>generic solution</emph>?</h3>
+            </section>
+
+            <section data-background-color="white">
+                <img src="relu.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+def relu(x):
+    if x > 0:
+        return x
+    else:
+        return 0
+                </code></pre>
+            </section>
+
+
+            <section>
+                <pre><code data-trim class='python'>
+def combined(x):
+    return 1 +
+        -1 * relu( 4*x +  1  ) +
+        -1 * relu(-3*x +  1.5) +
+         3 * relu( 1*x * -1  )
+                </code></pre>
+            </section>
+
+
+            <section data-background-color="white">
+                <img src="sum_of_relus.png"/>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h1>KERAS</h1>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Dense(1, input_shape=(1,))
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model.compile(
+    optimizer=Nadam(),
+    loss='mean_squared_error'
+)
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model.fit(inp, outp)
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+result = model.predict(inp)
+                </code></pre>
+            </section>
+
+            <section data-background-color="white">
+                <img src="linear_regression_fit_with_keras.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Dense(1, input_shape=(1,))
+])
+
+
+def f(x):
+    return w*x + b
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Dense(1, input_shape=(2,))
+])
+
+
+def f(x1, x2):
+    return w1*x1 + w2*x2 + b
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Dense(2, input_shape=(1,))
+])
+
+
+def f(x):
+    return (w1*x + b1, w2*x + b2)
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Dense(2, input_shape=(2,))
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+def f(x1, x2):
+    return (
+        w11*x1 + w12*x2 + b,
+        w21*x1 + w22*x2 + b
+    )
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Activation('relu', input_shape=(2,))
+])
+
+def f(x1, x2):
+    return (relu(x1), relu(x2))
+                </code></pre>
+            </section>
+
+            <section data-background-color="white">
+                <img src="sin_noise.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Dense(2000, input_shape=(1,)),
+    Activation('relu'),
+    Dense(2000),
+    Activation('relu'),
+    Dense(1)
+])
+                </code></pre>
+            </section>
+            <section>
+                <pre><code data-trim class='python'>
+model.compile(
+    optimizer=Nadam(),
+    loss='mean_squared_error'
+)
+
+model.fit(inp, outp)
+
+result = model.predict(inp)
+                </code></pre>
+            </section>
+
+            <section data-background-color="white">
+                <img src="sin_aproximation_keras.png"/>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Image recognition</h2>
+            </section>
+
+            <section data-background-color="white">
+                <img src="handwritten_characters_recognized.png"/>
+            </section>
+
+            <section>
+                <h3><emph>Trick #1</emph></h3>
+                <h4>Predict how likely each number is</h4>
+            </section>
+
+            <section>
+                <img src="number_five.png"/>
+                <h4>I'm 99% sure this is a 5</h4>
+            </section>
+
+            <section>
+                <img src="number_five.png"/>
+                <h4>[0, 0, 0, 0, 0, <emph>0.99</emph>, 0.01, 0, 0, 0]</h4>
+            </section>
+
+            <section>
+                <h3><emph>Trick #2</emph></h3>
+                <h4>Image filters</h4>
+            </section>
+
+            <section data-background-color="white">
+                <img src="example_convolutions.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="convolutions.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    Activation('relu'), Conv2D(10,(3,3)),
+    Activation('relu'), Conv2D(20,(3,3)),
+    Activation('relu'), Flatten(),
+    Dense(128), Activation('relu'),
+    Dense(10), Activation('softmax')
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model.compile(
+    optimizer=opt,
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+                </code></pre>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2><emph>Conclusion</emph></h2>
+            </section>
+
+            <section>
+                <h3>It's just functions</h3>
+            </section>
+        </section>
+    </div>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: 1660,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: '../reveal/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+
+
+    function forceAspectRatio() {
+        if ($(window).width() * 9 < 16 * $(window).height()) {
+            let desiredHeight = $(window).width() * (9 / 16);
+            $('.reveal').css('height', desiredHeight);
+            $('.reveal').css('margin-top', ($(window).height() - desiredHeight) / 2)
+            $('.reveal').css('width', $(window).width());
+            $('.reveal').css('margin-left', 0)
+        } else {
+            let desiredWidth = $(window).height() * (16 / 9);
+            $('.reveal').css('height', $(window).height());
+            $('.reveal').css('margin-top', 0)
+            $('.reveal').css('width', desiredWidth);
+            $('.reveal').css('margin-left', ($(window).width() - desiredWidth) / 2)
+        }
+    }
+
+    $(window).resize(forceAspectRatio);
+    forceAspectRatio();
+</script>
+
+</body>
+</html>
