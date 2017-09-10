@@ -116,6 +116,14 @@
         </section>
 
         <section>
+            <section>
+                <h3>Function that turns <img src="number_five.png" height="130"/> into <emph>5</emph></h3>
+            </section>
+
+            <section>
+                <h3>A simpler problem</h3>
+            </section>
+
             <section data-background-color="white">
                 <img src="fuel_scatter.png"/>
             </section>
@@ -257,6 +265,10 @@ def combined(x):
                 <h1>KERAS</h1>
             </section>
 
+            <section data-background-color="white">
+                <img src="linear_regression_fit.png"/>
+            </section>
+
             <section>
                 <pre><code data-trim class='python'>
 model = Sequential([
@@ -364,12 +376,11 @@ def f(x1, x2):
 model = Sequential([
     Dense(2000, input_shape=(1,)),
     Activation('relu'),
-    Dense(2000),
-    Activation('relu'),
     Dense(1)
 ])
                 </code></pre>
             </section>
+
             <section>
                 <pre><code data-trim class='python'>
 model.compile(
@@ -383,8 +394,43 @@ result = model.predict(inp)
                 </code></pre>
             </section>
 
+
+            <section data-background-color="white">
+                <img src="sin_aproximation_keras_fail.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Dense(2000, input_shape=(1,)),
+    Activation('relu'),
+
+
+    Dense(1)
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Dense(2000, input_shape=(1,)),
+    Activation('relu'),
+    Dense(2000),
+    Activation('relu'),
+    Dense(1)
+])
+                </code></pre>
+            </section>
+
+
+
             <section data-background-color="white">
                 <img src="sin_aproximation_keras.png"/>
+            </section>
+
+            <section>
+                <h2><emph>EXPERIMENT</emph></h2>
             </section>
         </section>
 
@@ -413,6 +459,11 @@ result = model.predict(inp)
             </section>
 
             <section>
+                <img src="number_five.png"/>
+                <h4>[0, 0, 0, 0, 0, <emph>1</emph>, 0, 0, 0, 0]</h4>
+            </section>
+
+            <section>
                 <h3><emph>Trick #2</emph></h3>
                 <h4>Image filters</h4>
             </section>
@@ -423,6 +474,37 @@ result = model.predict(inp)
 
             <section data-background-color="white">
                 <img src="convolutions.png"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Conv2D(10,(7,7),input_shape=(28,28,1)),
+    Activation('relu'),
+    Flatten(),
+    Dense(10),
+    Activation('softmax')
+])
+                </code></pre>
+            </section>
+
+
+            <section>
+                <pre><code data-trim class='python'>
+model.compile(
+    optimizer=opt,
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Labels <emph>92%</emph> correctly</h2>
+            </section>
+
+            <section>
+                <h4>After playing around a bit more</h4>
             </section>
 
             <section>
@@ -439,23 +521,48 @@ model = Sequential([
             </section>
 
             <section>
-                <pre><code data-trim class='python'>
-model.compile(
-    optimizer=opt,
-    loss='categorical_crossentropy',
-    metrics=['accuracy']
-)
-                </code></pre>
+                <h2>Labels over <emph>99%</emph> correctly</h2>
+            </section>
+
+            <section data-background-color="white">
+                <img src="handwritten_characters_recognized.png"/>
             </section>
         </section>
 
         <section>
             <section>
-                <h2><emph>Conclusion</emph></h2>
+                <h1>What's next?</h1>
             </section>
 
             <section>
-                <h3>It's just functions</h3>
+                <img src="AlphaGo-Lee-Sedol.jpg"/>
+            </section>
+
+            <section>
+                <img src="neural_style.png" height="600"/>
+            </section>
+
+            <section>
+                <img src="Apple-Siri-iPhone.jpg" height="600"/>
+            </section>
+
+            <section>
+                <img src="jeremy_howard.jpg" height="500"/>
+                <h4>course.fast.ai</h4>
+            </section>
+
+        </section>
+        <section>
+            <section>
+                <img src="lean_poker.jpg"/>
+            </section>
+
+            <section>
+                <img src="morning_commute.jpg" height="600"/>
+            </section>
+
+            <section>
+                <img src="qr_codes_closing_slide.png" height="600"/>
             </section>
         </section>
     </div>
