@@ -1,0 +1,271 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Your hiring process is broken, and here is how you fix it</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .over-image {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 50px !important;
+        }
+
+        .over-image h2, .over-image h3, .over-image p {
+            color: white !important;
+        }
+
+        .reveal h1 {
+            font-size: 7em;
+        }
+
+        .reveal h2 {
+            font-size: 6em;
+        }
+
+        .reveal h3 {
+            font-size: 5em;
+        }
+
+        .reveal h4 {
+            font-size: 2.5em;
+        }
+
+        .reveal {
+            background-color: rgb(12, 40, 56);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <h4><emph>Your hiring process is broken,</emph></h4><h4>and here is how you fix it</h4>
+                <p><a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
+                    <img src="../resources/Twitter_logo_blue.png"
+                         style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom
+                </p>
+            </section>
+
+            <section>
+                <h2>High turnover rate</h2>
+                <aside class="notes">
+                    <p>PayScale: median tenure is 1 year</p>
+                    <p>Turnover rate around 15%</p>
+                    <p>We also had hard times</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Hiring developers</h2>
+                <aside class="notes">
+                    <p>It's only one aspect, but an important one</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>...a copy of a copy...</h2>
+                <aside class="notes">
+                    <p>Googles process might be the best for them</p>
+                    <p>It's probably not the best for you</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>The goal</h2>
+                <aside  class="notes">
+                    <p>Find the talent that adds to your team</p>
+                    <p>Both culturally and in terms of technical skill set</p>
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Pitfalls of the original process</h2>
+            </section>
+
+            <section>
+                <h3>Curriculum Vitae</h3>
+                <aside class="notes">
+                    <p>First throw half of the CVs into the trash, we don't hire unlucky people.</p>
+                    <p>Biases: Gender, age, race, name, photo, previous work places, schools, hobbies</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3>Techincal interview</h3>
+                <aside class="notes">
+                    <p>Whiteboard coding: waste of time, not realistic</p>
+                    <p>Lexical knowledge specific to your company: People will learn</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3>Noisy process</h3>
+                <aside class="notes">
+                    <p>We lost many good candidates</p>
+                    <p>We hired people whose performance was clearly below standards even after 2 or 3 days.</p>
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <section></section>
+        </section>
+    </div>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: 1660,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: '../reveal/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+
+
+    function forceAspectRatio() {
+        if ($(window).width() * 9 < 16 * $(window).height()) {
+            let desiredHeight = $(window).width() * (9 / 16);
+            $('.reveal').css('height', desiredHeight);
+            $('.reveal').css('margin-top', ($(window).height() - desiredHeight) / 2)
+            $('.reveal').css('width', $(window).width());
+            $('.reveal').css('margin-left', 0)
+        } else {
+            let desiredWidth = $(window).height() * (16 / 9);
+            $('.reveal').css('height', $(window).height());
+            $('.reveal').css('margin-top', 0)
+            $('.reveal').css('width', desiredWidth);
+            $('.reveal').css('margin-left', ($(window).width() - desiredWidth) / 2)
+        }
+    }
+
+    $(window).resize(forceAspectRatio);
+    forceAspectRatio();
+
+    function revolve(selector, words) {
+        words = _.shuffle(words);
+        $(selector).text(words[0]);
+        let i = 1;
+        let interval = setInterval(function () {
+            if(i == words.length) {
+                $(selector).html('&nbsp;');
+                clearInterval(interval);
+                return;
+            }
+            $(selector).text(words[i]);
+            i+=1;
+
+        }, 1500);
+    }
+    
+    Reveal.addEventListener('male_vs_female', function() {
+        revolve('.male_vs_female_revolve', ['Uncle', 'Grandpa', 'Son', 'Boy', 'Girl', 'Mother', 'Daughter', 'Grandma', 'Wife']);
+    });
+
+    Reveal.addEventListener('science_vs_liberal_arts', function() {
+        revolve('.science_vs_liberal_arts_revolve', ['Engineering', 'Biology', 'Music', 'Chemistry', 'Literature', 'Geology','English', 'Humanities','Physics', 'Math']);
+    });
+
+    Reveal.addEventListener('science_male_vs_liberal_arts_female', function() {
+        revolve('.science_male_vs_liberal_arts_female_revolve', ['Music','Mother','Philosophy', 'Father', 'History', 'Wife', 'Engineering', 'Son', 'Chemistry', 'Physics']);
+    });
+
+    Reveal.addEventListener('science_female_vs_liberal_arts_male', function() {
+        revolve('.science_female_vs_liberal_arts_male_revolve', ['Father', 'Engineering', 'Music', 'Daughter', 'Uncle', 'Math', 'Girl', 'Literature', 'Husband', 'Physics']);
+    });
+</script>
+
+</body>
+</html>
