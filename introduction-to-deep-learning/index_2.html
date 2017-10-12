@@ -1,0 +1,643 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>What the heck is deep learning</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .over-image {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 50px !important;
+        }
+
+        .over-image h2, .over-image h3, .over-image p {
+            color: white !important;
+        }
+
+        .reveal h1 {
+            font-size: 7em;
+        }
+
+        .reveal h2 {
+            font-size: 6em;
+        }
+
+        .reveal h3 {
+            font-size: 5em;
+        }
+
+        .reveal h4 {
+            font-size: 2.5em;
+        }
+
+        .reveal {
+            background-color: rgb(12, 40, 56);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <iframe width="1120" height="630" src="https://www.youtube.com/embed/asZUx_nKbOM?rel=0&amp;controls=1&amp;showinfo=0" frameborder="0" allowfullscreen></iframe>
+            </section>
+
+            <section>
+                <aside class="notes">
+                    <p>It feels like magic</p>
+                    <p>It's scary</p>
+                    <p>Yet it's exciting</p>
+                    <p>Don't confuse science fiction with reality</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3><emph>DEEP LEARNING</emph></h3>
+                <h4>and why you should learn it</h4>
+                <p><a href="http://twitter.com/devillsroom">Rafael "DeVill" Ordog</a>
+                    <img src="../resources/Twitter_logo_blue.png"
+                         style="border:0; background: transparent; display:inline; margin:0;margin-right:15px"/>@devillsroom
+                </p>
+                <aside class="notes">
+                    <p>It's a tool for generating a function</p>
+                    <p>I started learning about a year ago</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3><emph>What can you expect?</emph></h3>
+                <aside class="notes">
+                    <p>You won't be scared anymore</p>
+                    <p>You'll understand the basic concept</p>
+                    <p>You'll be excited to learn more</p>
+                </aside>
+            </section>
+
+            <section data-background-color="white">
+                <img src="handwritten_characters_recognized.png"/>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h4>What can <emph>Deep Learning</emph> do for you?</h4>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_1.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_2.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_3.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_4.png"/>
+            </section>
+
+            <section>
+                <h2>2 * 3 = <emph>?</emph></h2>
+            </section>
+
+            <section>
+                <h2>2 * 3 = <emph>6</emph></h2>
+            </section>
+
+            <section>
+                <h2><emph>?</emph> * 3 = 9</h2>
+            </section>
+
+            <section>
+                <h2><emph>?</emph> = 9 / 3</h2>
+            </section>
+
+            <section>
+                <h2><emph>3</emph> = 9 / 3</h2>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_4.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_5.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_6.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_7_1.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_7_2.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_7_3.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_4.png"/>
+            </section>
+
+            <section>
+                <img src="what_is_deep_learning_8.png"/>
+            </section>
+
+            <section>
+                <img src="imagenet-classification.png"/>
+            </section>
+
+            <section>
+                <img src="image_segmentation.png"/>
+            </section>
+
+            <section data-background="image_colorization_large.jpg">
+
+            </section>
+
+            <section>
+                <img src="enhance.png"/>
+            </section>
+
+            <section data-background="enhance_pixelated.png"></section>
+            <section data-background="enhance_enhanced.png"></section>
+
+
+        </section>
+
+        <section>
+            <section>
+                <h2>Image recognition</h2>
+            </section>
+
+            <section data-background-color="white">
+                <img src="handwritten_characters_recognized.png"/>
+            </section>
+
+            <section>
+                <h3><emph>Trick #1</emph></h3>
+                <h4>Predict how likely each number is</h4>
+            </section>
+
+            <section>
+                <img src="number_five.png"/>
+                <h4>I'm 99% sure this is a 5</h4>
+            </section>
+
+            <section>
+                <img src="number_five.png"/>
+                <h4>[0, 0, 0, 0, 0, <emph>0.99</emph>, 0.01, 0, 0, 0]</h4>
+            </section>
+
+            <section>
+                <img src="number_five.png"/>
+                <h4>[0, 0, 0, 0, 0, <emph>1</emph>, 0, 0, 0, 0]</h4>
+            </section>
+
+            <section>
+                <h3><emph>Trick #2</emph></h3>
+                <h4>Image filters</h4>
+            </section>
+
+            <section data-background-color="white">
+                <img src="example_convolutions.png"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_22.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_01.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_02.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_03.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_04.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_05.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_06.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_07.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_08.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_09.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_10.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_11.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_12.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_13.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_14.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_15.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_16.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_17.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_18.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_19.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_20.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_21.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_22.png" height="600"/>
+            </section>
+
+            <section data-background-color="white">
+                <img src="conv_23.png" height="600"/>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+
+
+
+
+
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+
+
+
+
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    LeakyReLU(alpha=0.3),
+
+
+
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    LeakyReLU(alpha=0.3),
+    Conv2D(10,(22,22)),
+
+
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    LeakyReLU(alpha=0.3),
+    Conv2D(10,(22,22)),
+    Flatten(),
+
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    LeakyReLU(alpha=0.3),
+    Conv2D(10,(22,22)),
+    Flatten(),
+    Activation('softmax')
+])
+                </code></pre>
+            </section>
+
+
+            <section>
+                <pre><code data-trim class='python'>
+model.compile(
+    optimizer=Nadam(),
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model.fit_generator(
+    train_generator,
+    epochs=6,
+    steps_per_epoch=117
+)
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model.predict(imgs)
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Labels <emph>92%</emph> correctly</h2>
+            </section>
+
+            <section>
+                <h4>After playing around a bit more</h4>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python'>
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    Activation('relu'), Conv2D(10,(3,3)),
+    Activation('relu'), Conv2D(20,(3,3)),
+    Activation('relu'), Flatten(),
+    Dense(128), Activation('relu'),
+    Dense(10), Activation('softmax')
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <h2>Labels over <emph>99%</emph> correctly</h2>
+            </section>
+
+            <section data-background-color="white">
+                <img src="handwritten_characters_recognized.png"/>
+            </section>
+
+            <section data-background="cucumber_sorting.png">
+                <aside class="notes">
+                    <p>CurieNeuron by General Vision</p>
+                </aside>
+            </section>
+            <section data-background="lego_sorting.JPG">
+                <aside class="notes">
+                    <p>JACQUES MATTHEIJ</p>
+                </aside>
+            </section>
+
+            <section>
+                <img src="lung_cancer.jpg" height="600px"/>
+            </section>
+
+            <section data-background="go.png">
+
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>Generative Models</h2>
+            </section>
+
+            <section data-background="gans_catch_me_if_you_can.png">
+
+            </section>
+
+            <section data-background-color="#ffffff">
+                <img src="gan_loss.png"/>
+            </section>
+
+            <section>
+                <img src="gan_humble_beginings.png"/>
+            </section>
+
+            <section>
+                <img src="gan_results.png"/>
+            </section>
+
+            <section data-background="stary_night.png">
+
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h3>Natural language processing</h3>
+            </section>
+
+            <section>
+                <img src="imdb_sentiment.png"/>
+            </section>
+
+            <section>
+                <img src="Apple-Siri-iPhone.jpg" height="600"/>
+            </section>
+
+        </section>
+        <section>
+            <section>
+                <img src="jeremy_howard.jpg" height="500"/>
+                <h4>course.fast.ai</h4>
+            </section>
+
+            <section>
+                <img src="lean_poker.jpg"/>
+            </section>
+
+            <section>
+                <img src="morning_commute.jpg" height="600"/>
+            </section>
+
+            <section>
+                <img src="qr_codes_closing_slide.png" height="600"/>
+            </section>
+        </section>
+    </div>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: 1660,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: '../reveal/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+
+
+    function forceAspectRatio() {
+        if ($(window).width() * 9 < 16 * $(window).height()) {
+            let desiredHeight = $(window).width() * (9 / 16);
+            $('.reveal').css('height', desiredHeight);
+            $('.reveal').css('margin-top', ($(window).height() - desiredHeight) / 2)
+            $('.reveal').css('width', $(window).width());
+            $('.reveal').css('margin-left', 0)
+        } else {
+            let desiredWidth = $(window).height() * (16 / 9);
+            $('.reveal').css('height', $(window).height());
+            $('.reveal').css('margin-top', 0)
+            $('.reveal').css('width', desiredWidth);
+            $('.reveal').css('margin-left', ($(window).width() - desiredWidth) / 2)
+        }
+    }
+
+    $(window).resize(forceAspectRatio);
+    forceAspectRatio();
+</script>
+
+</body>
+</html>
