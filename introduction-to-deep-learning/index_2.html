@@ -141,26 +141,6 @@
             </section>
 
             <section>
-                <h2>2 * 3 = <emph>?</emph></h2>
-            </section>
-
-            <section>
-                <h2>2 * 3 = <emph>6</emph></h2>
-            </section>
-
-            <section>
-                <h2><emph>?</emph> * 3 = 9</h2>
-            </section>
-
-            <section>
-                <h2><emph>?</emph> = 9 / 3</h2>
-            </section>
-
-            <section>
-                <h2><emph>3</emph> = 9 / 3</h2>
-            </section>
-
-            <section>
                 <img src="what_is_deep_learning_4.png"/>
             </section>
 
@@ -194,10 +174,6 @@
 
             <section>
                 <img src="imagenet-classification.png"/>
-            </section>
-
-            <section>
-                <img src="image_segmentation.png"/>
             </section>
 
             <section data-background="image_colorization_large.jpg">
@@ -344,31 +320,75 @@
                 <img src="conv_22.png" height="600"/>
             </section>
 
+            <section>
+                <img src="relu_curve.png"/>
+            </section>
+
             <section data-background-color="white">
                 <img src="conv_23.png" height="600"/>
             </section>
 
             <section>
-                <img src="relu_curve.png"/>
+                <img src="explain_conv_net_1.png"/>
             </section>
 
             <section>
-                <img src="convolution_intermediate_5.png"/>
+                <img src="explain_conv_net_2.png"/>
             </section>
 
             <section>
-                <TODO>
-                    - Tell it as a story of how we discovered this
-                    - Break up previous slide into steps for easier understanding
-                    - Add numbers to the bottom layer...
-                    - Step by step plan for our network
-                    - Before every code slide show the appropriate step in the step by step plan
-                </TODO>
+                <img src="explain_conv_net_3.png"/>
             </section>
 
             <section>
-                <pre><code data-trim class='python'>
+                <img src="explain_conv_net_4.png"/>
+            </section>
+
+            <section>
+                <img src="explain_conv_net_5.png"/>
+            </section>
+
+            <section>
+                <img src="explain_conv_net_6.png"/>
+            </section>
+
+            <section>
+                <img src="explain_conv_net_7.png"/>
+            </section>
+
+            <section>
+                <h4>&nbsp;</h4>
+                <h4>4x + 5y = 0</h4>
+                <h4>7x - 2y = 1</h4>
+            </section>
+
+            <section>
+                <h4>Inputs (pixels)</h4>
+                <h4><emph>4</emph>x + <emph>5</emph>y = 0</h4>
+                <h4><emph>7</emph>x - <emph>2</emph>y = 1</h4>
+            </section>
+
+            <section>
+                <h4>Outputs</h4>
+                <h4>4x + 5y = <emph>0</emph></h4>
+                <h4>7x - 2y = <emph>1</emph></h4>
+            </section>
+
+            <section>
+                <h4>Find these:</h4>
+                <h4>4<emph>x</emph> + 5<emph>y</emph> = 0</h4>
+                <h4>7<emph>x</emph> - 2<emph>y</emph> = 1</h4>
+            </section>
+
+            <section>
+                <h1>KERAS</h1>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python' style="font-size:1.5em">
 model = Sequential([
+
+
 
 
 
@@ -379,9 +399,11 @@ model = Sequential([
             </section>
 
             <section>
-                <pre><code data-trim class='python'>
+                <pre><code data-trim class='python' style="font-size:1.5em">
 model = Sequential([
     Conv2D(10,(7,7), input_shape=(28,28,1)),
+
+
 
 
 
@@ -391,9 +413,40 @@ model = Sequential([
             </section>
 
             <section>
-                <pre><code data-trim class='python'>
+                <pre><code data-trim class='python' style="font-size:1.5em">
 model = Sequential([
     Conv2D(10,(7,7), input_shape=(28,28,1)),
+    LeakyReLU(alpha=0.3),
+
+
+
+
+
+])
+                </code></pre>
+            </section>
+
+            <section>
+                <pre><code data-trim class='python' style="font-size:1.5em">
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    LeakyReLU(alpha=0.3),
+    Conv2D(10,(7,7)),
+
+
+
+
+])
+                </code></pre>
+            </section>
+
+
+            <section>
+                <pre><code data-trim class='python' style="font-size:1.5em">
+model = Sequential([
+    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    LeakyReLU(alpha=0.3),
+    Conv2D(10,(7,7)),
     LeakyReLU(alpha=0.3),
 
 
@@ -403,11 +456,13 @@ model = Sequential([
             </section>
 
             <section>
-                <pre><code data-trim class='python'>
+                <pre><code data-trim class='python' style="font-size:1.5em">
 model = Sequential([
     Conv2D(10,(7,7), input_shape=(28,28,1)),
     LeakyReLU(alpha=0.3),
-    Conv2D(10,(22,22)),
+    Conv2D(10,(7,7)),
+    LeakyReLU(alpha=0.3),
+    Conv2D(10,(16,16)),
 
 
 ])
@@ -415,23 +470,13 @@ model = Sequential([
             </section>
 
             <section>
-                <pre><code data-trim class='python'>
+                <pre><code data-trim class='python' style="font-size:1.5em">
 model = Sequential([
     Conv2D(10,(7,7), input_shape=(28,28,1)),
     LeakyReLU(alpha=0.3),
-    Conv2D(10,(22,22)),
-    Flatten(),
-
-])
-                </code></pre>
-            </section>
-
-            <section>
-                <pre><code data-trim class='python'>
-model = Sequential([
-    Conv2D(10,(7,7), input_shape=(28,28,1)),
+    Conv2D(10,(7,7)),
     LeakyReLU(alpha=0.3),
-    Conv2D(10,(22,22)),
+    Conv2D(10,(16,16)),
     Flatten(),
     Activation('softmax')
 ])
@@ -509,6 +554,10 @@ model = Sequential([
                 <img src="lung_cancer.jpg" height="600px"/>
             </section>
 
+            <section>
+                <img src="image_segmentation.png"/>
+            </section>
+
             <section data-background="go.png">
 
             </section>
@@ -521,10 +570,6 @@ model = Sequential([
 
             <section data-background="gans_catch_me_if_you_can.png">
 
-            </section>
-
-            <section data-background-color="#ffffff">
-                <img src="gan_loss.png"/>
             </section>
 
             <section>
