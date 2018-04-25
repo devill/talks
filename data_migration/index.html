@@ -1,0 +1,317 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Bootcamp</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .over-image {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 50px !important;
+        }
+
+        .over-image h2, .over-image h3, .over-image p {
+            color: white !important;
+        }
+
+        .reveal h1 {
+            font-size: 7em;
+        }
+
+        .reveal h2 {
+            font-size: 6em;
+        }
+
+        .reveal h3 {
+            font-size: 5em;
+        }
+
+        .reveal h4 {
+            font-size: 2.5em;
+        }
+
+        .reveal {
+            background-color: rgb(12, 40, 56);
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <h2>Migrate from disk to cloud</h2>
+
+            <p>
+                R. "DeVill" Ördög
+            </p>
+            <aside class="notes">
+                <p>Case study arrol, hogy a LeanPoker-t hogyan koltoztettuk</p>
+                <p>Harmas tagolas: LP intro, migration, AWS best practices</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Lean Poker</h2>
+        </section>
+
+        <section>
+            <h2>Game Logs</h2>
+            <aside class="notes">
+                <p>whole game state is saved at every step of each game</p>
+                <p>cards, bets, chips, player names, languages, etc.</p>
+                <p>big files (50-100 kB)</p>
+                <p>gzipped, compressed files make up a couple of MBs during a workshop</p>
+            </aside>
+        </section>
+
+        <section>
+            <h3>Version 1</h3>
+            <h2>On laptop disk</h2>
+
+            <aside class="notes">
+                <p>Local storage on DeVill's laptop</p>
+                <p>everything ran locally</p>
+                <p>log files stored on local disk</p>
+                <p>monolith</p>
+            </aside>
+        </section>
+
+        <section>
+            <h3>Version 2</h3>
+            <h2>Rackspace</h2>
+
+            <aside class="notes">
+                <p>one dedicated virtual machine</p>
+                <p>files still stored locally</p>
+                <p>server ran from same machine</p>
+            </aside>
+        </section>
+
+        <section>
+            <h3>Version 3</h3>
+            <h2>Heroku</h2>
+
+            <aside class="notes">
+                <p>services moved to heroku</p>
+            </aside>
+        </section>
+
+        <section>
+            <img src="leanpoker-architecture.png" alt="architecture" height="600">
+            <aside class="notes">
+                <p>csak a lean poker live-nak van DB-je</p>
+                <p>minden mas stateless</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>MongoFS</h2>
+
+            <aside class="notes">
+                <p>input: a file</p>
+                <p>reason: mar hasznalva volt a Mongo masra is, emiatt kezenfekvo volt ide koltoztetni a file
+                    storage-ot</p>
+                <p>encodes, chunks and saves jsons as a Mongo document</p>
+                <p>table that administers the chunks + metadata</p>
+                <p>took up more storage space than the gzipped files</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Issues</h2>
+        </section>
+
+        <section>
+            <h2>Expensive ($100/month)</h2>
+        </section>
+
+        <section>
+            <h2>Performance issues</h2>
+
+            <aside class="notes">
+                <p>egyszerre ket esemenynel tobbet nem lehetett tartani</p>
+                <p>nem tudott ennyi logot egyszerre irni, belassult</p>
+            </aside>
+        </section>
+
+        <section>
+            <h3>Version 4</h3>
+            <h2>AWS S3</h2>
+        </section>
+
+        <section>
+            <h3>File management in one class</h3>
+
+            <aside class="notes">
+                <p>Currently saved to both places: Mongo and S3</p>
+                <p>Primary storage: S3, backup: Mongo</p>
+                <p>Fallback option to Mongo behind flipper</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Code Time</h2>
+        </section>
+
+        <section>
+            <h2>Migration</h2>
+
+            <aside class="notes">
+                <p>Migration of old data: script run from heroku (parallel copy)</p>
+                <p>Old files deleted from Mongo</p>
+                <p>Whole process took a day</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Verdict?</h2>
+        </section>
+
+        <section>
+            <h4>Costs: $100/month</h4>
+            <h4>vs.</h4>
+            <h4><$1/month</h4>
+
+            <aside class="notes">
+                <p>0.26 USD in March</p>
+                <p>evente 300k forint sporolas</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Scalability</h2>
+
+            <aside class="notes">
+                <p>more than 2 workshops can be running in the same time</p>
+            </aside>
+        </section>
+
+        <section>
+            <h2>Thank you!</h2>
+        </section>
+
+
+    </div>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.8.3/underscore-min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: 1660,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: '../reveal/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+
+
+    function forceAspectRatio() {
+        if ($(window).width() * 9 < 16 * $(window).height()) {
+            let desiredHeight = $(window).width() * (9 / 16);
+            $('.reveal').css('height', desiredHeight);
+            $('.reveal').css('margin-top', ($(window).height() - desiredHeight) / 2)
+            $('.reveal').css('width', $(window).width());
+            $('.reveal').css('margin-left', 0)
+        } else {
+            let desiredWidth = $(window).height() * (16 / 9);
+            $('.reveal').css('height', $(window).height());
+            $('.reveal').css('margin-top', 0)
+            $('.reveal').css('width', desiredWidth);
+            $('.reveal').css('margin-left', ($(window).width() - desiredWidth) / 2)
+        }
+    }
+
+    $(window).resize(forceAspectRatio);
+    forceAspectRatio();
+</script>
+
+</body>
+</html>
