@@ -1,0 +1,274 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>The Saga Pattern</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .over-image {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 50px !important;
+        }
+
+        .over-image h2, .over-image h3, .over-image p {
+            color: white !important;
+        }
+
+        .reveal h1 {
+            font-size: 5em;
+        }
+
+        .reveal h2 {
+            font-size: 4em;
+        }
+
+        .reveal h3 {
+            font-size: 3em;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                <img src='../resources/leanpoker_logo_dark.png' style='height:300px;margin-bottom:70px;'/>
+                <p><img src="../resources/Twitter_logo_blue.png"
+                        style="border:0; background: transparent; display:inline; margin:0 15px 0 15px"/>@devillsroom
+                </p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h1>Motivation</h1>
+            </section>
+
+            <section data-background="da356c2c-192d-456d-b010-4061a40430b6-8.jpg">
+                <aside class="notes">
+                    <p>Motivation: coderetreat does not teach good enough</p>
+                    <p>Learn how to deliver value early and often in practice</p>
+                </aside>
+            </section>
+        </section>
+
+
+        <section>
+            <section>
+                <h1>How it works</h1>
+            </section>
+
+            <section data-background="b8a7de3b-8189-4bf1-bf86-0f2a956f18dc-26.jpg">
+
+            </section>
+
+            <section data-background="screen_2.png" data-background-size="contain">
+
+            </section>
+
+            <section data-background="code.png" data-background-size="contain">
+
+            </section>
+
+            <section data-background="a8ae58c0-dde6-4eb2-b614-1abe623e216d-4.jpg">
+
+            </section>
+
+            <section data-background="a8ae58c0-dde6-4eb2-b614-1abe623e216d-9.jpg">
+
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h1>Things people learn</h1>
+            </section>
+
+            <section data-background="overengineer.jpg">
+                <aside class="notes">
+                    <p>No commits for a long period of time</p>
+                    <p>Overengineering</p>
+                </aside>
+            </section>
+
+            <section>
+                <img src="all_in_win.png" style="height:650px"/>
+                <aside class="notes">
+                    <p>All in MVP</p>
+                </aside>
+            </section>
+
+            <section>
+                <img src="all_in_win2.png" style="height:650px"/>
+                <aside class="notes">
+                    <p>It can get you pretty far</p>
+                </aside>
+            </section>
+
+            <section>
+                <img src="consistent_2nd.png" style="height:650px"/>
+                <aside class="notes">
+                    <p>Being consistently second - Perfect is the enemy of good enough</p>
+                </aside>
+            </section>
+
+            <section data-background="a8ae58c0-dde6-4eb2-b614-1abe623e216d-32.jpg">
+
+            </section>
+
+            <section>
+                <img src="revert.png" style="height:650px"/>
+                <aside class="notes">
+                    <p>Do not panic, just revert</p>
+                    <p>Frequent deep dives implys the lack of tests</p>
+                    <p>One long deep dive with no commits is the lack of monitoring</p>
+                    <p>Many fix commits is the sign of panic</p>
+                </aside>
+            </section>
+
+            <section>
+                <img src="friday_deploy.png" style="height:650px"/>
+                <aside class="notes">
+                    <p>Friday night deploys</p>
+                </aside>
+            </section>
+
+            <section data-background="431d684a-ef50-469e-a3a8-71b4d1e618cd-16.jpg">
+                <aside class="notes">
+                    <p>Specialization within teams can be useful</p>
+                    <p>Typical roles</p>
+                    <ul>
+                        <li>Developers</li>
+                        <li>Team lead / Project manager</li>
+                        <li>Automated quality assurance engineer</li>
+                        <li>Product manager</li>
+                        <li>Analyst / Data analyst</li>
+                    </ul>
+
+                </aside>
+            </section>
+
+            <section data-background="silo.jpg"></section>
+
+            <section data-background="poker.jpeg">
+                <aside class="notes">
+                    <p>Understanding the domain is important</p>
+                    <p>What part of the game should we concentrate on?</p>
+                    <p>What technologies are actually helpful?</p>
+                </aside>
+            </section>
+        </section>
+
+        <section>
+            <img src='../resources/leanpoker_logo_dark.png' style='height:300px;margin-bottom:70px;'/>
+            <p><a href="http://leanpoker.org">leanpoker.org</a> <img src="../resources/Twitter_logo_blue.png"
+                                                                     style="margin:0 15px 0 100px"/>@leanpoker</p>
+        </section>
+    </div>
+</div>
+
+<div id="logo">
+    <img src="../resources/emarsys_logo_color_white.png" alt=""/>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: 1680,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: '../reveal/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
