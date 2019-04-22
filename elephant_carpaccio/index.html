@@ -1,0 +1,212 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8">
+
+    <title>Elephant carpaccio</title>
+
+    <meta name="description" content="">
+    <meta name="author" content="Rafael Ordog">
+
+    <meta name="apple-mobile-web-app-capable" content="yes"/>
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent"/>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
+    <link rel="stylesheet" href="../reveal/css/reveal.min.css">
+    <link rel="stylesheet" href="../resources/emarsys.css" id="theme">
+
+    <!-- For syntax highlighting -->
+    <link rel="stylesheet" href="../reveal/lib/css/zenburn.css">
+
+    <!-- If the query includes 'print-pdf', include the PDF print sheet -->
+    <script>
+        if (window.location.search.match(/print-pdf/gi)) {
+            var link = document.createElement('link');
+            link.rel = 'stylesheet';
+            link.type = 'text/css';
+            link.href = 'css/print/pdf.css';
+            document.getElementsByTagName('head')[0].appendChild(link);
+        }
+    </script>
+
+    <!--[if lt IE 9]>
+    <script src="../reveal/lib/js/html5shiv.js"></script>
+    <![endif]-->
+
+    <style>
+        .reveal pre {
+            font-size: 0.9em;
+        }
+
+        .over-image {
+            background-color: rgba(0, 0, 0, 0.4);
+            padding: 50px !important;
+        }
+
+        .over-image h2, .over-image h3, .over-image p {
+            color: white !important;
+        }
+
+        .reveal h1 {
+            font-size: 5em;
+        }
+
+        .reveal h2 {
+            font-size: 4em;
+        }
+
+        .reveal h3 {
+            font-size: 3em;
+        }
+
+    </style>
+</head>
+
+<body>
+
+<div class="reveal">
+    <div class="slides">
+        <section>
+            <section>
+                 <h1>Story breakdown</h1>
+                <p><a href="http://twitter.com/devillsroom">Ivett Ördög</a><br/>
+                    <img src="../resources/Twitter_logo_blue.png" style="border:0; background: transparent; display:inline; margin:0 15px 0 15px"/>@devillsroom</p>
+            </section>
+        </section>
+
+        <section>
+            <section>
+                <h2>What makes a good story?</h2>
+
+            </section>
+
+            <section>
+                <h2>INVEST</h2>
+                <aside class='notes'>
+                    <p>Independent</p>
+                    <p>Negotiable</p>
+                    <p>Valuable</p>
+                    <p>Estimatable</p>
+                    <p>Small</p>
+                    <p>Testable</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>Structure</h2>
+                <p>As <emph>&lt;actor&gt;</emph> I'd like to <emph>&lt;acton&gt;</emph> so that <emph>&lt;bennefit&gt;</emph><p>
+                <aside class='notes'>
+                    <p>Other alternatives exists</p>
+                    <p>For example including a baseline and a desired numeric change to a metric is gaining popularity</p>
+                    
+                </aside>
+            </section>
+
+            <section>
+                <h3><emph>Discuss:</emph> advantages of small stories?</h3>
+                <aside class='notes'>
+                    <p>Reduces risk</p>
+                    <p>Faster reaction to change</p>
+                    <p>Less work in progress</p>
+                    <p>Less time in inventory</p>
+                </aside>
+            </section>
+
+            <section>
+                <h3><emph>Discuss:</emph> strategies for breaking down stories</h3>
+                <aside class='notes'>
+                    <p>Defer complexity</p>
+                    <p>Zero, one, more - triangulation</p>
+                    <p>Hard coded values</p>
+                    <p>Defer validation</p>
+                    <p>Defer UX features</p>
+                </aside>
+            </section>
+
+            <section>
+                <h2>The exercise</h2>
+                <aside class='notes'>
+                    <p>Hand out exercise on paper</p>
+                </aside>
+            </section>
+
+        </section>
+
+        <section>
+            <section>
+                <h1 style="font-family: 'Comic Sans MS'">KTHX BYE</h1>
+                <h1 style="font-family: 'Comic Sans MS'">=^.^=</h1>
+            </section>
+        </section>
+
+    </div>
+</div>
+
+<div id="logo">
+    <img src="../resources/emarsys_logo_color_white.png" alt=""/>
+</div>
+
+<!-- Any section element inside of this container is displayed as a slide -->
+
+<script src="../reveal/lib/js/head.min.js"></script>
+<script src="../reveal/js/reveal.min.js"></script>
+
+<script>
+
+    // Full list of configuration options available here:
+    // https://github.com/hakimel/reveal.js#configuration
+    Reveal.initialize({
+        width: 1680,
+        controls: true,
+        progress: true,
+        history: true,
+        center: true,
+
+        theme: Reveal.getQueryHash().theme, // available themes are in /css/theme
+        transition: Reveal.getQueryHash().transition || 'fade', // default/cube/page/concave/zoom/linear/fade/none
+
+        // Parallax scrolling
+        // parallaxBackgroundImage: 'https://s3.amazonaws.com/hakim-static/reveal-js/reveal-parallax-1.jpg',
+        // parallaxBackgroundSize: '2100px 900px',
+
+        // Optional libraries used to extend on reveal.js
+        dependencies: [
+            {
+                src: '../reveal/lib/js/classList.js', condition: function () {
+                return !document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/marked.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/markdown/markdown.js', condition: function () {
+                return !!document.querySelector('[data-markdown]');
+            }
+            },
+            {
+                src: '../reveal/plugin/highlight/highlight.js', async: true, callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+            },
+            {
+                src: '../reveal/plugin/zoom-js/zoom.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            },
+            {
+                src: '../reveal/plugin/notes/notes.js', async: true, condition: function () {
+                return !!document.body.classList;
+            }
+            }
+        ]
+    });
+
+</script>
+
+</body>
+</html>
